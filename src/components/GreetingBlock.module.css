@@ -1,0 +1,21 @@
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: clamp(24px, 8vh, 56px);
+}
+
+.logoMark {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: conic-gradient(from 45deg, #44c0cc, #5cbf69, #f3b55d, #44c0cc);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.65);
+}
+
+.brandText {
+  font-size: 1.06rem;
+  font-weight: 500;
+  color: #25202b;
+  letter-spacing: 0.01em;
+}

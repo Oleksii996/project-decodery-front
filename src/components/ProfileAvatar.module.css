@@ -1,0 +1,88 @@
+.root {
+  margin-bottom: 32px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.imageWrap {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #dbdbdf;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.placeholder {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #b4b4ba;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.name {
+  margin: 0;
+  font-size: 2rem;
+  line-height: 1;
+  font-weight: 500;
+  color: #1f1a24;
+}
+
+.email {
+  margin: 0;
+  font-size: 1rem;
+  color: #4e4a55;
+}
+
+.fileInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.upload {
+  cursor: pointer;
+  border: 1px solid #d9d9de;
+  border-radius: 999px;
+  min-height: 36px;
+  padding: 6px 16px;
+  background: #f2f2f5;
+  color: #26212d;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.upload:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.uploadInner {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
