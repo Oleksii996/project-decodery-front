@@ -12,16 +12,17 @@ export default function JourneyPage() {
   const params = useParams();
   const weekNumber = params.weekNumber as string;
 
-  const [data, setData] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-  const [tab, setTab] = useState<"baby" | "mom">("baby");
+const [data, setData] = useState<any>(null);
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState<string | null>(null);
+ const [tab, setTab] = useState<"baby" | "mom">("baby");
 
   useEffect(() => {
     if (!weekNumber) return;
 
     setLoading(true);
 
-    fetch(`http://localhost:5000/api/weeks/${weekNumber}`)
+    fetch(`http://localhost:3000/api/weeks/${weekNumber}`)
       .then((res) => res.json())
       .then((data) => {
         setData(data);
