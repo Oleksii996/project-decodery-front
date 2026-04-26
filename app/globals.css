@@ -47,3 +47,16 @@ a {
     color-scheme: dark;
   }
 }
+
+
+.pageContainer {
+  background: #f5f5f5;
+  min-height: 100vh;
+}
+
+.contentContainer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+

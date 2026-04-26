@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import Tabs from "@/components/Tabs";
 import BabyCard from "@/components/BabyCard";
 import MomCard from "@/components/MomCard";
+import WeekSelector from "@/components/WeekSelector";
 
 export default function JourneyPage() {
   const params = useParams();
@@ -16,6 +17,8 @@ export default function JourneyPage() {
   const [tab, setTab] = useState<"baby" | "mom">("baby");
 
   useEffect(() => {
+    if (!weekNumber) return;
+
     setLoading(true);
 
     fetch(`http://localhost:5000/api/weeks/${weekNumber}`)
@@ -33,14 +36,19 @@ export default function JourneyPage() {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div style={{ padding: 20 }}>
-      <h1>Week {data.week}</h1>
-      <p>Days to birth: {data.daysToBirth}</p>
+    <div className="pageContainer">
+      <div className="contentContainer">
+        <h1>Week {data.week}</h1>
+        <p>Days to birth: {data.daysToBirth}</p>
 
-      <Tabs tab={tab} setTab={setTab} />
+        
+        <WeekSelector currentWeek={data.week} />
 
-      {tab === "baby" && <BabyCard data={data.baby} />}
-      {tab === "mom" && <MomCard data={data.mom} />}
+        <Tabs tab={tab} setTab={setTab} />
+
+        {tab === "baby" && <BabyCard data={data.baby} />}
+        {tab === "mom" && <MomCard data={data.mom} />}
+      </div>
     </div>
   );
 }
