@@ -1,21 +1,21 @@
-"use client";
+ "use client";
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 
-import Tabs from "@/components/Tabs";
-import BabyCard from "@/components/BabyCard";
-import MomCard from "@/components/MomCard";
-import WeekSelector from "@/components/WeekSelector";
+import Tabs from "@/components/journey/Tabs";
+import BabyCard from "@/components/journey/BabyCard";
+import MomCard from "@/components/journey/MomCard";
+import WeekSelector from "@/components/journey/WeekSelector";
 
 export default function JourneyPage() {
   const params = useParams();
-  const weekNumber = params.weekNumber as string;
+  const weekNumber = params?.weekNumber as string;
 
-const [data, setData] = useState<any>(null);
-const [loading, setLoading] = useState(true);
-const [error, setError] = useState<string | null>(null);
- const [tab, setTab] = useState<"baby" | "mom">("baby");
+  const [data, setData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [tab, setTab] = useState<"baby" | "mom">("baby");
 
   useEffect(() => {
     if (!weekNumber) return;
@@ -30,11 +30,13 @@ const [error, setError] = useState<string | null>(null);
       })
       .catch((err) => {
         console.log("ERROR:", err);
+        setError("Something went wrong");
         setLoading(false);
       });
   }, [weekNumber]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading || !data) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
     <div className="pageContainer">
@@ -42,7 +44,6 @@ const [error, setError] = useState<string | null>(null);
         <h1>Week {data.week}</h1>
         <p>Days to birth: {data.daysToBirth}</p>
 
-        
         <WeekSelector currentWeek={data.week} />
 
         <Tabs tab={tab} setTab={setTab} />
