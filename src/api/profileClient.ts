@@ -1,15 +1,20 @@
 import type { ProfileUpdatePayload, UserProfile } from '@/types/profile'
 
 const JSON_HEADERS = { 'Content-Type': 'application/json' } as const
+const LOCAL_API_BASE = ''
+const DEFAULT_DEMO_USER_ID = 'demo-user'
 
-function apiBase(): string | null {
+function apiBase(): string {
   const raw = process.env.NEXT_PUBLIC_API_BASE_URL
-  if (typeof raw !== 'string' || !raw.trim()) return null
+  if (typeof raw !== 'string' || !raw.trim()) return LOCAL_API_BASE
   return raw.replace(/\/$/, '')
 }
 
-function isMockApiMode(): boolean {
-  return apiBase() === null
+function getAuthHeaders() {
+  const userId = process.env.NEXT_PUBLIC_DEMO_USER_ID?.trim() || DEFAULT_DEMO_USER_ID
+  return {
+    'x-user-id': userId,
+  }
 }
 
 let mockProfile: UserProfile = {
@@ -30,12 +35,10 @@ async function parseJson<T>(res: Response): Promise<T> {
 }
 
 export async function getProfile(): Promise<UserProfile> {
-  if (isMockApiMode()) {
-    await delay()
-    return { ...mockProfile }
-  }
-
-  const res = await fetch(`${apiBase()}/profile`, { credentials: 'include' })
+  const res = await fetch(`${apiBase()}/api/users/me`, {
+    credentials: 'include',
+    headers: getAuthHeaders(),
+  })
   if (!res.ok) throw new Error('PROFILE_LOAD_FAILED')
   return parseJson<UserProfile>(res)
 }
@@ -43,19 +46,13 @@ export async function getProfile(): Promise<UserProfile> {
 export async function updateProfile(
   payload: ProfileUpdatePayload,
 ): Promise<UserProfile> {
-  if (isMockApiMode()) {
-    await delay()
-    mockProfile = {
-      ...mockProfile,
-      ...payload,
-    }
-    return { ...mockProfile }
-  }
-
-  const res = await fetch(`${apiBase()}/profile`, {
+  const res = await fetch(`${apiBase()}/api/users/me`, {
     method: 'PATCH',
     credentials: 'include',
-    headers: JSON_HEADERS,
+    headers: {
+      ...JSON_HEADERS,
+      ...getAuthHeaders(),
+    },
     body: JSON.stringify(payload),
   })
   if (!res.ok) throw new Error('PROFILE_UPDATE_FAILED')
@@ -63,24 +60,11 @@ export async function updateProfile(
 }
 
 export async function uploadAvatar(file: File): Promise<{ avatarUrl: string }> {
-  if (isMockApiMode()) {
-    await delay()
-    const avatarUrl = URL.createObjectURL(file)
-    if (mockProfile.avatarUrl?.startsWith('blob:')) {
-      URL.revokeObjectURL(mockProfile.avatarUrl)
-    }
-    mockProfile = { ...mockProfile, avatarUrl }
-    return { avatarUrl }
+  await delay()
+  const avatarUrl = URL.createObjectURL(file)
+  if (mockProfile.avatarUrl?.startsWith('blob:')) {
+    URL.revokeObjectURL(mockProfile.avatarUrl)
   }
-
-  const body = new FormData()
-  body.append('file', file)
-
-  const res = await fetch(`${apiBase()}/profile/avatar`, {
-    method: 'POST',
-    credentials: 'include',
-    body,
-  })
-  if (!res.ok) throw new Error('AVATAR_UPLOAD_FAILED')
-  return parseJson<{ avatarUrl: string }>(res)
+  mockProfile = { ...mockProfile, avatarUrl }
+  return { avatarUrl }
 }
