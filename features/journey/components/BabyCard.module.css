@@ -1,0 +1,80 @@
+/* ================= MOBILE ================= */
+
+.card {
+  background: var(--color-white);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.section {
+  margin-bottom: 14px;
+}
+
+.description {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-neutral-dark);
+}
+
+.label {
+  font-weight: 500;
+  margin-right: 6px;
+}
+
+.value {
+  color: var(--color-neutral);
+}
+
+.subtitle {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.list {
+  padding-left: 16px;
+}
+
+.listItem {
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: var(--color-neutral-dark);
+}
+
+/* ================= DESKTOP ================= */
+
+@media (min-width: 1024px) {
+  .card {
+    padding: 24px;
+    height: 420px; /* по ТЗ */
+    overflow-y: auto; /* скрол */
+  }
+
+  .title {
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+
+  .section {
+    margin-bottom: 18px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .listItem {
+    font-size: 15px;
+  }
+}

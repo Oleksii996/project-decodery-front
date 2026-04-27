@@ -10,17 +10,18 @@ type Props = {
 export default function WeekSelector({ currentWeek }: Props) {
   const router = useRouter();
 
-  const weeks = Array.from({ length: 40 }, (_, i) => i + 1);
+  //  42 тижні
+  const weeks = Array.from({ length: 42 }, (_, i) => i + 1);
+
+  //  гарантуємо число
+  const current = Number(currentWeek);
 
   return (
     <div className={styles.container}>
       {weeks.map((week) => {
-        const current = Number(currentWeek);
-
-
-        const isActive = week === currentWeek;
-        const isPast = week < currentWeek;
-        const isFuture = week > currentWeek;
+        const isActive = week === current;
+        const isPast = week < current;
+        const isFuture = week > current;
 
         return (
           <div

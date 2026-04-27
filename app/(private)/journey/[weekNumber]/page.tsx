@@ -3,10 +3,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 
-import Tabs from "@/components/journey/Tabs";
-import BabyCard from "@/components/journey/BabyCard";
-import MomCard from "@/components/journey/MomCard";
-import WeekSelector from "@/components/journey/WeekSelector";
+import WeekSelector from "@/features/journey/components/WeekSelector";
+import GreetingBlock from "@/features/journey/components/GreetingBlock";
+import JourneyDetails from "@/features/journey/components/JourneyDetails";
 
 export default function JourneyPage() {
   const params = useParams();
@@ -15,41 +14,41 @@ export default function JourneyPage() {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [tab, setTab] = useState<"baby" | "mom">("baby");
 
   useEffect(() => {
     if (!weekNumber) return;
 
     setLoading(true);
+    setError(null);
 
     fetch(`http://localhost:3000/api/weeks/${weekNumber}`)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("No data");
+        }
+        return res.json();
+      })
       .then((data) => {
         setData(data);
         setLoading(false);
       })
-      .catch((err) => {
-        console.log("ERROR:", err);
-        setError("Something went wrong");
+      .catch(() => {
+        setError("Немає даних для цього тижня");
         setLoading(false);
       });
   }, [weekNumber]);
 
-  if (loading || !data) return <div>Loading...</div>;
+  if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
   return (
     <div className="pageContainer">
       <div className="contentContainer">
-        <h1>Week {data.week}</h1>
-        <p>Days to birth: {data.daysToBirth}</p>
+        <GreetingBlock week={data.week} />
 
         <WeekSelector currentWeek={data.week} />
 
-        <Tabs tab={tab} setTab={setTab} />
-
-        {tab === "baby" && <BabyCard data={data.baby} />}
-        {tab === "mom" && <MomCard data={data.mom} />}
+        <JourneyDetails data={data} />
       </div>
     </div>
   );
