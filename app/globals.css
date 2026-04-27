@@ -16,6 +16,7 @@ svg {
 
 button {
   cursor: pointer;
+  border: none;
 }
 
 a {
@@ -26,6 +27,10 @@ a {
 ul,
 ol {
   list-style: none;
+}
+
+input {
+  outline: none;
 }
 
 :root {

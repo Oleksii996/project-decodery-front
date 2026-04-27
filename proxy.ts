@@ -1,37 +1,39 @@
-// import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-// const publicRoutes = ['/auth/login', '/auth/register'];
-// const privateRoutes = ['/', '/diary', '/journey', '/profile'];
+// 🔴 Тимчасово відключено редіректи
+export function proxy() {
+  return NextResponse.next();
+}
 
-// export function proxy(req: NextRequest) {
-//   const { pathname } = req.nextUrl;
+/*
+const publicRoutes = ['/auth/login', '/auth/register'];
+const privateRoutes = ['/', '/diary', '/journey', '/profile'];
 
-//   const accessToken = req.cookies.get('accessToken')?.value;
+export function proxy(req: NextRequest) {
+  const { pathname } = req.nextUrl;
 
-//   const isPublicRoute = publicRoutes.some(route => pathname.startsWith(route));
+  const accessToken = req.cookies.get('accessToken')?.value;
 
-//   const isPrivateRoute =
-//     pathname === '/' || privateRoutes.some(route => pathname.startsWith(route));
+  const isPublicRoute = publicRoutes.some(route => pathname.startsWith(route));
 
-//   if (!accessToken && isPrivateRoute) {
-//     const loginUrl = new URL('/auth/login', req.url);
-//     return NextResponse.redirect(loginUrl);
-//   }
+  const isPrivateRoute =
+    pathname === '/' || privateRoutes.some(route => pathname.startsWith(route));
 
-//   if (accessToken && isPublicRoute) {
-//     const homeUrl = new URL('/', req.url);
-//     return NextResponse.redirect(homeUrl);
-//   }
+  if (!accessToken && isPrivateRoute) {
+    const loginUrl = new URL('/auth/login', req.url);
+    return NextResponse.redirect(loginUrl);
+  }
 
-//   return NextResponse.next();
-// }
+  if (accessToken && isPublicRoute) {
+    const homeUrl = new URL('/', req.url);
+    return NextResponse.redirect(homeUrl);
+  }
 
-// export const config = {
-//   matcher: [
-//     '/',
-//     '/diary/:path*',
-//     '/journey/:path*',
-//     '/profile/:path*',
-//     '/auth/:path*',
-//   ],
-// };
+  return NextResponse.next();
+}
+*/
+
+// 🔴 Важливо — щоб proxy взагалі не викликався
+export const config = {
+  matcher: [],
+};
