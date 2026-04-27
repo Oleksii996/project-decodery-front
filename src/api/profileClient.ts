@@ -1,20 +1,15 @@
 import type { ProfileUpdatePayload, UserProfile } from '@/types/profile'
 
 const JSON_HEADERS = { 'Content-Type': 'application/json' } as const
-const LOCAL_API_BASE = ''
-const DEFAULT_DEMO_USER_ID = 'demo-user'
 
-function apiBase(): string {
+function apiBase(): string | null {
   const raw = process.env.NEXT_PUBLIC_API_BASE_URL
-  if (typeof raw !== 'string' || !raw.trim()) return LOCAL_API_BASE
+  if (typeof raw !== 'string' || !raw.trim()) return null
   return raw.replace(/\/$/, '')
 }
 
-function getAuthHeaders() {
-  const userId = process.env.NEXT_PUBLIC_DEMO_USER_ID?.trim() || DEFAULT_DEMO_USER_ID
-  return {
-    'x-user-id': userId,
-  }
+function isMockApiMode(): boolean {
+  return apiBase() === null
 }
 
 let mockProfile: UserProfile = {
@@ -35,10 +30,12 @@ async function parseJson<T>(res: Response): Promise<T> {
 }
 
 export async function getProfile(): Promise<UserProfile> {
-  const res = await fetch(`${apiBase()}/api/users/me`, {
-    credentials: 'include',
-    headers: getAuthHeaders(),
-  })
+  if (isMockApiMode()) {
+    await delay()
+    return { ...mockProfile }
+  }
+
+  const res = await fetch(`${apiBase()}/profile`, { credentials: 'include' })
   if (!res.ok) throw new Error('PROFILE_LOAD_FAILED')
   return parseJson<UserProfile>(res)
 }
@@ -46,13 +43,19 @@ export async function getProfile(): Promise<UserProfile> {
 export async function updateProfile(
   payload: ProfileUpdatePayload,
 ): Promise<UserProfile> {
-  const res = await fetch(`${apiBase()}/api/users/me`, {
+  if (isMockApiMode()) {
+    await delay()
+    mockProfile = {
+      ...mockProfile,
+      ...payload,
+    }
+    return { ...mockProfile }
+  }
+
+  const res = await fetch(`${apiBase()}/profile`, {
     method: 'PATCH',
     credentials: 'include',
-    headers: {
-      ...JSON_HEADERS,
-      ...getAuthHeaders(),
-    },
+    headers: JSON_HEADERS,
     body: JSON.stringify(payload),
   })
   if (!res.ok) throw new Error('PROFILE_UPDATE_FAILED')
