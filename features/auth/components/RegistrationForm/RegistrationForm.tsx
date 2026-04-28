@@ -35,45 +35,55 @@ const RegistrationForm = () => {
       validationSchema={registrationValidationSchema}
     >
       <Form className={css['registerForm']}>
-        <label htmlFor={`${fieldId}-username`} className={css['label']}>
-          Імʼя*
-        </label>
-        <Field
-          type="text"
-          name="name"
-          id={`${fieldId}-name`}
-          className={css['input']}
-          placeholder="Ваше імʼя"
-        />
-        <ErrorMessage name="name" component="span" className={css['error']} />
+        <div className={css['wrapper']}>
+          <label htmlFor={`${fieldId}-name`} className={css['label']}>
+            Імʼя*
+          </label>
+          <Field
+            type="text"
+            name="name"
+            id={`${fieldId}-name`}
+            className={css['input']}
+            placeholder="Ваше імʼя"
+          />
+          <ErrorMessage name="name" component="span" className={css['error']} />
+        </div>
 
-        <label htmlFor={`${fieldId}-email`} className={css['label']}>
-          Пошта*
-        </label>
-        <Field
-          type="email"
-          name="email"
-          id={`${fieldId}-email`}
-          className={css['input']}
-          placeholder="hello@leleka.com"
-        />
-        <ErrorMessage name="email" component="span" className={css['error']} />
+        <div className={css['wrapper']}>
+          <label htmlFor={`${fieldId}-email`} className={css['label']}>
+            Пошта*
+          </label>
+          <Field
+            type="email"
+            name="email"
+            id={`${fieldId}-email`}
+            className={css['input']}
+            placeholder="hello@leleka.com"
+          />
+          <ErrorMessage
+            name="email"
+            component="span"
+            className={css['error']}
+          />
+        </div>
 
-        <label htmlFor={`${fieldId}-password`} className={css['label']}>
-          Пароль*
-        </label>
-        <Field
-          type="password"
-          name="password"
-          id={`${fieldId}-password`}
-          className={css['input']}
-          placeholder="********"
-        />
-        <ErrorMessage
-          name="password"
-          component="span"
-          className={css['error']}
-        />
+        <div className={css['wrapper']}>
+          <label htmlFor={`${fieldId}-password`} className={css['label']}>
+            Пароль*
+          </label>
+          <Field
+            type="password"
+            name="password"
+            id={`${fieldId}-password`}
+            className={css['input']}
+            placeholder="********"
+          />
+          <ErrorMessage
+            name="password"
+            component="span"
+            className={css['error']}
+          />
+        </div>
 
         <button type="submit" className={css['register-btn']}>
           Зареєструватись

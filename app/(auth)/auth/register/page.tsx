@@ -4,6 +4,8 @@ import Image from 'next/image';
 import css from './Page.module.css';
 import RegistrationForm from '@/features/auth/components/RegistrationForm/RegistrationForm';
 
+import Link from 'next/link';
+
 export default function LoginPage() {
   return (
     <div className={css['container']}>
@@ -20,9 +22,9 @@ export default function LoginPage() {
 
             <div className={css['register-additional']}>
               <p className={css['register-text']}>Вже маєте аккаунт?</p>
-              <a href="" className={css['register-link']}>
+              <Link href="/auth/login" className={css['register-link']}>
                 Увійти
-              </a>
+              </Link>
             </div>
           </div>
         </div>

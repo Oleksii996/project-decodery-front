@@ -11,6 +11,7 @@ export interface User {
   gender: 'boy' | 'girl' | null;
   dueDate: string | null;
   avatar: string;
+  isOnboardingCompleted: boolean;
 }
 
 export interface PregnancyProgress {
@@ -20,6 +21,16 @@ export interface PregnancyProgress {
 }
 
 export interface RegisterResponse {
+  user: User;
+  pregnancyProgress: PregnancyProgress;
+}
+
+export interface LoginFormValues {
+  email: string;
+  password: string;
+}
+
+export interface LoginResponse {
   user: User;
   pregnancyProgress: PregnancyProgress;
 }
