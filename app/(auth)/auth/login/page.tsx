@@ -20,7 +20,7 @@ export default function LoginPage() {
             <div className={css['login-additional']}>
               <p className={css['login-text']}>Немає аккаунту?</p>
               <Link href="/auth/register" className={css['login-link']}>
-                Увійти
+                Зареєструватися
               </Link>
             </div>
           </div>

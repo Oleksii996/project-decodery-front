@@ -6,6 +6,7 @@ import { RegistrationFormValues } from '../../types';
 import { registrationValidationSchema } from './registrationValidationSchema';
 import { registerUser } from '../../api';
 import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 const initialValues: RegistrationFormValues = {
   name: '',
@@ -18,13 +19,14 @@ const RegistrationForm = () => {
   const router = useRouter();
 
   const handleSubmit = async (values: RegistrationFormValues) => {
-    console.log(values);
     try {
       const data = await registerUser(values);
-      router.push('/profile');
-      console.log(data);
-    } catch (error) {
-      console.log(error);
+      toast.success('Реєстрація успішна');
+      router.push('/profile/edit');
+    } catch (error: any) {
+      const message = error.response?.data?.message || 'Користувач вже існує';
+
+      toast.error(message);
     }
   };
 
