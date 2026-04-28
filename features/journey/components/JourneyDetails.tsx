@@ -6,7 +6,11 @@ import BabyCard from "./BabyCard";
 import MomCard from "./MomCard";
 import styles from "./JourneyDetails.module.css";
 
-export default function JourneyDetails({ data }: any) {
+type Props = {
+  data: any;
+};
+
+export default function JourneyDetails({ data }: Props) {
   const [tab, setTab] = useState<"baby" | "mom">("baby");
 
   if (!data) return null;

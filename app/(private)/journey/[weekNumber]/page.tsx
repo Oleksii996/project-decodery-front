@@ -1,4 +1,4 @@
- "use client";
+"use client";
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
@@ -9,14 +9,15 @@ import JourneyDetails from "@/features/journey/components/JourneyDetails";
 
 export default function JourneyPage() {
   const params = useParams();
-  const weekNumber = params?.weekNumber as string;
+
+  const weekNumber = Number(params?.weekNumber);
 
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!weekNumber) return;
+    if (!weekNumber || isNaN(weekNumber)) return;
 
     setLoading(true);
     setError(null);
@@ -33,7 +34,7 @@ export default function JourneyPage() {
         setLoading(false);
       })
       .catch(() => {
-        setError("Немає даних для цього тижня");
+        setError("Помилка завантаження даних");
         setLoading(false);
       });
   }, [weekNumber]);
@@ -44,9 +45,13 @@ export default function JourneyPage() {
   return (
     <div className="pageContainer">
       <div className="contentContainer">
-        <GreetingBlock week={data.week} />
+        <GreetingBlock week={weekNumber} />
 
-        <WeekSelector currentWeek={data.week} />
+        {/*  поки що просто weekNumber */}
+        <WeekSelector
+          currentWeek={weekNumber}
+          userWeek={weekNumber}
+        />
 
         <JourneyDetails data={data} />
       </div>

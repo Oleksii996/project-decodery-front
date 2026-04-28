@@ -1,30 +1,38 @@
-  /* ================= MOBILE ================= */
-
+/* ================= MOBILE ================= */
 .container {
   display: flex;
-  gap: 12px;
+  gap: 16px; /*  всюди однаковий */
+
   overflow-x: auto;
+  overflow-y: hidden;
+
   padding: 12px 0;
+
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+
+  width: 100%;
 }
+
 /* ховаємо скрол */
 .container::-webkit-scrollbar {
   display: none;
 }
 
 .container {
-  -ms-overflow-style: none;  /* IE */
-  scrollbar-width: none;     /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-.card {
-  flex-shrink: 0;
+/* ================= CARD ================= */
 
-  width: 80px;
+.card {
+  flex-shrink: 0;          /*  щоб не стискались */
+  min-width: 80px;         /*   для скролу */
+
   height: 85px;
 
   border-radius: 24px;
-
-  
   border: 2px solid #d8d6d3;
 
   background: #ffffff;
@@ -54,43 +62,45 @@
 
 /* ================= STATES ================= */
 
-/* 🔥 ACTIVE (як у макеті) */
+/* ACTIVE */
 .card.active {
   background: #ffcbd3;
   border: 2px solid #cca2a8;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
-/* 🔥 PAST */
+/* PAST */
 .card.past {
   background: #fff4f6;
   border: 2px solid #ffdae0;
 }
 
-/* 🔥 FUTURE */
+/* FUTURE */
 .card.future {
   background: #f2f2f2;
   border: 2px solid #d8d6d3;
   color: #b2b2b2;
+
   cursor: not-allowed;
+  pointer-events: none;   /* 🔥 щоб точно не клікалось */
 }
 
-/* 🔥 HOVER */
+/* HOVER */
 .card:not(.future):not(.active):hover {
   transform: translateY(-2px);
   background: #ffdae0;
 }
 
-/* ================= DESKTOP ================= */
 
+
+/* ================= DESKTOP ================= */
 @media (min-width: 1024px) {
   .container {
-    gap: 16px;
     padding: 16px 0;
   }
 
   .card {
-    width: 97px;
+    min-width: 97px;   /*  важливо */
     height: 101px;
     border-radius: 32px;
   }

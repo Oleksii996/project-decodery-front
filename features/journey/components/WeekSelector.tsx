@@ -1,27 +1,49 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useEffect, useRef } from "react";
 import styles from "./WeekSelector.module.css";
 
 type Props = {
-  currentWeek: number;
+  currentWeek: number; // обраний
+  userWeek: number;    // реальний
 };
 
-export default function WeekSelector({ currentWeek }: Props) {
+export default function WeekSelector({ currentWeek, userWeek }: Props) {
   const router = useRouter();
 
-  //  42 тижні
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
   const weeks = Array.from({ length: 42 }, (_, i) => i + 1);
 
-  //  гарантуємо число
-  const current = Number(currentWeek);
+  // 🔥 авто-скрол до активного тижня
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const activeEl = container.querySelector(`.${styles.active}`);
+
+    if (activeEl) {
+      activeEl.scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "nearest",
+      });
+    }
+  }, [currentWeek]);
 
   return (
-    <div className={styles.container}>
+    <div
+      ref={containerRef}
+      className={styles.container}
+      onWheel={(e) => {
+        e.currentTarget.scrollLeft += e.deltaY; //  колесо мишки = горизонтальний скрол
+      }}
+    >
       {weeks.map((week) => {
-        const isActive = week === current;
-        const isPast = week < current;
-        const isFuture = week > current;
+        const isActive = week === currentWeek;
+        const isPast = week < currentWeek;
+        const isFuture = week > userWeek;
 
         return (
           <div
