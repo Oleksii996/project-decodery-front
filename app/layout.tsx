@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
-// import { Lato, Comfortaa } from "next/font/google";
+import { Lato, Comfortaa } from "next/font/google";
 import "./globals.css";
 import { QueryProvider } from "@/components/providers/QueryProvider";
 
-// const lato = Lato({
-// weight:["400","700", '900'],
-// style: 'normal',
-// variable: "--font-lato",
-// subsets:['latin', 'latin-ext']
-// });
+const lato = Lato({
+weight:["400","700", '900'],
+style: 'normal',
+variable: "--font-lato",
+subsets:['latin', 'latin-ext']
+});
 
-// const comfortaa = Comfortaa({
-//   weight: ["600", "700"],
-//   style: 'normal',
-//   variable: "--font-comfortaa",
-//   subsets: ["latin"],
-// });
+const comfortaa = Comfortaa({
+  weight: ["600", "700"],
+  style: 'normal',
+  variable: "--font-comfortaa",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Лелека",
@@ -45,8 +45,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="uk" >
-      <body >
-        {/* className={`${lato.variable} ${comfortaa.variable}`} */}
+      <body  className={`${lato.variable} ${comfortaa.variable}`}>
+       
         <QueryProvider>{children}</QueryProvider></body>
     </html>
   );
