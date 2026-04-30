@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Lato, Comfortaa } from "next/font/google";
 import "./globals.css";
 import { QueryProvider } from "@/components/providers/QueryProvider";
+import { ModalProvider } from "@/components/providers/ModalProvider";
 
 const lato = Lato({
 weight:["400","700", '900'],
@@ -46,8 +47,12 @@ export default function RootLayout({
   return (
     <html lang="uk" >
       <body  className={`${lato.variable} ${comfortaa.variable}`}>
-       
-        <QueryProvider>{children}</QueryProvider></body>
+        <QueryProvider>
+          <ModalProvider>
+            {children}
+          </ModalProvider>
+        </QueryProvider>
+      </body>
     </html>
   );
 }
