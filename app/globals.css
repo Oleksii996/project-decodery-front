@@ -27,7 +27,25 @@ ul,
 ol {
   list-style: none;
 }
-
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+.container {
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 375px;
+}
+@media screen and (min-width: 768px) {
+  .container{
+    width: 768px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .container {
+padding: 0 16px;
+width: 1440px;
+  }
+}
 :root {
   --font-family: 'Lato', sans-serif;
   --second-family: 'Comfortaa', sans-serif;

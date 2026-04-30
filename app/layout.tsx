@@ -45,7 +45,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="uk" >
-      <body className={`${lato.variable} ${comfortaa.variable}`}>
+      <body  className={`${lato.variable} ${comfortaa.variable}`}>
+       
         <QueryProvider>{children}</QueryProvider></body>
     </html>
   );
