@@ -1,9 +1,8 @@
-.breadcrumbs {
+.breadcrumbs :global(.container) {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background-color: #e97070;
+  height: 50px;
 
-  height: 40px;
+  background-color: rgb(214, 169, 139);
 }

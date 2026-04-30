@@ -4,9 +4,11 @@ import css from './Header.module.css';
 export default function Header() {
   return (
     <header className={css.header}>
-      <Link href="/" aria-label="Home">
-        Header
-      </Link>
+      <div className="container">
+        <Link href="/" aria-label="Home">
+          Header
+        </Link>
+      </div>
     </header>
   );
 }
