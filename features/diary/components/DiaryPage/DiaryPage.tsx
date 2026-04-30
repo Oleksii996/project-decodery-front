@@ -4,14 +4,14 @@ import DiaryList from '../DiaryList/DiaryList';
 import { getAllDiaries } from '../../api';
 
 export default function DiaryPage() {
-  const { data, isLoading, isError } = useQuery({
+  const { data: diaries = [], isLoading, isError } = useQuery({
     queryKey: ['diaries'],
-    queryFn: () => getAllDiaries(),
+    queryFn:  getAllDiaries,
     placeholderData: keepPreviousData,
     refetchOnMount: false,
     retry: false,
   });
-  const diaries = data?.diaries ?? [];
+
   return (
     <section>
       {/* <GreetingBlock/> */}
