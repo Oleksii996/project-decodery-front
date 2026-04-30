@@ -6,3 +6,25 @@
 
   background-color: rgb(168, 196, 196);
 }
+
+.logo {
+  background-color: rgb(255, 180, 180);
+}
+
+.burger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 32px;
+  height: 32px;
+
+  background-color: rgb(255, 255, 255);
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+
+  background-color: rgb(223, 185, 185);
+}

@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <header className={css.header}>
       <div className="container">
-        <Link href="/" aria-label="Home">
+        <Link href="/" aria-label="Home" className={css.logo}>
           <Image
             src="/img/company_logo_both.svg"
             alt="Company logo"
@@ -14,6 +14,11 @@ export default function Header() {
             height={45}
           />
         </Link>
+        <button className={css.burger} aria-label="Open menu">
+          <svg className={css.icon}>
+            <use href="/leleka-sprite.svg#icon-burger_menu" />
+          </svg>
+        </button>
       </div>
     </header>
   );
