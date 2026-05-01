@@ -236,7 +236,7 @@ export default function OnboardingForm() {
     <div className={styles.container}>
       <div className={styles.brand}>
         <Image
-          src="/img/onboarding/logo.svg"
+          src="/img/Company Logo.svg"
           alt="Лелека"
           width={105}
           height={45}
