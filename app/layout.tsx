@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Lato, Comfortaa } from 'next/font/google';
 import './globals.css';
 import { QueryProvider } from '@/components/providers/QueryProvider';
+import { Toaster } from 'react-hot-toast';
 
 import Header from '@/components/layout/Header/Header';
 import Breadcrumbs from '@/components/layout/Breadcrumbs/Breadcrumbs';
@@ -50,6 +51,7 @@ export default function RootLayout({
     <html lang="uk">
       <body className={`${lato.variable} ${comfortaa.variable}`}>
         <QueryProvider>
+          <Toaster position="top-right" />
           <Header />
           <Breadcrumbs />
           {children}
