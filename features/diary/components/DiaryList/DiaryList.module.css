@@ -1,0 +1,44 @@
+.container {
+  width: 100%;
+  background-color: #fefbf4;
+}
+
+@media screen and (min-width: 768px) {
+}
+@media screen and (min-width: 1128px) {
+  .container {
+    background-color: #fefbf4;
+    width: 33%;
+    padding: 0 16px;
+  }
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .title {
+    font-family: var(--second-family);
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+    color: #000;
+  }
+  .addButton {
+    border: none;
+    border-radius: 100px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+  }
+  .icon {
+    fill: #000;
+  }
+  .empty {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #000;
+  }
+}

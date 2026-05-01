@@ -1,11 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// 🔴 Тимчасово відключено редіректи
-export function proxy() {
-  return NextResponse.next();
-}
-
-/*
 const publicRoutes = ['/auth/login', '/auth/register'];
 const privateRoutes = ['/', '/diary', '/journey', '/profile'];
 
@@ -19,11 +13,6 @@ export function proxy(req: NextRequest) {
   const isPrivateRoute =
     pathname === '/' || privateRoutes.some(route => pathname.startsWith(route));
 
-  if (!accessToken && isPrivateRoute) {
-    const loginUrl = new URL('/auth/login', req.url);
-    return NextResponse.redirect(loginUrl);
-  }
-
   if (accessToken && isPublicRoute) {
     const homeUrl = new URL('/', req.url);
     return NextResponse.redirect(homeUrl);
@@ -31,9 +20,13 @@ export function proxy(req: NextRequest) {
 
   return NextResponse.next();
 }
-*/
 
-// 🔴 Важливо — щоб proxy взагалі не викликався
 export const config = {
-  matcher: [],
+  matcher: [
+    '/',
+    '/diary/:path*',
+    '/journey/:path*',
+    '/profile/:path*',
+    '/auth/:path*',
+  ],
 };

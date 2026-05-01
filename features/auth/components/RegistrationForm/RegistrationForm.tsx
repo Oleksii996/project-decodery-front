@@ -36,7 +36,7 @@ const RegistrationForm = () => {
       onSubmit={handleSubmit}
       validationSchema={registrationValidationSchema}
     >
-      {({ isSubmitting, validateForm, submitForm }) => (
+      {({ isSubmitting, validateForm, submitForm, setTouched }) => (
         <Form
           className={css['registerForm']}
           noValidate
@@ -46,6 +46,12 @@ const RegistrationForm = () => {
             const errors = await validateForm();
 
             if (Object.keys(errors).length > 0) {
+              setTouched({
+                name: true,
+                email: true,
+                password: true,
+              });
+
               const firstError = Object.values(errors)[0];
               toast.error(firstError as string);
               return;
