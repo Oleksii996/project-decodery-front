@@ -46,50 +46,75 @@ export default function LoginForm() {
         onSubmit={handleSubmit}
         validationSchema={loginValidationSchema}
       >
-        <Form className={css['login-form']}>
-          <div className={css['login-wrapper']}>
-            <label htmlFor={`${fieldId}-email`} className={css['login-label']}>
-              Пошта*
-            </label>
-            <Field
-              type="email"
-              name="email"
-              id={`${fieldId}-email`}
-              className={css['login-input']}
-              placeholder="hello@leleka.com"
-            />
-            <ErrorMessage
-              name="email"
-              component="span"
-              className={css['login-error']}
-            />
-          </div>
+        {({ isSubmitting, validateForm, submitForm }) => (
+          <Form
+            className={css['login-form']}
+            noValidate
+            onSubmit={async e => {
+              e.preventDefault();
 
-          <div className={css['login-wrapper']}>
-            <label
-              htmlFor={`${fieldId}-password`}
-              className={css['login-label']}
+              const errors = await validateForm();
+
+              if (Object.keys(errors).length > 0) {
+                const firstError = Object.values(errors)[0];
+                toast.error(firstError as string);
+                return;
+              }
+
+              submitForm();
+            }}
+          >
+            <div className={css['login-wrapper']}>
+              <label
+                htmlFor={`${fieldId}-email`}
+                className={css['login-label']}
+              >
+                Пошта*
+              </label>
+              <Field
+                type="email"
+                name="email"
+                id={`${fieldId}-email`}
+                className={css['login-input']}
+                placeholder="hello@leleka.com"
+              />
+              <ErrorMessage
+                name="email"
+                component="span"
+                className={css['login-error']}
+              />
+            </div>
+
+            <div className={css['login-wrapper']}>
+              <label
+                htmlFor={`${fieldId}-password`}
+                className={css['login-label']}
+              >
+                Пароль*
+              </label>
+              <Field
+                type="password"
+                name="password"
+                id={`${fieldId}-password`}
+                className={css['login-input']}
+                placeholder="********"
+              />
+              <ErrorMessage
+                name="password"
+                component="span"
+                className={css['login-error']}
+              />
+            </div>
+
+            <button
+              type="submit"
+              className={css['login-btn']}
+              disabled={isSubmitting}
             >
-              Пароль*
-            </label>
-            <Field
-              type="password"
-              name="password"
-              id={`${fieldId}-password`}
-              className={css['login-input']}
-              placeholder="********"
-            />
-            <ErrorMessage
-              name="password"
-              component="span"
-              className={css['login-error']}
-            />
-          </div>
-
-          <button type="submit" className={css['login-btn']}>
-            Увійти
-          </button>
-        </Form>
+              {isSubmitting ? <span className={css.loader}></span> : 'Увійти'}
+            </button>
+          </Form>
+        )}
       </Formik>
     </>
   );

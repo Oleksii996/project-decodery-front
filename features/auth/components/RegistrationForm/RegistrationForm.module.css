@@ -81,3 +81,25 @@
   color: #c60000;
   margin-bottom: 0;
 }
+
+.loader {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.register-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

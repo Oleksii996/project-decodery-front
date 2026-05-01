@@ -36,61 +36,91 @@ const RegistrationForm = () => {
       onSubmit={handleSubmit}
       validationSchema={registrationValidationSchema}
     >
-      <Form className={css['registerForm']}>
-        <div className={css['wrapper']}>
-          <label htmlFor={`${fieldId}-name`} className={css['label']}>
-            Імʼя*
-          </label>
-          <Field
-            type="text"
-            name="name"
-            id={`${fieldId}-name`}
-            className={css['input']}
-            placeholder="Ваше імʼя"
-          />
-          <ErrorMessage name="name" component="span" className={css['error']} />
-        </div>
+      {({ isSubmitting, validateForm, submitForm }) => (
+        <Form
+          className={css['registerForm']}
+          noValidate
+          onSubmit={async e => {
+            e.preventDefault();
 
-        <div className={css['wrapper']}>
-          <label htmlFor={`${fieldId}-email`} className={css['label']}>
-            Пошта*
-          </label>
-          <Field
-            type="email"
-            name="email"
-            id={`${fieldId}-email`}
-            className={css['input']}
-            placeholder="hello@leleka.com"
-          />
-          <ErrorMessage
-            name="email"
-            component="span"
-            className={css['error']}
-          />
-        </div>
+            const errors = await validateForm();
 
-        <div className={css['wrapper']}>
-          <label htmlFor={`${fieldId}-password`} className={css['label']}>
-            Пароль*
-          </label>
-          <Field
-            type="password"
-            name="password"
-            id={`${fieldId}-password`}
-            className={css['input']}
-            placeholder="********"
-          />
-          <ErrorMessage
-            name="password"
-            component="span"
-            className={css['error']}
-          />
-        </div>
+            if (Object.keys(errors).length > 0) {
+              const firstError = Object.values(errors)[0];
+              toast.error(firstError as string);
+              return;
+            }
 
-        <button type="submit" className={css['register-btn']}>
-          Зареєструватись
-        </button>
-      </Form>
+            submitForm();
+          }}
+        >
+          <div className={css['wrapper']}>
+            <label htmlFor={`${fieldId}-name`} className={css['label']}>
+              Імʼя*
+            </label>
+            <Field
+              type="text"
+              name="name"
+              id={`${fieldId}-name`}
+              className={css['input']}
+              placeholder="Ваше імʼя"
+            />
+            <ErrorMessage
+              name="name"
+              component="span"
+              className={css['error']}
+            />
+          </div>
+
+          <div className={css['wrapper']}>
+            <label htmlFor={`${fieldId}-email`} className={css['label']}>
+              Пошта*
+            </label>
+            <Field
+              type="email"
+              name="email"
+              id={`${fieldId}-email`}
+              className={css['input']}
+              placeholder="hello@leleka.com"
+            />
+            <ErrorMessage
+              name="email"
+              component="span"
+              className={css['error']}
+            />
+          </div>
+
+          <div className={css['wrapper']}>
+            <label htmlFor={`${fieldId}-password`} className={css['label']}>
+              Пароль*
+            </label>
+            <Field
+              type="password"
+              name="password"
+              id={`${fieldId}-password`}
+              className={css['input']}
+              placeholder="********"
+            />
+            <ErrorMessage
+              name="password"
+              component="span"
+              className={css['error']}
+            />
+          </div>
+
+          <button
+            type="submit"
+            className={css['register-btn']}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              <span className={css.loader}></span>
+            ) : (
+              'Зареєструватись'
+            )}
+          </button>
+        </Form>
+      )}
     </Formik>
   );
 };
