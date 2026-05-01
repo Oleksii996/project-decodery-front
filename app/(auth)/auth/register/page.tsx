@@ -1,12 +1,10 @@
-'use client';
-
 import Image from 'next/image';
 import css from './Page.module.css';
 import RegistrationForm from '@/features/auth/components/RegistrationForm/RegistrationForm';
 
 import Link from 'next/link';
 
-export default function LoginPage() {
+export default function RegisterPage() {
   return (
     <div className={css['container']}>
       <div className={css['register-wrapper']}>
@@ -18,6 +16,7 @@ export default function LoginPage() {
                 width={105}
                 height={45}
                 alt="logo"
+                priority
               />
             </div>
 

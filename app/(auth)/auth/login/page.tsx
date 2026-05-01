@@ -15,6 +15,7 @@ export default function LoginPage() {
                 width={105}
                 height={45}
                 alt="logo"
+                priority
               />
             </div>
 
