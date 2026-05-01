@@ -11,14 +11,13 @@ export default function Home() {
       {/* Твій Dashboard */}
       <DashBoardPage />
 
-      {/* Кнопка для відкриття модалки */}
+      {/* Кнопка для відкриття модалки зі стандартними кнопками */}
       <button
         onClick={() =>
           openModal({
             title: "Ви впевнені, що хочете вийти?",
-            confirmButtonText: "Так",
-            cancelButtonText: "Ні",
             onConfirm: () => console.log("Підтверджено!"),
+            onCancel: () => console.log("Скасовано!"),
             children: <p style={{ color: "red" }}>Ця дія незворотна!</p>,
           })
         }
