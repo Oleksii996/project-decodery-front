@@ -1,5 +1,6 @@
 import { User } from '@/features/auth/types';
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 interface AuthStore {
   isAuth: boolean;
@@ -8,23 +9,26 @@ interface AuthStore {
   clearAuthUser: () => void;
 }
 
-export const useAuthStore = create<AuthStore>(set => ({
-  isAuth: false,
-  userInfo: null,
-  setAuthUser: (userInfo: User) => {
-    set(() => {
-      return {
-        isAuth: true,
-        userInfo: userInfo,
-      };
-    });
-  },
-  clearAuthUser: () => {
-    set(() => {
-      return {
-        isAuth: false,
-        userInfo: null,
-      };
-    });
-  },
-}));
+export const useAuthStore = create<AuthStore>()(
+  persist(
+    set => ({
+      isAuth: false,
+      userInfo: null,
+
+      setAuthUser: (userInfo: User) =>
+        set({
+          isAuth: true,
+          userInfo,
+        }),
+
+      clearAuthUser: () =>
+        set({
+          isAuth: false,
+          userInfo: null,
+        }),
+    }),
+    {
+      name: 'auth-storage',
+    }
+  )
+);
