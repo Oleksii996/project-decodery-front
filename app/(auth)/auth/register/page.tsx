@@ -14,7 +14,7 @@ export default function LoginPage() {
           <div className={css['register-page']}>
             <div className={css['logo']}>
               <Image
-                src="/img/Company Logo.svg"
+                src="/Company Logo.svg"
                 width={105}
                 height={45}
                 alt="logo"
