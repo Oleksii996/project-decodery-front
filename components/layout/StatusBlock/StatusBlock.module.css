@@ -1,0 +1,52 @@
+.container {
+    display: flex;
+    gap: 16px;
+}
+.statCard {
+    display: flex;
+    flex-direction: column;
+    width: 160px;
+    height: 105px;
+    border: 1px solid transparent;
+    border-radius: 32px;
+    background-color: var(--color-primary);
+    padding-left: 16px;
+    padding-top: 16px;
+    gap: 4px;
+}
+.title {
+    font-family: var(--font-family), sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.5;
+
+    color: var(--color-black);
+}
+.value{
+    font-family: var(--second-family), sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 1%;
+    color: var(--color-black);
+}
+@media screen and (min-width: 768px) {
+    .statCard{
+        width: 336px;
+        height: 105px;
+    }
+    
+}
+@media  screen and (min-width: 1024px) {
+    .statCard{
+        width: 305px;
+        height: 127px;
+    }
+    .title{
+        font-size: 16px;
+    }
+    .value{
+        font-size: 56px;
+    }
+}
