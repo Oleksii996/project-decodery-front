@@ -39,7 +39,7 @@ const UserBar = ({ onClose }: { onClose?: () => void }) => {
         {isLoading ? <span className={styles.loader}></span> : 'Вихід'}
       </button>
 
-      {showModal && (
+      {/* {showModal && (
         <ConfirmationModal
           title="Ви впевнені, що хочете вийти?"
           confirmButtonText="Вийти"
@@ -47,7 +47,7 @@ const UserBar = ({ onClose }: { onClose?: () => void }) => {
           onConfirm={handleLogout}
           onCancel={() => setShowModal(false)}
         />
-      )}
+      )} */}
     </div>
   );
 };

@@ -7,7 +7,7 @@ import { loginValidationSchema } from './loginValidationSchema';
 import { useRouter } from 'next/navigation';
 import { loginUser } from '../../api';
 import toast from 'react-hot-toast';
-import { useAuthStore } from '@/store/userStore';
+import { useUserStore } from '@/store/userStore';
 
 const initialValues: LoginFormValues = {
   email: '',
@@ -17,19 +17,14 @@ const initialValues: LoginFormValues = {
 export default function LoginForm() {
   const fieldId = useId();
   const router = useRouter();
-  const setAuthStore = useAuthStore(s => s.setAuthUser);
+  const setAuthStore = useUserStore(s => s.setAuthUser);
 
   const handleSubmit = async (values: LoginFormValues) => {
     try {
       const data = await loginUser(values);
       setAuthStore(data.user);
 
-      if (!data.user.isOnboardingCompleted) {
-        router.push('/profile/edit');
-        return;
-      }
-
-      router.push('/my-day');
+      router.push('/');
     } catch (error: any) {
       const message =
         error.response?.data?.message ||
