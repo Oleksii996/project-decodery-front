@@ -18,3 +18,8 @@ export const loginUser = async (body: LoginFormValues) => {
   const response = await clientApi.post<LoginResponse>('/auth/login', body);
   return response.data;
 };
+
+export const logoutUser = async () => {
+  const response = await clientApi.post('/auth/logout');
+  return response.data;
+};
