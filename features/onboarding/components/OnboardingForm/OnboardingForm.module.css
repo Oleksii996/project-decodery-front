@@ -55,6 +55,37 @@
   gap: 24px;
 }
 
+.avatarPreview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 164px;
+  height: 164px;
+  overflow: hidden;
+  border-radius: 50%;
+  background-color: #d9d9d9;
+}
+
+.avatarPreview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatarInitial {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.avatarPlaceholder {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .btnFoto {
   display: inline-flex;
   align-items: center;

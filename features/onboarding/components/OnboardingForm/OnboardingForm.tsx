@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { ErrorMessage, Field, Form, Formik, type FormikHelpers } from 'formik';
 import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import * as Yup from 'yup';
 import toast from 'react-hot-toast';
 import {
@@ -223,7 +224,7 @@ export default function OnboardingForm() {
       }
 
       toast.success('Дані успішно збережено');
-      router.push('/');
+      router.push('/profile');
     } catch (error) {
       const message =
         error instanceof Error
@@ -238,7 +239,7 @@ export default function OnboardingForm() {
     <div className={styles.container}>
       <div className={styles.brand}>
         <Image
-          src="/img/Company Logo.svg"
+          src="/Company Logo.svg"
           alt="Лелека"
           width={105}
           height={45}
