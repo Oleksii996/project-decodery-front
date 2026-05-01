@@ -13,7 +13,12 @@ export default function LoginPage() {
         <div className={css['register-left']}>
           <div className={css['register-page']}>
             <div className={css['logo']}>
-              <Image src="/logo.svg" width={105} height={45} alt="logo" />
+              <Image
+                src="/img/Company Logo.svg"
+                width={105}
+                height={45}
+                alt="logo"
+              />
             </div>
 
             <h2 className={css['register-title']}>Реєстрація</h2>
@@ -31,7 +36,7 @@ export default function LoginPage() {
 
         <div className={css['register-right']}>
           <Image
-            src="/images/leleky.jpg"
+            src="/img/auth-img/leleka-nest.jpg"
             alt="leleky"
             width={720}
             height={900}
