@@ -1,0 +1,121 @@
+.container {
+  width: 100%;
+  max-width: 375px;
+  min-height: 100vh;
+  padding: 0 20px;
+  margin: 0 auto;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.login-right {
+  display: none;
+}
+
+.logo {
+  position: absolute;
+  top: 21px;
+  left: 24px;
+}
+
+.login-title {
+  font-family: 'Comfortaa', sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  text-align: center;
+  color: #000;
+  margin-bottom: 32px;
+}
+
+.login-additional {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.login-text {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+  color: #000;
+}
+
+.login-link {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.6;
+  text-decoration: underline;
+  text-align: center;
+  color: #000;
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+    padding: 0 32px;
+  }
+
+  .login-right {
+    display: none;
+  }
+}
+
+@media (min-width: 1440px) {
+  .container {
+    max-width: none;
+    width: 100%;
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  .login-wrapper {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  .login-left {
+    width: 50%;
+    min-height: 100vh;
+    padding: 72px 64px;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .login-page {
+    width: 100%;
+  }
+
+  .login-right {
+    display: block;
+    width: 50%;
+    min-height: 100vh;
+  }
+
+  .login-img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+  }
+
+  .logo {
+    left: 135;
+  }
+
+  .login-title {
+    font-size: 48px;
+  }
+}
