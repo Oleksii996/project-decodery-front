@@ -8,7 +8,7 @@ export default function Header() {
       <div className="container">
         <Link href="/" aria-label="Home" className={css.logo}>
           <Image
-            src="/img/Company Logo.svg"
+            src="/Company Logo.svg"
             alt="Company logo"
             width={105}
             height={45}

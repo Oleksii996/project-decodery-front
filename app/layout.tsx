@@ -4,9 +4,6 @@ import './globals.css';
 import { QueryProvider } from '@/components/providers/QueryProvider';
 import { Toaster } from 'react-hot-toast';
 
-import Header from '@/components/layout/Header/Header';
-import Breadcrumbs from '@/components/layout/Breadcrumbs/Breadcrumbs';
-
 const lato = Lato({
   weight: ['400', '700', '900'],
   style: 'normal',
@@ -52,8 +49,6 @@ export default function RootLayout({
       <body className={`${lato.variable} ${comfortaa.variable}`}>
         <QueryProvider>
           <Toaster position="top-right" />
-          <Header />
-          <Breadcrumbs />
           {children}
         </QueryProvider>
       </body>

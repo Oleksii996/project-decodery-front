@@ -11,7 +11,7 @@ export default function OnboardingPage() {
 
       <div className={styles.hero} aria-hidden="true">
         <Image
-          src="/img/onboarding/sprout.png"
+          src="/Company Logo.svg"
           alt=""
           fill
           sizes="(min-width: 1440px) 50vw, 100vw"

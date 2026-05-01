@@ -1,19 +1,23 @@
-'use client';
-
 import Image from 'next/image';
 import css from './Page.module.css';
 import RegistrationForm from '@/features/auth/components/RegistrationForm/RegistrationForm';
 
 import Link from 'next/link';
 
-export default function LoginPage() {
+export default function RegisterPage() {
   return (
     <div className={css['container']}>
       <div className={css['register-wrapper']}>
         <div className={css['register-left']}>
           <div className={css['register-page']}>
             <div className={css['logo']}>
-              <Image src="/logo.svg" width={105} height={45} alt="logo" />
+              <Image
+                src="/Company Logo.svg"
+                width={105}
+                height={45}
+                alt="logo"
+                priority
+              />
             </div>
 
             <h2 className={css['register-title']}>Реєстрація</h2>
@@ -31,7 +35,7 @@ export default function LoginPage() {
 
         <div className={css['register-right']}>
           <Image
-            src="/images/leleky.jpg"
+            src="/img/auth-img/leleka-nest.jpg"
             alt="leleky"
             width={720}
             height={900}
