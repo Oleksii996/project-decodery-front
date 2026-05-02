@@ -8,6 +8,8 @@ import AuthBar from '../AuthBar/AuthBar';
 import styles from './SideBar.module.css';
 import { useUserStore } from '@/store/userStore';
 
+import css from '../SideBar/SideBar.module.css';
+
 interface SideBarProps {
   onClose?: () => void;
 }
@@ -35,11 +37,18 @@ const SideBar = ({ onClose }: SideBarProps) => {
 
   return (
     <aside className={styles.sidebar}>
-      <div className={styles.topContent}>
-        <Link href="/" className={styles.logo} onClick={onClose}>
-          <Image src="/Company Logo.svg" alt="Logo" width={100} height={100} />
+      <div className={css.menuTop}>
+        <Link href="/" className={css.logo} onClick={onClose}>
+          <Image
+            src="/Company Logo.svg"
+            alt="Company logo"
+            width={105}
+            height={45}
+          />
         </Link>
+      </div>
 
+      <div className={styles.topContent}>
         <nav className={styles.navigation}>
           <ul className={styles.navList}>
             {navItems.map(item => (
