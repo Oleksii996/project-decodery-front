@@ -1,9 +1,7 @@
 import AppLayout from '@/components/layout/AppLayout/AppLayout';
 import type { Metadata } from 'next';
 
-import Header from '@/components/layout/Header/Header';
-import Breadcrumbs from '@/components/layout/Breadcrumbs/Breadcrumbs';
-import SideBar from '@/components/layout/SideBar/SideBar';
+
 
 export const metadata: Metadata = {
   title: 'Лелека',
@@ -32,9 +30,6 @@ export default function PrivateLayout({
 }) {
   return (
     <AppLayout>
-      <Header />
-      <Breadcrumbs />
-      <SideBar />
       {children}
     </AppLayout>
   );
