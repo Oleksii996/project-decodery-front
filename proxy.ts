@@ -9,16 +9,10 @@ export function proxy(req: NextRequest) {
   const accessToken = req.cookies.get('accessToken')?.value;
 
   const isPublicRoute = publicRoutes.some(route => pathname.startsWith(route));
+
   const isPrivateRoute =
     pathname === '/' || privateRoutes.some(route => pathname.startsWith(route));
 
-  // ✅ ВИМКНЕНО ТИМЧАСОВО ДЛЯ РОЗРОБКИ
-  // if (!accessToken && isPrivateRoute) {
-  //   const loginUrl = new URL('/auth/login', req.url);
-  //   return NextResponse.redirect(loginUrl);
-  // }
-
-  // ✅ це можна залишити
   if (accessToken && isPublicRoute) {
     const homeUrl = new URL('/', req.url);
     return NextResponse.redirect(homeUrl);

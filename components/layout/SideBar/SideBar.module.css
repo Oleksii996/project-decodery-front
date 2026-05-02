@@ -1,0 +1,36 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  padding: 24px;
+  background-color: #ffffff;
+  border-right: 1px solid #eee;
+}
+
+@media (max-width: 1439px) {
+  .sidebar {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1440px) {
+  .sidebar {
+    width: 280px;
+    /* position: fixed;
+    left: 0;
+    top: 0; */
+  }
+}
+
+.link {
+  display: block;
+  padding: 12px 0;
+  color: #333;
+  transition: color 0.2s;
+}
+
+.active {
+  color: #ff6b6b;
+  font-weight: bold;
+}
