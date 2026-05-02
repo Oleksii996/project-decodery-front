@@ -26,7 +26,7 @@ const SideBar = ({ onClose }: SideBarProps) => {
   ];
 
   const handleLinkClick = (e: React.MouseEvent) => {
-    if (!isLoggedIn) {
+    if (!isAuth) {
       e.preventDefault();
       router.push('/auth/login');
     }
