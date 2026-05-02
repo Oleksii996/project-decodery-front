@@ -22,6 +22,7 @@ import type {
 } from '../../types';
 import styles from './OnboardingForm.module.css';
 
+
 const genderOptions: Array<{ value: BabyGender; label: string }> = [
   { value: 'boy', label: 'Хлопчик' },
   { value: 'girl', label: 'Дівчинка' },
