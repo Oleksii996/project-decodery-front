@@ -1,8 +1,6 @@
 import AppLayout from '@/components/layout/AppLayout/AppLayout';
 import type { Metadata } from 'next';
 
-
-
 export const metadata: Metadata = {
   title: 'Лелека',
   description:
@@ -28,9 +26,5 @@ export default function PrivateLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <AppLayout>
-      {children}
-    </AppLayout>
-  );
+  return <AppLayout>{children}</AppLayout>;
 }

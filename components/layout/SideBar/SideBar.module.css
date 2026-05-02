@@ -65,7 +65,6 @@
 @media (max-width: 1439px) {
   .sidebar {
     width: 300px;
-    position: fixed;
     left: 0;
     top: 0;
   }
@@ -74,7 +73,6 @@
 @media (min-width: 1440px) {
   .sidebar {
     width: 312px;
-    position: fixed;
     left: 0;
     top: 0;
   }
