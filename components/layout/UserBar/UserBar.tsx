@@ -51,7 +51,9 @@ const UserBar = ({ onClose }: { onClose?: () => void }) => {
           onClick={handleLogout}
           //disabled={isLoading}
         >
-          {'Вид'}
+          <svg className={styles.icon_logout}>
+            <use href="/leleka-sprite.svg#icon-logout" />
+          </svg>
         </button>
 
         {/* {showModal && (
