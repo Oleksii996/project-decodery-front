@@ -7,7 +7,7 @@ import { loginValidationSchema } from './loginValidationSchema';
 import { useRouter } from 'next/navigation';
 import { loginUser } from '../../api';
 import toast from 'react-hot-toast';
-import { useAuthStore } from '@/store/userStore';
+import { useUserStore } from '@/store/userStore';
 
 const initialValues: LoginFormValues = {
   email: '',
@@ -17,7 +17,7 @@ const initialValues: LoginFormValues = {
 export default function LoginForm() {
   const fieldId = useId();
   const router = useRouter();
-  const setAuthStore = useAuthStore(s => s.setAuthUser);
+  const setAuthStore = useUserStore(s => s.setAuthUser);
 
   const handleSubmit = async (values: LoginFormValues) => {
     try {

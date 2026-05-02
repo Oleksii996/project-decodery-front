@@ -17,27 +17,29 @@ interface AuthState {
   logout: () => Promise<void>;
 }
 
-export const useAuthStore = create<AuthState>((set) => ({
+export const useAuthStore = create<AuthState>(set => ({
   user: null,
-  isLoggedIn: false, 
+  isLoggedIn: false,
   isLoading: false,
   error: null,
 
-  setUser: (user) => set({ 
-    user, 
-    isLoggedIn: !!user 
-  }),
+  setUser: user =>
+    set({
+      user,
+      isLoggedIn: !!user,
+    }),
 
   logout: async () => {
     set({ isLoading: true });
     try {
-      await axios.post('/api/auth/logout'); 
-  
+      await axios.post('/api/auth/logout');
+
       set({ user: null, isLoggedIn: false, error: null });
-   
-      window.location.href = '/'; 
+
+      window.location.href = '/';
     } catch (err: unknown) {
-      const errorMessage = err instanceof Error ? err.message : 'Помилка при виході';
+      const errorMessage =
+        err instanceof Error ? err.message : 'Помилка при виході';
       set({ error: errorMessage });
     } finally {
       set({ isLoading: false });

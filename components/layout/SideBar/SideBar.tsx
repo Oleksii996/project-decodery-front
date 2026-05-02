@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -6,15 +6,17 @@ import { useAuthStore } from '@/store/authStore';
 import UserBar from '../UserBar/UserBar';
 import AuthBar from '../AuthBar/AuthBar';
 import styles from './SideBar.module.css';
+import { useUserStore } from '@/store/userStore';
 
 interface SideBarProps {
-  onClose?: () => void; 
+  onClose?: () => void;
 }
 
 const SideBar = ({ onClose }: SideBarProps) => {
   const pathname = usePathname();
   const router = useRouter();
   const { isLoggedIn } = useAuthStore();
+  const isAuth = useUserStore(state => state.isAuth);
 
   const navItems = [
     { label: 'Мій день', href: '/' },
@@ -40,11 +42,13 @@ const SideBar = ({ onClose }: SideBarProps) => {
 
         <nav className={styles.navigation}>
           <ul className={styles.navList}>
-            {navItems.map((item) => (
+            {navItems.map(item => (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className={pathname === item.href ? styles.active : styles.link}
+                  className={
+                    pathname === item.href ? styles.active : styles.link
+                  }
                   onClick={handleLinkClick}
                 >
                   {item.label}
@@ -56,7 +60,7 @@ const SideBar = ({ onClose }: SideBarProps) => {
       </div>
 
       <div className={styles.bottomContent}>
-        {isLoggedIn ? <UserBar onClose={onClose} /> : <AuthBar onClose={onClose} />}
+        {isAuth ? <UserBar onClose={onClose} /> : <AuthBar onClose={onClose} />}
       </div>
     </aside>
   );

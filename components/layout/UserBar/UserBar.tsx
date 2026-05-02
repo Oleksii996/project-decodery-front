@@ -1,9 +1,8 @@
-
-"use client";
+'use client';
 import { useState } from 'react';
 import Image from 'next/image';
 import { useAuthStore } from '@/store/authStore';
-import ConfirmationModal from '../ConfirmationModal/ConfirmationModal';
+//import ConfirmationModal from '../ConfirmationModal/ConfirmationModal';
 import styles from './UserBar.module.css';
 
 const UserBar = ({ onClose }: { onClose?: () => void }) => {
@@ -11,7 +10,7 @@ const UserBar = ({ onClose }: { onClose?: () => void }) => {
   const [showModal, setShowModal] = useState(false);
 
   const handleLogout = async () => {
-    await logout(); 
+    await logout();
     setShowModal(false);
     if (onClose) onClose();
   };
@@ -32,15 +31,15 @@ const UserBar = ({ onClose }: { onClose?: () => void }) => {
         </div>
       </div>
 
-      <button 
-        className={styles.logoutBtn} 
+      <button
+        className={styles.logoutBtn}
         onClick={() => setShowModal(true)}
         disabled={isLoading}
       >
         {isLoading ? <span className={styles.loader}></span> : 'Вихід'}
       </button>
 
-      {showModal && (
+      {/* {showModal && (
         <ConfirmationModal
           title="Ви впевнені, що хочете вийти?"
           confirmButtonText="Вийти"
@@ -48,7 +47,7 @@ const UserBar = ({ onClose }: { onClose?: () => void }) => {
           onConfirm={handleLogout}
           onCancel={() => setShowModal(false)}
         />
-      )}
+      )} */}
     </div>
   );
 };
