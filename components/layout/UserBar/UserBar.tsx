@@ -6,13 +6,13 @@ import { useAuthStore } from '@/store/authStore';
 import styles from './UserBar.module.css';
 import { logoutUser } from '@/features/auth/api';
 import { clear } from 'console';
-import { userInfo } from 'os';
 import { useRouter } from 'next/navigation';
 
 const UserBar = ({ onClose }: { onClose?: () => void }) => {
   //const { user, logout, isLoading } = useAuthStore();
   const [showModal, setShowModal] = useState(false);
   const router = useRouter();
+  const userInfo = useAuthStore(s => s.userInfo);
 
   const clearAuthUser = useAuthStore(s => s.clearAuthUser);
 
