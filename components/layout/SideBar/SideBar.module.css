@@ -60,7 +60,6 @@
 
 .bottomContent {
   margin-top: auto;
-  background-color: #5b7e96;
 }
 
 @media (max-width: 1439px) {
@@ -80,7 +79,6 @@
     top: 0;
   }
 }
-
 .icon {
-  background-color: rgb(255, 147, 255);
+  margin-right: 12px;
 }

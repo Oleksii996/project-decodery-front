@@ -60,7 +60,7 @@ const SideBar = ({ onClose }: SideBarProps) => {
                   }
                   onClick={handleLinkClick}
                 >
-                  <svg className={styles.icon} width="20" height="20">
+                  <svg className={styles.icon} width="24" height="24">
                     <use href={`/leleka-sprite.svg#${item.icon}`} />
                   </svg>
                   <span>{item.label}</span>
