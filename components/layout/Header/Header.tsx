@@ -5,7 +5,7 @@ import css from './Header.module.css';
 export default function Header() {
   return (
     <header className={css.header}>
-      <div className="container">
+     
         <div className={css.headercontainer}>
           <Link href="/" aria-label="Home" className={css.logo}>
             <Image
@@ -22,7 +22,7 @@ export default function Header() {
             </svg>
           </button>
         </div>
-      </div>
+     
     </header>
   );
 }
