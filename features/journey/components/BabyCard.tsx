@@ -5,6 +5,17 @@ export default function BabyCard({ data }: any) {
     <div className={styles.card}>
       <h2 className={styles.title}>Розвиток малюка</h2>
 
+      {/* 🖼 КАРТИНКА */}
+   <div className={styles.imageWrapper}>
+  {data.image && (
+    <img
+      src={data.image}
+      alt="baby"
+      className={styles.image}
+    />
+  )}
+</div>
+
       <div className={styles.section}>
         <p className={styles.description}>{data.description}</p>
       </div>

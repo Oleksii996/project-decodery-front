@@ -9,7 +9,6 @@ import JourneyDetails from "@/features/journey/components/JourneyDetails";
 
 export default function JourneyPage() {
   const params = useParams();
-
   const weekNumber = Number(params?.weekNumber);
 
   const [data, setData] = useState<any>(null);
@@ -17,23 +16,25 @@ export default function JourneyPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!weekNumber || isNaN(weekNumber)) return;
+    if (!weekNumber) return;
 
     setLoading(true);
     setError(null);
 
-    fetch(`http://localhost:3000/api/weeks/${weekNumber}`)
-      .then((res) => {
+    fetch(`http://localhost:4000/api/weeks/${weekNumber}`)
+      .then(async (res) => {
         if (!res.ok) {
-          throw new Error("No data");
+          throw new Error("Error fetching data");
         }
-        return res.json();
-      })
-      .then((data) => {
-        setData(data);
+
+        const result = await res.json();
+
+
+        setData(result);
         setLoading(false);
       })
-      .catch(() => {
+      .catch((err) => {
+        console.error(err);
         setError("Помилка завантаження даних");
         setLoading(false);
       });
@@ -47,7 +48,6 @@ export default function JourneyPage() {
       <div className="contentContainer">
         <GreetingBlock week={weekNumber} />
 
-        {/*  поки що просто weekNumber */}
         <WeekSelector
           currentWeek={weekNumber}
           userWeek={weekNumber}

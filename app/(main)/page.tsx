@@ -1,11 +1,3 @@
-import DashBoardPage from '@/features/dashboard/components/DashBoardPage/DashBoardPage';
-
-
-
 export default function Home() {
-  return (
-    <>
-      <DashBoardPage />
-    </>
-  );
+  return <div>Home page</div>;
 }

@@ -8,20 +8,21 @@ export default function MomCard({ data }: any) {
       {/* Поради */}
       <div className={styles.section}>
         <h3 className={styles.subtitle}>Поради для комфорту</h3>
-        <p className={styles.text}>{data.tip}</p>
+
+        <ul className={styles.list}>
+          {data.tips?.map((tip: string, i: number) => (
+            <li key={i} className={styles.listItem}>
+              {tip}
+            </li>
+          ))}
+        </ul>
       </div>
 
       {/* Відчуття */}
       <div className={styles.section}>
         <h3 className={styles.subtitle}>Як ви можете почуватись</h3>
 
-        <ul className={styles.list}>
-          {data.feelings?.map((f: string, i: number) => (
-            <li key={i} className={styles.listItem}>
-              {f}
-            </li>
-          ))}
-        </ul>
+        <p className={styles.text}>{data.description}</p>
       </div>
     </div>
   );

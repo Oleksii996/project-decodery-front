@@ -16,7 +16,7 @@ export default function WeekSelector({ currentWeek, userWeek }: Props) {
 
   const weeks = Array.from({ length: 42 }, (_, i) => i + 1);
 
-  // 🔥 авто-скрол до активного тижня
+  //  авто-скрол до активного тижня
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
