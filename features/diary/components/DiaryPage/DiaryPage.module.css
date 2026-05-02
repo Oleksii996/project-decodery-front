@@ -2,9 +2,9 @@
     display: grid;
     grid-template-columns: 1fr;
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1440px) {
     .pageContainer {
           gap: 32px;
-        grid-template-columns: minmax(300px, 1fr) minmax(650px, 2fr);
+        grid-template-columns: minmax(310px, 1fr) minmax(650px, 2fr);
     }
 }

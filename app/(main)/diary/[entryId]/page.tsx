@@ -6,19 +6,19 @@ import {
   HydrationBoundary,
   QueryClient,
 } from '@tanstack/react-query';
-interface DiaryEntryDetailsProps {
-  params: Promise<{ id: string }>;
-}
-export async function DiaryEntryDetail({ params }: DiaryEntryDetailsProps) {
-  const { id } = await params;
+interface DiaryEntryDetailProps  {
+  params: Promise<{ entryId: string }>;
+};
+export default async function DiaryEntryDetail({params}: DiaryEntryDetailProps) {
+  const {entryId} = await params;
   const queryClient = new QueryClient();
-  queryClient.prefetchQuery({
-    queryKey: ['diary'],
-    queryFn: () => getDiaryById(id),
+ await queryClient.prefetchQuery({
+    queryKey: ['diary', entryId],
+    queryFn: () => getDiaryById(entryId),
   });
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <DiaryEntryDetails />
+      <DiaryEntryDetails diaryId={entryId} />
     </HydrationBoundary>
   );
 }
