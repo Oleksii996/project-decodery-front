@@ -28,3 +28,9 @@
 
   background-color: rgb(223, 185, 185);
 }
+
+@media (min-width: 1440px) {
+  .headercontainer {
+    display: none;
+  }
+}

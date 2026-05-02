@@ -51,7 +51,7 @@ const UserBar = ({ onClose }: { onClose?: () => void }) => {
           onClick={handleLogout}
           //disabled={isLoading}
         >
-          {'Вихід'}
+          {'Вид'}
         </button>
 
         {/* {showModal && (
