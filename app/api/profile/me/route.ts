@@ -1,12 +1,11 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { isAxiosError } from 'axios';
 import { getServerApi } from '@/lib/api/serverApi';
 
-export async function PATCH(request: NextRequest) {
+export async function GET() {
   try {
-    const body = await request.json();
     const api = await getServerApi();
-    const { data, status } = await api.patch('/api/users/current', body);
+    const { data, status } = await api.get('/api/users/current');
 
     return NextResponse.json(data, { status });
   } catch (error) {

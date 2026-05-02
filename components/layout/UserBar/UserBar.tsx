@@ -6,13 +6,13 @@ import { useAuthStore } from '@/store/authStore';
 import styles from './UserBar.module.css';
 import { logoutUser } from '@/features/auth/api';
 import { clear } from 'console';
-import { userInfo } from 'os';
 import { useRouter } from 'next/navigation';
 
 const UserBar = ({ onClose }: { onClose?: () => void }) => {
   //const { user, logout, isLoading } = useAuthStore();
   const [showModal, setShowModal] = useState(false);
   const router = useRouter();
+  const userInfo = useAuthStore(s => s.userInfo);
 
   const clearAuthUser = useAuthStore(s => s.clearAuthUser);
 
@@ -30,30 +30,33 @@ const UserBar = ({ onClose }: { onClose?: () => void }) => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.userInfo}>
-        <Image
-          src={userInfo?.avatar || '/default.png'}
-          alt="Avatar"
-          className={styles.avatar}
-          width={40}
-          height={40}
-        />
-        <div className={styles.textData}>
-          <p className={styles.userName}>{userInfo?.name}</p>
-          <p className={styles.userEmail}>{userInfo?.email}</p>
+      <div className={styles.wrapperContent}>
+        <div className={styles.userInfo}>
+          <Image
+            src={userInfo?.avatar || '/default.png'}
+            alt="Avatar"
+            className={styles.avatar}
+            width={40}
+            height={40}
+          />
+          <div className={styles.textData}>
+            <p className={styles.userName}>{userInfo?.name}</p>
+            <p className={styles.userEmail}>{userInfo?.email}</p>
+          </div>
         </div>
-      </div>
 
-      <button
-        className={styles.logoutBtn}
-        //onClick={() => setShowModal(true)}
-        onClick={handleLogout}
-        //disabled={isLoading}
-      >
-        {'Вихід'}
-      </button>
+        <button
+          className={styles.logoutBtn}
+          //onClick={() => setShowModal(true)}
+          onClick={handleLogout}
+          //disabled={isLoading}
+        >
+          <svg className={styles.icon_logout}>
+            <use href="/leleka-sprite.svg#icon-logout" />
+          </svg>
+        </button>
 
-      {/* {showModal && (
+        {/* {showModal && (
         <ConfirmationModal
           title="Ви впевнені, що хочете вийти?"
           confirmButtonText="Вийти"
@@ -62,6 +65,7 @@ const UserBar = ({ onClose }: { onClose?: () => void }) => {
           onCancel={() => setShowModal(false)}
         />
       )} */}
+      </div>
     </div>
   );
 };
