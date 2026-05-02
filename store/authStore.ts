@@ -1,46 +1,34 @@
+import { User } from '@/features/auth/types';
 import { create } from 'zustand';
-import axios from 'axios';
+import { persist } from 'zustand/middleware';
 
-interface User {
-  name: string;
-  email: string;
-  avatar?: string;
-  dueDate?: string;
+interface AuthStore {
+  isAuth: boolean;
+  userInfo: User | null;
+  setAuthUser: (userInfo: User) => void;
+  clearAuthUser: () => void;
 }
 
-interface AuthState {
-  user: User | null;
-  isLoggedIn: boolean;
-  isLoading: boolean;
-  error: string | null;
-  setUser: (user: User | null) => void;
-  logout: () => Promise<void>;
-}
+export const useAuthStore = create<AuthStore>()(
+  persist(
+    set => ({
+      isAuth: false,
+      userInfo: null,
 
-export const useAuthStore = create<AuthState>((set) => ({
-  user: null,
-  isLoggedIn: false, 
-  isLoading: false,
-  error: null,
+      setAuthUser: (userInfo: User) =>
+        set({
+          isAuth: true,
+          userInfo,
+        }),
 
-  setUser: (user) => set({ 
-    user, 
-    isLoggedIn: !!user 
-  }),
-
-  logout: async () => {
-    set({ isLoading: true });
-    try {
-      await axios.post('/api/auth/logout'); 
-  
-      set({ user: null, isLoggedIn: false, error: null });
-   
-      window.location.href = '/'; 
-    } catch (err: unknown) {
-      const errorMessage = err instanceof Error ? err.message : 'Помилка при виході';
-      set({ error: errorMessage });
-    } finally {
-      set({ isLoading: false });
+      clearAuthUser: () =>
+        set({
+          isAuth: false,
+          userInfo: null,
+        }),
+    }),
+    {
+      name: 'auth-storage',
     }
-  },
-}));
+  )
+);

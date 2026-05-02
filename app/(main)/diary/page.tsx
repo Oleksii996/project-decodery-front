@@ -10,7 +10,7 @@ export default async function Diary() {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
     queryKey: ['diaries'],
-    queryFn:() => getAllDiaries(),
+    queryFn: getAllDiaries,
   }
   )
   return <HydrationBoundary state={dehydrate(queryClient)}><DiaryPage /></HydrationBoundary>

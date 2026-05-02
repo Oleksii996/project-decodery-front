@@ -11,7 +11,7 @@ return <li className={css.card}>
     <p className={css.cardDate}>{diary.date}</p>
     </div>
     <ul className={css.emotions}>
-    {diary.emotions.map((emotion, index)=> <li className={css.emotion} key={index}>{emotion}</li>)};
+    {diary.emotions.map((emotion, index)=> <li className={css.emotion} key={index}>{emotion}</li>)}
     </ul>
     
     
