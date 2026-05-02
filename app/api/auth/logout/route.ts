@@ -6,8 +6,12 @@ import { isAxiosError } from 'axios';
 
 export const POST = async (req: NextRequest) => {
   const cookiesStore = await cookies();
+  console.log('cookie string:', cookiesStore.toString());
+  console.log('accessToken:', cookiesStore.get('accessToken')?.value);
+  console.log('refreshToken:', cookiesStore.get('refreshToken')?.value);
+  console.log('sessionId:', cookiesStore.get('sessionId')?.value);
   try {
-    const response = await api.post('api/auth/logout', {
+    const response = await api.post('api/auth/logout', null, {
       headers: {
         Cookie: cookiesStore.toString(),
       },
