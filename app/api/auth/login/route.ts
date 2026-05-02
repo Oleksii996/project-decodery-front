@@ -41,8 +41,6 @@ export const POST = async (req: NextRequest) => {
     }
     return NextResponse.json(response.data);
   } catch (error) {
-    console.log('REGISTER ROUTE ERROR:', error);
-
     if (isAxiosError(error)) {
       return NextResponse.json(
         { error: error.message, response: error.response?.data },

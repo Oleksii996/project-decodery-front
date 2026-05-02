@@ -24,12 +24,7 @@ export default function LoginForm() {
       const data = await loginUser(values);
       setAuthStore(data.user);
 
-      if (!data.user.isOnboardingCompleted) {
-        router.push('/profile/edit');
-        return;
-      }
-
-      router.push('/my-day');
+      router.push('/');
     } catch (error: any) {
       const message =
         error.response?.data?.message ||

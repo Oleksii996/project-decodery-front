@@ -7,11 +7,7 @@ import { api } from '@/lib/api/api';
 
 export const POST = async (req: NextRequest) => {
   try {
-    console.log('ROUTE HIT');
-
     const body = await req.json();
-    console.log('BODY:', body);
-    console.log('API URL:', process.env.NEXT_PUBLIC_API_URL);
 
     const response = await api.post('api/auth/register', body);
 
@@ -45,14 +41,9 @@ export const POST = async (req: NextRequest) => {
         cookiesStore.set('sessionId', parsedItem.sessionId, options);
       }
     }
-    console.log('RESPONSE DATA:', response.data);
-    console.log('RESPONSE HEADERS:', response.headers);
-    console.log('SET COOKIE:', response.headers['set-cookie']);
 
     return NextResponse.json(response.data);
   } catch (error) {
-    console.log('REGISTER ROUTE ERROR:', error);
-
     if (isAxiosError(error)) {
       return NextResponse.json(
         { error: error.message, response: error.response?.data },
