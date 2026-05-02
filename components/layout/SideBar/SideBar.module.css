@@ -62,6 +62,12 @@
   margin-top: auto;
 }
 
+.icon {
+
+  margin-left: 8px;
+  margin-right: 12px;
+}
+
 @media (max-width: 1439px) {
   .sidebar {
     width: 300px;
@@ -76,7 +82,4 @@
     left: 0;
     top: 0;
   }
-}
-.icon {
-  margin-right: 12px;
 }
