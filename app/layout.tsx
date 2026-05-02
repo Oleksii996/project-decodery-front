@@ -54,8 +54,8 @@ export default function RootLayout({
         <QueryProvider>
           <ModalProvider>
           <Toaster position="top-right" />
-           <Header />
-           <Breadcrumbs />
+          <Header />
+          <Breadcrumbs />
           {children}
           </ModalProvider>
         </QueryProvider>

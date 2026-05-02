@@ -1,0 +1,10 @@
+.pageContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+@media screen and (min-width: 768px) {
+    .pageContainer {
+          gap: 32px;
+        grid-template-columns: minmax(300px, 1fr) minmax(650px, 2fr);
+    }
+}

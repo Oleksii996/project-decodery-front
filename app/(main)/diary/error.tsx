@@ -1,6 +1,5 @@
 'use client';
-<<<<<<< HEAD
-=======
+
 interface ErrorProps {
   error: Error;
 }
@@ -8,4 +7,3 @@ interface ErrorProps {
 export default function Error({ error }: ErrorProps) {
   return <p>{error.message}</p>;
 }
->>>>>>> main

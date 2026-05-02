@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { ErrorMessage, Field, Form, Formik, type FormikHelpers } from 'formik';
 import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import * as Yup from 'yup';
 import toast from 'react-hot-toast';
 import {
@@ -86,7 +87,7 @@ const validationSchema = Yup.object({
   dueDate: Yup.string()
     .required('Оберіть планову дату пологів')
     .test('is-valid-date', 'Введіть коректну дату', value =>
-      value ? !Number.isNaN(new Date(value).getTime()) : false,
+      value ? !Number.isNaN(new Date(value).getTime()) : false
     )
     .test(
       'is-not-too-early',
@@ -98,7 +99,7 @@ const validationSchema = Yup.object({
         selectedDate.setHours(0, 0, 0, 0);
 
         return selectedDate >= getOffsetDate(onboardingMinWeeks);
-      },
+      }
     )
     .test(
       'is-not-too-late',
@@ -110,7 +111,7 @@ const validationSchema = Yup.object({
         selectedDate.setHours(0, 0, 0, 0);
 
         return selectedDate <= getOffsetDate(onboardingMaxWeeks);
-      },
+      }
     ),
   gender: Yup.string<OnboardingGenderValue>()
     .oneOf(['', 'boy', 'girl', 'unknown'])
@@ -118,10 +119,10 @@ const validationSchema = Yup.object({
   avatar: Yup.mixed<File>()
     .nullable()
     .test('file-size', 'Фото має бути менше 5 MB', value =>
-      value ? value.size <= maxAvatarSize : true,
+      value ? value.size <= maxAvatarSize : true
     )
     .test('file-format', 'Підтримуються PNG, JPG або WEBP', value =>
-      value ? allowedAvatarTypes.includes(value.type) : true,
+      value ? allowedAvatarTypes.includes(value.type) : true
     ),
 });
 
@@ -184,7 +185,7 @@ export default function OnboardingForm() {
 
   const pickAvatar = (
     event: React.ChangeEvent<HTMLInputElement>,
-    setFieldValue: FormikHelpers<OnboardingFormValues>['setFieldValue'],
+    setFieldValue: FormikHelpers<OnboardingFormValues>['setFieldValue']
   ) => {
     const file = event.currentTarget.files?.[0] ?? null;
     setFieldValue('avatar', file);
@@ -223,10 +224,12 @@ export default function OnboardingForm() {
       }
 
       toast.success('Дані успішно збережено');
-      router.push('/');
+      router.push('/profile');
     } catch (error) {
       const message =
-        error instanceof Error ? error.message : 'Не вдалося завершити онбординг';
+        error instanceof Error
+          ? error.message
+          : 'Не вдалося завершити онбординг';
 
       toast.error(message);
     }
@@ -236,7 +239,7 @@ export default function OnboardingForm() {
     <div className={styles.container}>
       <div className={styles.brand}>
         <Image
-          src="/img/Company Logo.svg"
+          src="/Company Logo.svg"
           alt="Лелека"
           width={105}
           height={45}
@@ -329,7 +332,9 @@ export default function OnboardingForm() {
                     selected={values.dueDate ? new Date(values.dueDate) : null}
                     onChange={(date: Date | null) => {
                       const normalizedDate = date
-                        ? new Date(date.getTime() - date.getTimezoneOffset() * 60000)
+                        ? new Date(
+                            date.getTime() - date.getTimezoneOffset() * 60000
+                          )
                             .toISOString()
                             .slice(0, 10)
                         : '';
@@ -382,7 +387,7 @@ export default function OnboardingForm() {
                           >
                             {Array.from(
                               { length: onboardingMaxWeeks + 1 },
-                              (_, index) => minDueDate.getFullYear() + index,
+                              (_, index) => minDueDate.getFullYear() + index
                             ).map(year => (
                               <option key={year} value={year}>
                                 {year}
