@@ -1,4 +1,4 @@
-/* .sidebar {
+.sidebar {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -8,13 +8,11 @@
   border-right: 1px solid #eee;
 }
 
-
 @media (max-width: 1439px) {
   .sidebar {
     width: 100%;
   }
 }
-
 
 @media (min-width: 1440px) {
   .sidebar {
@@ -33,6 +31,6 @@
 }
 
 .active {
-  color: #ff6b6b; 
+  color: #ff6b6b;
   font-weight: bold;
-} */
+}
