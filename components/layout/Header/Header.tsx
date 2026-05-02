@@ -7,7 +7,6 @@ export default function Header() {
     <header className={css.header}>
       <div className="container">
         <div className={css.headercontainer}>
-          
           <Link href="/" aria-label="Home" className={css.logo}>
             <Image
               src="/Company Logo.svg"
@@ -22,7 +21,6 @@ export default function Header() {
               <use href="/leleka-sprite.svg#icon-burger_menu" />
             </svg>
           </button>
-
         </div>
       </div>
     </header>

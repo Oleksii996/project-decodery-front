@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { useAuthStore } from '@/store/authStore';
+
 import UserBar from '../UserBar/UserBar';
 import AuthBar from '../AuthBar/AuthBar';
 import styles from './SideBar.module.css';
@@ -17,14 +17,14 @@ interface SideBarProps {
 const SideBar = ({ onClose }: SideBarProps) => {
   const pathname = usePathname();
   const router = useRouter();
-  const { isLoggedIn } = useAuthStore();
+
   const isAuth = useUserStore(state => state.isAuth);
 
   const navItems = [
-    { label: 'Мій день', href: '/' },
-    { label: 'Подорож', href: '/journey' },
-    { label: 'Щоденник', href: '/diary' },
-    { label: 'Профіль', href: '/profile' },
+    { label: 'Мій день', href: '/', icon: 'icon-today' },
+    { label: 'Подорож', href: '/journey', icon: 'icon-conversion_path' },
+    { label: 'Щоденник', href: '/diary', icon: 'icon-book' },
+    { label: 'Профіль', href: '/profile', icon: 'icon-account_circle' },
   ];
 
   const handleLinkClick = (e: React.MouseEvent) => {
@@ -52,7 +52,7 @@ const SideBar = ({ onClose }: SideBarProps) => {
         <nav className={styles.navigation}>
           <ul className={styles.navList}>
             {navItems.map(item => (
-              <li key={item.href}>
+              <li key={item.href} className={styles.navItem}>
                 <Link
                   href={item.href}
                   className={
@@ -60,7 +60,10 @@ const SideBar = ({ onClose }: SideBarProps) => {
                   }
                   onClick={handleLinkClick}
                 >
-                  {item.label}
+                  <svg className={styles.icon} width="20" height="20">
+                    <use href={`/leleka-sprite.svg#${item.icon}`} />
+                  </svg>
+                  <span>{item.label}</span>
                 </Link>
               </li>
             ))}

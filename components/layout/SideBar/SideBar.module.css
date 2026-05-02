@@ -22,15 +22,45 @@
 .logo {
   background-color: rgb(141, 102, 102);
 }
-
 .topContent {
   display: flex;
   flex-direction: column;
   background-color: #3f3f3f;
 }
-
 .navigation {
-  background-color: #a0e6a3;
+  background-color: #b6c26d;
+
+  padding-top: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.navigation ul {
+  background-color: aqua;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  height: 40px;
+
+  border-radius: 8px;
+  color: #333;
+  transition: color 0.2s;
+}
+
+.active {
+  display: flex;
+  align-items: center;
+  background-color: #fcf4b9;
+  height: 40px;
+
+  border-radius: 8px;
+}
+
+.bottomContent {
+  margin-top: auto;
+  background-color: #5b7e96;
 }
 
 @media (max-width: 1439px) {
@@ -51,16 +81,6 @@
   }
 }
 
-.link {
-  display: block;
-  padding: 12px 0;
-  color: #333;
-  transition: color 0.2s;
-  background-color: #ff6b6b;
-}
-
-.active {
-  color: #ff6b6b;
-  font-weight: bold;
-  background-color: aqua;
+.icon {
+  background-color: rgb(255, 147, 255);
 }
