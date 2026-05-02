@@ -8,7 +8,7 @@
 @media screen and (min-width: 1128px) {
   .container {
     background-color: #fefbf4;
-    width: 33%;
+    width: 389px;
     padding: 0 16px;
   }
   .head {
@@ -35,6 +35,12 @@
   }
   .icon {
     fill: #000;
+  }
+  .list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
   }
   .empty {
     font-size: 16px;

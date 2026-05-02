@@ -14,7 +14,7 @@ export async function GET() {
   try {
     const api = await getServerApi();
 
-    const res = await api.get('/api/diaries', {
+    const res = await api.get('api/diaries', {
       headers: {
         'Content-Type': 'applicaton/json',
       },
@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json();
 
-    const res = await api.post('/api/diaries', body, {
+    const res = await api.post('api/diaries', body, {
       headers: {
         'Content-Type': 'application/json',
       },

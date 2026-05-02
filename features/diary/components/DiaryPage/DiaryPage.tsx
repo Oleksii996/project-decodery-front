@@ -13,11 +13,14 @@ export default function DiaryPage() {
   });
 
   return (
+      <div className='container'>
     <section>
+    
       {/* <GreetingBlock/> */}
      
         <DiaryList diaries={diaries}></DiaryList>
- 
+
     </section>
+     </div>
   );
 }
