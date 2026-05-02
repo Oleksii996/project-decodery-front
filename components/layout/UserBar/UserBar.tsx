@@ -30,30 +30,31 @@ const UserBar = ({ onClose }: { onClose?: () => void }) => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.userInfo}>
-        <Image
-          src={userInfo?.avatar || '/default.png'}
-          alt="Avatar"
-          className={styles.avatar}
-          width={40}
-          height={40}
-        />
-        <div className={styles.textData}>
-          <p className={styles.userName}>{userInfo?.name}</p>
-          <p className={styles.userEmail}>{userInfo?.email}</p>
+      <div className={styles.wrapperContent}>
+        <div className={styles.userInfo}>
+          <Image
+            src={userInfo?.avatar || '/default.png'}
+            alt="Avatar"
+            className={styles.avatar}
+            width={40}
+            height={40}
+          />
+          <div className={styles.textData}>
+            <p className={styles.userName}>{userInfo?.name}</p>
+            <p className={styles.userEmail}>{userInfo?.email}</p>
+          </div>
         </div>
-      </div>
 
-      <button
-        className={styles.logoutBtn}
-        //onClick={() => setShowModal(true)}
-        onClick={handleLogout}
-        //disabled={isLoading}
-      >
-        {'Вихід'}
-      </button>
+        <button
+          className={styles.logoutBtn}
+          //onClick={() => setShowModal(true)}
+          onClick={handleLogout}
+          //disabled={isLoading}
+        >
+          {'Вихід'}
+        </button>
 
-      {/* {showModal && (
+        {/* {showModal && (
         <ConfirmationModal
           title="Ви впевнені, що хочете вийти?"
           confirmButtonText="Вийти"
@@ -62,6 +63,7 @@ const UserBar = ({ onClose }: { onClose?: () => void }) => {
           onCancel={() => setShowModal(false)}
         />
       )} */}
+      </div>
     </div>
   );
 };

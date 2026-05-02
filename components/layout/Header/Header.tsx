@@ -15,6 +15,7 @@ export default function Header() {
               height={45}
             />
           </Link>
+
           <button className={css.burger} aria-label="Open menu">
             <svg className={css.icon}>
               <use href="/leleka-sprite.svg#icon-burger_menu" />
