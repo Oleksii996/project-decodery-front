@@ -20,13 +20,13 @@ export default function DiaryPage() {
 
   return (
     <section>
-      <div className="container">
+      
         {/* <GreetingBlock/> */}
         <div className={css.pageContainer}>
           <DiaryList diaries={diaries}></DiaryList>
           <DiaryEntryDetails />
         </div>
-      </div>
+     
     </section>
   );
 }

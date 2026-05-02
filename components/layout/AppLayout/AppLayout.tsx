@@ -5,13 +5,15 @@ import css from './AppLayout.module.css';
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className={css.appLayout}>
-      <SideBar />
-      <main className={css.mainContent}>
-        <Header />
-        <Breadcrumbs />
-        {children}
-      </main>
+    <div className="container">
+      <div className={css.appLayout}>
+        <SideBar />
+        <main className={css.mainContent}>
+          <Header />
+          <Breadcrumbs />
+          {children}
+        </main>
+      </div>
     </div>
   );
 }
