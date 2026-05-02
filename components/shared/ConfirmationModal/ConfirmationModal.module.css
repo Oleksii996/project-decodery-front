@@ -15,6 +15,12 @@
   width: 90%;
   max-width: 375px;
   position: relative; /* для позиціонування хрестика */
+  font-family: "Comfortaa", sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 120%;
+  letter-spacing: 0.01em;
+  text-align: center;
 }
 
 .modal-close {
@@ -42,6 +48,8 @@
   padding: 12px;
   border-radius: 8px;
   font-size: 16px;
+  font-family: "Comfortaa", sans-serif;
+  font-weight: 700;
   text-align: center;
 }
 
@@ -74,6 +82,11 @@ height: 261px;
 max-width: 768px;
   }
 
+.modal-close {
+  width: 32px;
+  height: 32px;
+}
+
   .modal-buttons {
     flex-direction: row; /* кнопки поруч */
     justify-content: center;
@@ -88,11 +101,16 @@ max-width: 768px;
 padding: 64px;
 width: 768px;
 height: 338px;
+font-size: 48px;
   }
 
+.modal-close {
+  font-size: 24px;
+}
   .confirm-btn,
   .cancel-btn {
 width: 268px;
 height: 46px;
 }
+
 }
