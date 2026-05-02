@@ -37,12 +37,7 @@ const SideBar = ({ onClose }: SideBarProps) => {
     <aside className={styles.sidebar}>
       <div className={styles.topContent}>
         <Link href="/" className={styles.logo} onClick={onClose}>
-          <Image
-            src="/Company Logo.svg"
-            alt="Logo"
-            width={100}
-            height={100}
-          />
+          <Image src="/Company Logo.svg" alt="Logo" width={100} height={100} />
         </Link>
 
         <nav className={styles.navigation}>
