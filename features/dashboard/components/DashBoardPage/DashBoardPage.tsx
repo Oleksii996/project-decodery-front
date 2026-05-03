@@ -1,5 +1,6 @@
 'use client';
 import { useQuery } from '@tanstack/react-query';
+import GreetingBlock from '@/components/shared/GreetingBlock/GreetingBlock';
 import BabyTodayCard from '../BabyTodayCard/BabyTodayCard';
 import MomTipCard from '../MomTipCard/MomTipCard';
 import StatusBlock from '../StatusBlock/StatusBlock';
@@ -39,6 +40,7 @@ export default function DashBoardPage() {
   return (
     <main className={css.dashboard}>
       <div className="container">
+        <GreetingBlock />
         <div className={css.content}>
           <div className={css.leftColumn}>
             <StatusBlock />
