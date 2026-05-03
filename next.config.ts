@@ -18,6 +18,11 @@ const nextConfig: NextConfig = {
         hostname: 'ac.goit.global',
         pathname: '/**',
       },
+       {
+        protocol: "https",
+        hostname: "ac.goit.global",
+        pathname: "/fullstack/react/**",
+      },
     ],
   },
   reactCompiler: true,

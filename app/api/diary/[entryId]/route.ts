@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { isAxiosError } from 'axios';
 import { getServerApi } from '@/lib/api/serverApi';
 type Props = {
-   params: { entryId: string };
+  params: Promise<{ entryId: string }>;
 };
 function logErrorResponse(errorObj: unknown): void {
   const green = '\x1b[32m';
@@ -14,10 +14,10 @@ function logErrorResponse(errorObj: unknown): void {
 }
 export async function GET(request: Request, { params }: Props) {
   try {
-    const { entryId } =  params;
+    const { entryId } = await params;
     const api = await getServerApi();
 
-    const res = await api(`/diaries/${entryId}`, {
+    const res = await api(`api/diaries/${entryId}`, {
       headers: {
         'Content-Type': 'applicaton/json',
       },
@@ -41,9 +41,9 @@ export async function GET(request: Request, { params }: Props) {
 
 export async function DELETE(request: Request, { params }: Props) {
   try {
-    const { entryId } =  params;
+    const { entryId } = await params;
     const api = await getServerApi();
-    const res = await api.delete(`/diaries/${entryId}`, {
+    const res = await api.delete(`api/diaries/${entryId}`, {
       headers: {
         'Content-Type': 'applicaton/json',
       },
@@ -67,13 +67,13 @@ export async function DELETE(request: Request, { params }: Props) {
 
 export async function PATCH(request: Request, { params }: Props) {
   try {
-    const { entryId } =  params;
+    const { entryId } = await params;
     const api = await getServerApi();
     const body = await request.json();
 
-    const res = await api.patch(`/diaries/${entryId}`, body, {
+    const res = await api.patch(`api/diaries/${entryId}`, body, {
       headers: {
-    'Content-Type': 'aplication/json',
+        'Content-Type': 'aplication/json',
       },
     });
     return NextResponse.json(res.data, { status: res.status });
