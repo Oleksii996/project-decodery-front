@@ -27,6 +27,7 @@ export default function BabyTodayCard({
           className={css.image}
           width={287}
           height={216}
+          priority
         />
 
         <div className={css.info}>
