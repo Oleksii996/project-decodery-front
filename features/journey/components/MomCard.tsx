@@ -5,24 +5,22 @@ export default function MomCard({ data }: any) {
     <div className={styles.card}>
       <h2 className={styles.title}>Тіло мами</h2>
 
-      {/* Поради */}
-      <div className={styles.section}>
-        <h3 className={styles.subtitle}>Поради для комфорту</h3>
-
-        <ul className={styles.list}>
-          {data.tips?.map((tip: string, i: number) => (
-            <li key={i} className={styles.listItem}>
-              {tip}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* Відчуття */}
+      {/* Як ви можете почуватись */}
       <div className={styles.section}>
         <h3 className={styles.subtitle}>Як ви можете почуватись</h3>
-
         <p className={styles.text}>{data.description}</p>
+      </div>
+
+      {/* Поради */}
+      <div className={styles.section}>
+        <h3 className={styles.subtitle}>Поради для вашого комфорту</h3>
+
+        {data.tips?.map((item: any, i: number) => (
+          <div key={i} className={styles.tipItem}>
+            <p className={styles.tipTitle}>{item.category}</p>
+            <p className={styles.tipText}>{item.tip}</p>
+          </div>
+        ))}
       </div>
     </div>
   );

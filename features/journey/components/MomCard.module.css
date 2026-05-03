@@ -11,14 +11,13 @@
   font-family: var(--second-family);
   font-size: 18px;
   font-weight: 600;
-  margin-bottom: 12px;
-
+  margin-bottom: 16px;
   color: var(--color-neutral-dark);
 }
 
 /* SECTIONS */
 .section {
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 /* SUBTITLE */
@@ -26,8 +25,7 @@
   font-family: var(--font-family);
   font-size: 14px;
   font-weight: 600;
-  margin-bottom: 8px;
-
+  margin-bottom: 10px;
   color: var(--color-neutral-dark);
 }
 
@@ -36,20 +34,27 @@
   font-family: var(--font-family);
   font-size: 14px;
   line-height: 1.5;
-
   color: var(--color-neutral-dark);
 }
 
-/* LIST */
-.list {
-  padding-left: 16px;
+/* ====== TIPS BLOCK ====== */
+
+.tipItem {
+  margin-bottom: 16px;
 }
 
-.listItem {
+.tipTitle {
   font-family: var(--font-family);
   font-size: 14px;
-  margin-bottom: 6px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--color-neutral-dark);
+}
 
+.tipText {
+  font-family: var(--font-family);
+  font-size: 14px;
+  line-height: 1.5;
   color: var(--color-neutral-dark);
 }
 
@@ -64,30 +69,38 @@
     font-size: 20px;
   }
 
+  .subtitle {
+    font-size: 15px;
+  }
+
   .text {
     font-size: 15px;
   }
 
-  .listItem {
+  .tipTitle {
+    font-size: 15px;
+  }
+
+  .tipText {
     font-size: 15px;
   }
 }
 
-/* ============= DESKTOP ============= */
+/* ================= DESKTOP ================= */
 
 @media (min-width: 1280px) {
   .card {
     padding: 24px;
     border-radius: 24px;
 
-    /* ❗ важливо */
+    /* як у макеті */
     max-height: 420px;
     overflow-y: auto;
   }
 
   .title {
     font-size: 22px;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
   }
 
   .subtitle {
@@ -98,7 +111,15 @@
     font-size: 16px;
   }
 
-  .listItem {
+  .tipTitle {
+    font-size: 16px;
+  }
+
+  .tipText {
     font-size: 15px;
+  }
+
+  .tipItem {
+    margin-bottom: 18px;
   }
 }
