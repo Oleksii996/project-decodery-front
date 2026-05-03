@@ -1,4 +1,5 @@
-/* Mobile-first базові токени у стилі макета */
+/* Mobile-first базові токени у стилі макета.
+   Кольори сторінок і карток — через --color-* (тема: базова / хлопчик / дівчинка). */
 :root {
   --text: #4e4a55;
   --text-h: #1d1a24;
@@ -23,6 +24,14 @@
 
   --sans: 'Inter', 'Segoe UI', Roboto, sans-serif;
   --heading: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  --font-family: var(--sans);
+  --second-family: var(--heading);
+
+  /* Тема за замовчуванням (жовта / нейтральна) — для карток і акцентів */
+  --color-primary: #d4a012;
+  --color-primary-light: #fff6e0;
+  --color-primary-muted: #e8d49a;
+  --color-primary-border: #edd9a0;
 
   font-family: var(--sans);
   font-size: 16px;
@@ -39,6 +48,48 @@
 @media (min-width: 768px) {
   :root {
     --page-pad: 24px;
+  }
+}
+
+/* Тема: хлопчик / дівчинка — встановлюйте data-theme на <html> (див. ProfileWorkspace). */
+html[data-theme='boy'] {
+  --color-primary: #3d7cc9;
+  --color-primary-light: #e8f2fc;
+  --color-primary-muted: #9ec5eb;
+  --color-primary-border: #bcd8f3;
+}
+
+html[data-theme='girl'] {
+  --color-primary: #c76b8a;
+  --color-primary-light: #fdf2f6;
+  --color-primary-muted: #eab5c4;
+  --color-primary-border: #e8c4cd;
+}
+
+/* Глобальний контейнер брейкпоінтів (клас у JSX рядком: className="container"). */
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  max-width: 375px; /* mobile */
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 768px; /* tablet */
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    max-width: 1024px; /* desktop */
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    padding: 0 16px;
+    max-width: 1440px; /* large desktop */
   }
 }
 
@@ -62,7 +113,7 @@ body {
 
 h1,
 h2 {
-  font-family: var(--heading);
+  font-family: var(--second-family);
   font-weight: 600;
   color: var(--text-h);
 }

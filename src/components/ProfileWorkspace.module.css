@@ -3,6 +3,83 @@
   background: #f4f4f6;
   display: grid;
   grid-template-columns: 312px minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+}
+
+/* Верхня панель — лише мобільний */
+.mobileBar {
+  display: none;
+}
+
+.mobileLogo {
+  height: 32px;
+  width: auto;
+  display: block;
+}
+
+.menuButton {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+  background: #ebebef;
+  color: #1f1b25;
+  cursor: pointer;
+}
+
+.menuButton:focus-visible {
+  outline: 2px solid #f0d3da;
+  outline-offset: 2px;
+}
+
+.menuIcon {
+  width: 20px;
+  height: 2px;
+  border-radius: 1px;
+  background: currentColor;
+  box-shadow: 0 -6px 0 currentColor, 0 6px 0 currentColor;
+}
+
+.backdrop {
+  display: none;
+}
+
+.sidebarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 8px;
+  flex-shrink: 0;
+}
+
+.sidebarClose {
+  display: none;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: #1f1b25;
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.sidebarClose:focus-visible {
+  outline: 2px solid #f0d3da;
+  outline-offset: 2px;
+}
+
+.brandRow {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  min-width: 0;
 }
 
 .sidebar {
@@ -11,18 +88,14 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-}
-
-.brandRow {
-  display: flex;
-  align-items: center;
-  padding: 0 8px;
+  grid-row: 1 / -1;
 }
 
 .logo {
   display: block;
-  width: 102px;
-  height: 32px;
+  height: 36px;
+  width: auto;
+  max-width: 100%;
 }
 
 .nav {
@@ -105,7 +178,8 @@
 }
 
 .content {
-  padding: 16px 24px 24px;
+  padding: 16px 0 24px;
+  min-width: 0;
 }
 
 .breadcrumb {
@@ -118,16 +192,105 @@
   color: #8a8492;
 }
 
-@media (max-width: 1023px) {
+/* Планшет: вужчий сайдбар, повна сітка */
+@media (min-width: 768px) and (max-width: 1023px) {
   .layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(200px, 260px) minmax(0, 1fr);
   }
 
   .sidebar {
-    display: none;
+    padding: 14px 10px;
+  }
+
+  .navItem {
+    font-size: 0.94rem;
+    padding: 9px 8px;
   }
 
   .content {
-    padding: 14px 20px 20px;
+    padding: 14px 0 22px;
+  }
+}
+
+/* Мобільний: шапка + контент; меню — drawer */
+@media (max-width: 767px) {
+  .layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+    min-height: 100svh;
+  }
+
+  .mobileBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 14px;
+    padding-top: calc(10px + env(safe-area-inset-top, 0px));
+    background: #f4f4f6;
+    border-bottom: 1px solid #e4e4e8;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 180;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: rgba(31, 27, 37, 0.35);
+    cursor: pointer;
+    animation: fadeIn 0.2s ease;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: min(88vw, 300px);
+    max-width: 100%;
+    z-index: 200;
+    grid-row: auto;
+    transform: translateX(-102%);
+    transition: transform 0.28s ease;
+    box-shadow: 8px 0 32px rgba(31, 27, 37, 0.12);
+    overflow-y: auto;
+    padding-top: calc(12px + env(safe-area-inset-top, 0px));
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .sidebarOpen {
+    transform: translateX(0);
+  }
+
+  .sidebarClose {
+    display: grid;
+    place-items: center;
+  }
+
+  .content {
+    flex: 1;
+    padding: 12px 0 20px;
+    padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .breadcrumb {
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
