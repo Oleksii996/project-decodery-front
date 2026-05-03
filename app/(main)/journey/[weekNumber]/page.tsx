@@ -29,7 +29,6 @@ export default function JourneyPage() {
 
         const result = await res.json();
 
-
         setData(result);
         setLoading(false);
       })
@@ -44,8 +43,8 @@ export default function JourneyPage() {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="pageContainer">
-      <div className="contentContainer">
+    <main className="dashboard">
+      <div className="container">
         <GreetingBlock week={weekNumber} />
 
         <WeekSelector
@@ -55,6 +54,6 @@ export default function JourneyPage() {
 
         <JourneyDetails data={data} />
       </div>
-    </div>
+    </main>
   );
 }

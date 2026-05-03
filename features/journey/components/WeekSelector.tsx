@@ -37,7 +37,7 @@ export default function WeekSelector({ currentWeek, userWeek }: Props) {
       ref={containerRef}
       className={styles.container}
       onWheel={(e) => {
-        e.currentTarget.scrollLeft += e.deltaY; //  колесо мишки = горизонтальний скрол
+        e.currentTarget.scrollLeft += e.deltaY; //   горизонтальний скрол
       }}
     >
       {weeks.map((week) => {

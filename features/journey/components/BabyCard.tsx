@@ -5,36 +5,38 @@ export default function BabyCard({ data }: any) {
     <div className={styles.card}>
       <h2 className={styles.title}>Розвиток малюка</h2>
 
-      {/* 🖼 КАРТИНКА */}
-   <div className={styles.imageWrapper}>
-  {data.image && (
-    <img
-      src={data.image}
-      alt="baby"
-      className={styles.image}
-    />
-  )}
-</div>
+      <div className={styles.content}>
+        {/* LEFT - IMAGE */}
+        <div className={styles.imageWrapper}>
+          {data.image && (
+            <img
+              src={data.image}
+              alt="baby"
+              className={styles.image}
+            />
+          )}
+        </div>
 
-      <div className={styles.section}>
-        <p className={styles.description}>{data.description}</p>
-      </div>
+        {/* RIGHT - TEXT */}
+        <div className={styles.textBlock}>
+          <p className={styles.description}>{data.description}</p>
 
-      <div className={styles.section}>
-        <span className={styles.label}>Розмір:</span>
-        <span className={styles.value}>{data.size}</span>
-      </div>
+          <p className={styles.size}>
+            <span className={styles.label}>Розмір:</span> {data.size}
+          </p>
 
-      <div className={styles.section}>
-        <h3 className={styles.subtitle}>Цікаві факти:</h3>
+          <div className={styles.facts}>
+            <p className={styles.subtitle}>Цікаві факти:</p>
 
-        <ul className={styles.list}>
-          {data.facts?.map((fact: string, i: number) => (
-            <li key={i} className={styles.listItem}>
-              {fact}
-            </li>
-          ))}
-        </ul>
+            <ul className={styles.list}>
+              {data.facts?.map((fact: string, i: number) => (
+                <li key={i} className={styles.listItem}>
+                  {fact}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   );

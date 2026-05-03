@@ -1,62 +1,82 @@
 /* ========= MOBILE ========== */
 
 .card {
-  background: #fdf6f7; /* ніжно-рожевий */
+  background-color: var(--color-primary); 
   border-radius: 20px;
   padding: 16px;
-  display: flex;
-  flex-direction: column;
 }
 
+/* заголовок */
 .title {
+  font-family: var(--second-family);
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 12px;
-  color: #1a1a1a;
+
+  color: var(--color-neutral-dark);
 }
 
-/* 🖼 IMAGE BLOCK */
+/* layout */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* IMAGE */
 
 .imageWrapper {
-  background: #f6f2ef;
+  background-color: var(--color-neutral-lightest);
   border-radius: 16px;
+
   padding: 16px;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 16px;
 }
 
 .image {
   width: 100%;
   max-width: 220px;
   height: auto;
+  object-fit: contain;
 }
 
 /* TEXT */
 
-.section {
-  margin-bottom: 14px;
+.textBlock {
+  display: flex;
+  flex-direction: column;
 }
 
 .description {
+  font-family: var(--font-family);
   font-size: 14px;
   line-height: 1.5;
-  color: #555;
+
+  color: var(--color-neutral-dark);
+
+  margin-bottom: 12px;
+}
+
+.size {
+  font-family: var(--font-family);
+  font-size: 14px;
+
+  margin-bottom: 12px;
 }
 
 .label {
-  font-weight: 500;
-  margin-right: 6px;
-}
-
-.value {
-  color: #777;
+  font-weight: 600;
 }
 
 .subtitle {
-  font-size: 15px;
-  font-weight: 500;
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 600;
+
   margin-bottom: 8px;
 }
 
@@ -67,9 +87,11 @@
 }
 
 .listItem {
+  font-family: var(--font-family);
   font-size: 14px;
+
   margin-bottom: 6px;
-  color: #555;
+  color: var(--color-neutral-dark);
 }
 
 /* ============ TABLET ============ */
@@ -98,11 +120,10 @@
 
 /* =========== DESKTOP ============= */
 
-@media (min-width: 1024px) {
+@media (min-width: 1280px) {
   .card {
     padding: 24px;
     border-radius: 24px;
-    height: 100%;
   }
 
   .title {
@@ -110,17 +131,23 @@
     margin-bottom: 16px;
   }
 
+  .content {
+    flex-direction: row;
+    gap: 24px;
+  }
+
   .imageWrapper {
+    width: 45%;
     padding: 20px;
     border-radius: 20px;
   }
 
-  .image {
-    max-width: 300px;
+  .textBlock {
+    width: 55%;
   }
 
-  .section {
-    margin-bottom: 18px;
+  .image {
+    max-width: 100%;
   }
 
   .description {
