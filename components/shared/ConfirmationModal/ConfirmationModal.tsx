@@ -1,4 +1,7 @@
+"use client";
+
 import { useEffect, ReactNode } from "react";
+import { createPortal } from "react-dom";
 import styles from "./ConfirmationModal.module.css";
 
 export interface ConfirmationModalProps {
@@ -8,8 +11,10 @@ export interface ConfirmationModalProps {
   children?: ReactNode;
   width?: string;
   height?: string;
-  confirmButton?: ReactNode;
-  cancelButton?: ReactNode;
+  confirmButtonText?: string;
+  cancelButtonText?: string;
+  confirmButton?: React.ReactNode;
+  cancelButton?: React.ReactNode;
 }
 
 export default function ConfirmationModal({
@@ -19,6 +24,8 @@ export default function ConfirmationModal({
   children,
   width,
   height,
+  confirmButtonText = "Так",
+  cancelButtonText = "Ні",
   confirmButton,
   cancelButton,
 }: ConfirmationModalProps) {
@@ -30,11 +37,10 @@ export default function ConfirmationModal({
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [onCancel]);
 
-  // inline-стилі застосовуються тільки якщо width/height передані
   const customStyle =
     width || height ? { width: width ?? "auto", height: height ?? "auto" } : undefined;
 
-  return (
+  return createPortal(
     <div className={styles["modal-backdrop"]} onClick={onCancel}>
       <div
         className={styles["modal-content"]}
@@ -46,22 +52,23 @@ export default function ConfirmationModal({
           ×
         </button>
 
-        <p>{title}</p>
-        <div>{children}</div>
+        <h2 className={styles["modal-title"]}>{title}</h2>
+        {children && <div className={styles["modal-body"]}>{children}</div>}
 
         <div className={styles["modal-buttons"]}>
-              {cancelButton || (
+          {cancelButton || (
             <button className={styles["cancel-btn"]} onClick={onCancel}>
-              Ні
+              {cancelButtonText}
             </button>
           )}
           {confirmButton || (
             <button className={styles["confirm-btn"]} onClick={onConfirm}>
-              Так
+              {confirmButtonText}
             </button>
           )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body //  модалка рендериться у body
   );
 }

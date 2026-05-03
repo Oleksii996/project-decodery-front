@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { useAuthStore } from '@/store/authStore';
-//import ConfirmationModal from '../ConfirmationModal/ConfirmationModal';
+import ConfirmationModal from '../../shared/ConfirmationModal/ConfirmationModal';
 import styles from './UserBar.module.css';
 import { logoutUser } from '@/features/auth/api';
 import { clear } from 'console';
@@ -24,8 +24,8 @@ const UserBar = ({ onClose }: { onClose?: () => void }) => {
     router.refresh();
 
     //await logout();
-    // setShowModal(false);
-    //if (onClose) onClose();
+    setShowModal(false);
+    if (onClose) onClose();
   };
 
   return (
@@ -47,8 +47,8 @@ const UserBar = ({ onClose }: { onClose?: () => void }) => {
 
         <button
           className={styles.logoutBtn}
-          //onClick={() => setShowModal(true)}
-          onClick={handleLogout}
+          onClick={() => setShowModal(true)}
+          // onClick={handleLogout}
           //disabled={isLoading}
         >
           <svg className={styles.icon_logout}>
@@ -56,15 +56,16 @@ const UserBar = ({ onClose }: { onClose?: () => void }) => {
           </svg>
         </button>
 
-        {/* {showModal && (
+        {showModal && (
         <ConfirmationModal
           title="Ви впевнені, що хочете вийти?"
           confirmButtonText="Вийти"
           cancelButtonText="Скасувати"
           onConfirm={handleLogout}
           onCancel={() => setShowModal(false)}
-        />
-      )} */}
+          >
+          </ConfirmationModal>
+      )}
       </div>
     </div>
   );
