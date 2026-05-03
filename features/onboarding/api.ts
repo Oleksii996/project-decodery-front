@@ -1,4 +1,4 @@
-import { api } from '@/lib/api/api';
+import { clientApi } from '@/lib/api/clientApi';
 import type {
   OnboardingAvatarResponse,
   OnboardingAuthUser,
@@ -6,7 +6,7 @@ import type {
 } from './types';
 
 export async function getCurrentOnboardingUser() {
-  const { data } = await api.get<OnboardingAuthUser>('/users/current');
+  const { data } = await clientApi.get<OnboardingAuthUser>('/profile/me');
 
   return data;
 }
@@ -14,7 +14,10 @@ export async function getCurrentOnboardingUser() {
 export async function updateOnboardingUser(
   payload: UpdateOnboardingPayload,
 ) {
-  const { data } = await api.patch<OnboardingAuthUser>('/users/current', payload);
+  const { data } = await clientApi.patch<OnboardingAuthUser>(
+    '/profile',
+    payload
+  );
 
   return data;
 }
@@ -23,8 +26,8 @@ export async function uploadOnboardingAvatar(file: File) {
   const formData = new FormData();
   formData.append('avatar', file);
 
-  const { data } = await api.patch<OnboardingAvatarResponse>(
-    '/users/me/avatar',
+  const { data } = await clientApi.patch<OnboardingAvatarResponse>(
+    '/profile/avatar',
     formData,
   );
 

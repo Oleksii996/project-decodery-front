@@ -1,0 +1,15 @@
+.appLayout {
+  display: grid;
+  min-height: 100vh;
+  grid-template-columns: 1fr;
+
+  position: relative; /* 🔥 ВАЖЛИВО */
+}
+.mainContent {
+  min-width: 0;
+}
+@media screen and (min-width: 1440px) {
+  .appLayout {
+    grid-template-columns: minmax(300px, 0.3fr) minmax(0, 1fr);
+  }
+}

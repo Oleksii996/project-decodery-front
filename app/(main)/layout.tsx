@@ -1,9 +1,6 @@
 import AppLayout from '@/components/layout/AppLayout/AppLayout';
 import type { Metadata } from 'next';
 
-import Header from '@/components/layout/Header/Header';
-import Breadcrumbs from '@/components/layout/Breadcrumbs/Breadcrumbs';
-
 export const metadata: Metadata = {
   title: 'Лелека',
   description:
@@ -29,11 +26,5 @@ export default function PrivateLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <AppLayout>
-      <Header />
-      <Breadcrumbs />
-      {children}
-    </AppLayout>
-  );
+  return <AppLayout>{children}</AppLayout>;
 }

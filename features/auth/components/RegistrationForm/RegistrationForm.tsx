@@ -7,6 +7,7 @@ import { registrationValidationSchema } from './registrationValidationSchema';
 import { registerUser } from '../../api';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
+import { useAuthStore } from '@/store/authStore';
 
 const initialValues: RegistrationFormValues = {
   name: '',
@@ -17,11 +18,13 @@ const initialValues: RegistrationFormValues = {
 const RegistrationForm = () => {
   const fieldId = useId();
   const router = useRouter();
+  const setAuthUser = useAuthStore(s => s.setAuthUser);
 
   const handleSubmit = async (values: RegistrationFormValues) => {
     try {
       const data = await registerUser(values);
       toast.success('Реєстрація успішна');
+      setAuthUser(data.user);
       router.push('/profile/edit');
     } catch (error: any) {
       const message = error.response?.data?.message || 'Користувач вже існує';

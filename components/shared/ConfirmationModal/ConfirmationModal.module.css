@@ -1,0 +1,116 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: 20px;
+  padding: 24px;
+  min-width: 320px;
+  width: 90%;
+  max-width: 375px;
+  position: relative; /* для позиціонування хрестика */
+  font-family: "Comfortaa", sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 120%;
+  letter-spacing: 0.01em;
+  text-align: center;
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.confirm-btn,
+.cancel-btn {
+  flex: 1;              /* ділять простір */
+  min-width: 120px;     /* мінімальна ширина */
+  max-width: 100%;      /* можуть рости разом із контейнером */
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: "Comfortaa", sans-serif;
+  font-weight: 700;
+  text-align: center;
+}
+
+.confirm-btn {
+border-bottom: 4px solid rgba(0, 0, 0, 0.15);
+border-radius: 100px;
+padding: 10px 24px;
+width: 268px;
+height: 42px;
+}
+
+.cancel-btn {
+background-color: #ffdae0;
+border-bottom: 4px solid #ffcbd3;
+border-radius: 100px;
+padding: 10px 24px;
+width: 268px;
+height: 42px;
+}
+
+
+
+/* планшет */
+@media (min-width: 768px) {
+  .modal-content {
+border-radius: 40px;
+padding: 64px 32px;
+width: 704px;
+height: 261px;
+max-width: 768px;
+  }
+
+.modal-close {
+  width: 32px;
+  height: 32px;
+}
+
+  .modal-buttons {
+    flex-direction: row; /* кнопки поруч */
+    justify-content: center;
+  }
+
+
+}
+
+/* десктоп */
+@media (min-width: 1440px) {
+  .modal-content {
+padding: 64px;
+width: 768px;
+height: 338px;
+font-size: 48px;
+  }
+
+.modal-close {
+  font-size: 24px;
+}
+  .confirm-btn,
+  .cancel-btn {
+width: 268px;
+height: 46px;
+}
+
+}

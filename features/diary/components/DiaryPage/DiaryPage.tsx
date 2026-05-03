@@ -2,22 +2,31 @@
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import DiaryList from '../DiaryList/DiaryList';
 import { getAllDiaries } from '../../api';
+import DiaryEntryDetails from '../DiaryEntryDetails/DiaryEntryDetails';
+import css from './DiaryPage.module.css';
 
 export default function DiaryPage() {
-  const { data, isLoading, isError } = useQuery({
+  const {
+    data: diaries = [],
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ['diaries'],
-    queryFn: () => getAllDiaries(),
+    queryFn: getAllDiaries,
     placeholderData: keepPreviousData,
     refetchOnMount: false,
     retry: false,
   });
-  const diaries = data?.diaries ?? [];
+
   return (
     <section>
-      {/* <GreetingBlock/> */}
+      
+        {/* <GreetingBlock/> */}
+        <div className={css.pageContainer}>
+          <DiaryList diaries={diaries}></DiaryList>
+          <DiaryEntryDetails />
+        </div>
      
-        <DiaryList diaries={diaries}></DiaryList>
- 
     </section>
   );
 }

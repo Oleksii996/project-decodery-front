@@ -1,8 +1,12 @@
-.breadcrumbs :global(.container) {
+.breadcrumbsContainer {
   display: flex;
-  justify-content: space-between;
+
   align-items: center;
   height: 24px;
+  background-color: rgb(255, 224, 203);
+}
 
-  background-color: rgb(214, 169, 139);
+.current {
+  font-weight: 600;
+  color: black;
 }
