@@ -17,9 +17,9 @@ export default function DiaryList({
   onSelectDiary,
   isDesktop,
 }: DiaryListProps) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const handleClick = () => {
-    setIsModalOpen(true);
+    setIsAddModalOpen(true);
   };
   return (
     <>
@@ -51,7 +51,7 @@ export default function DiaryList({
           <p className={css.empty}> Наразі записи у щоденнику відсутні</p>
         )}
       </div>
-      {isModalOpen && <AddDiaryEntryModal />}
+      {isAddModalOpen && <AddDiaryEntryModal />}
     </>
   );
 }

@@ -1,24 +1,28 @@
 import { getDiaryById } from '@/features/diary/api';
-import DiaryEntryDetails from '@/features/diary/components/DiaryEntryDetails/DiaryEntryDetails';
-
+import css from './Page.module.css';
 import {
   dehydrate,
   HydrationBoundary,
   QueryClient,
 } from '@tanstack/react-query';
-interface DiaryEntryDetailProps  {
+import DiaryEntryDetailsClient from '@/features/diary/components/DiaryEntryDetailsClient';
+interface DiaryEntryDetailsPageProps {
   params: Promise<{ entryId: string }>;
-};
-export default async function DiaryEntryDetail({params}: DiaryEntryDetailProps) {
-  const {entryId} = await params;
+}
+export default async function DiaryEntryDetailsPage({
+  params,
+}: DiaryEntryDetailsPageProps) {
+  const { entryId } = await params;
   const queryClient = new QueryClient();
- await queryClient.prefetchQuery({
+  await queryClient.prefetchQuery({
     queryKey: ['diary', entryId],
     queryFn: () => getDiaryById(entryId),
   });
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <DiaryEntryDetails diaryId={entryId} />
+      <div className={css.pageContainer}>
+        <DiaryEntryDetailsClient diaryId={entryId} />
+      </div>
     </HydrationBoundary>
   );
 }
