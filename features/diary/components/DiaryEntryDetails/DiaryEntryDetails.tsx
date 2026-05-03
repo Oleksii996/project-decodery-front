@@ -4,7 +4,7 @@ import css from './DiaryEntryDetails.module.css'
 import { getDiaryById } from '../../api';
 
 interface DiaryEntryDetailsProps {
-  diaryId: string | null;
+  diaryId: string | null ;
 }
 export default function DiaryEntryDetails({diaryId}: DiaryEntryDetailsProps) {
  

@@ -9,10 +9,9 @@ import { useMediaQuery } from '@uidotdev/usehooks';
 import { useState } from 'react';
 
 export default function DiaryPage() {
-  const isDesktop = useMediaQuery('min-width: 1440px');
+  const isDesktop = useMediaQuery('only screen and (min-width: 1440px)');
   const [userSelectedDiaryId, seUserSelectedDiaryId] = useState<string | null>(
-    null
-  );
+    null);
   const {
     data: diaries = [],
     isLoading,
@@ -27,7 +26,8 @@ export default function DiaryPage() {
 
   const selectedDiaryId =
     userSelectedDiaryId ??
-    (isDesktop && diaries.length > 0 ? diaries[0]._id : null);
+    (isDesktop && diaries.length > 0 ? diaries[0]._id as string : null);
+    console.log('isDesktop in card:', isDesktop);
   if (isDesktop === undefined) return null;
   if (isLoading) return null;
   if (isError) return null;
@@ -41,7 +41,7 @@ export default function DiaryPage() {
           onSelectDiary={seUserSelectedDiaryId}
           isDesktop={isDesktop}
         ></DiaryList>
-        {isDesktop && <DiaryEntryDetails diaryId={selectedDiaryId as string} />}
+        {isDesktop && <DiaryEntryDetails diaryId={selectedDiaryId} />}
       </div>
     </section>
   );
