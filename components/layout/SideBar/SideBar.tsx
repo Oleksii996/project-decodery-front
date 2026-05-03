@@ -12,9 +12,10 @@ import css from '../SideBar/SideBar.module.css';
 
 interface SideBarProps {
   onClose?: () => void;
+  isOpen?: boolean;
 }
 
-const SideBar = ({ onClose }: SideBarProps) => {
+const SideBar = ({ onClose, isOpen }: SideBarProps) => {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -36,7 +37,7 @@ const SideBar = ({ onClose }: SideBarProps) => {
   };
 
   return (
-    <aside className={styles.sidebar}>
+    <aside className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
       <div className={css.menuTop}>
         <Link href="/" className={css.logo} onClick={onClose}>
           <Image

@@ -2,15 +2,27 @@
   display: flex;
   flex-direction: column;
 
+  position: absolute; /* 🔥 замість fixed */
+  top: 0;
+  left: 0;
+
   padding-top: 17.5px;
 
   height: 100vh;
   width: 312px;
 
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+
   background-color: #afacac;
+  z-index: 1000;
+
   border-right: 1px solid #eee;
 }
-
+/* відкритий стан */
+.open {
+  transform: translateX(0);
+}
 .menuTop {
   display: flex;
   align-items: center;
@@ -63,7 +75,6 @@
 }
 
 .icon {
-
   margin-left: 8px;
   margin-right: 12px;
 }
@@ -73,11 +84,19 @@
     width: 300px;
     left: 0;
     top: 0;
+
+    transform: translateX(-100%);
+  }
+
+  .open {
+    transform: translateX(0);
   }
 }
 
 @media (min-width: 1440px) {
   .sidebar {
+    position: static;
+    transform: none;
     width: 312px;
     left: 0;
     top: 0;
