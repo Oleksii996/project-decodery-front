@@ -8,8 +8,10 @@ export interface ConfirmationModalProps {
   children?: ReactNode;
   width?: string;
   height?: string;
-  confirmButton?: ReactNode;
-  cancelButton?: ReactNode;
+  confirmButtonText?: string; 
+  cancelButtonText?: string;  
+  confirmButton?: React.ReactNode;
+  cancelButton?: React.ReactNode;
 }
 
 export default function ConfirmationModal({
