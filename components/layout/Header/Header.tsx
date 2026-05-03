@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import css from './Header.module.css';
 
-export default function Header() {
+export default function Header({ onMenuClick }: { onMenuClick: () => void }) {
   return (
     <header className={css.header}>
       <div className={css.headercontainer}>
@@ -15,7 +15,11 @@ export default function Header() {
           />
         </Link>
 
-        <button className={css.burger} aria-label="Open menu">
+        <button
+          className={css.burger}
+          aria-label="Open menu"
+          onClick={onMenuClick}
+        >
           <svg className={css.icon}>
             <use href="/leleka-sprite.svg#icon-burger_menu" />
           </svg>

@@ -2,6 +2,8 @@
   display: grid;
   min-height: 100vh;
   grid-template-columns: 1fr;
+
+  position: relative; /* 🔥 ВАЖЛИВО */
 }
 .mainContent {
   min-width: 0;
