@@ -47,9 +47,10 @@ const UserBar = ({ onClose }: { onClose?: () => void }) => {
 
         <button
           className={styles.logoutBtn}
-          onClick={() => setShowModal(true)}
-          // onClick={handleLogout}
-          //disabled={isLoading}
+          onClick={() => {
+            if (onClose) onClose();
+            setShowModal(true);
+          }}
         >
           <svg className={styles.icon_logout}>
             <use href="/leleka-sprite.svg#icon-logout" />
@@ -57,15 +58,14 @@ const UserBar = ({ onClose }: { onClose?: () => void }) => {
         </button>
 
         {showModal && (
-        <ConfirmationModal
-          title="Ви впевнені, що хочете вийти?"
-          confirmButtonText="Вийти"
-          cancelButtonText="Скасувати"
-          onConfirm={handleLogout}
-          onCancel={() => setShowModal(false)}
-          >
-          </ConfirmationModal>
-      )}
+          <ConfirmationModal
+            title="Ви впевнені, що хочете вийти?"
+            confirmButtonText="Вийти"
+            cancelButtonText="Скасувати"
+            onConfirm={handleLogout}
+            onCancel={() => setShowModal(false)}
+          ></ConfirmationModal>
+        )}
       </div>
     </div>
   );
