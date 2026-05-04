@@ -336,7 +336,9 @@ export default function OnboardingForm() {
 
                 <Field
                   as="select"
-                  className={styles.select}
+                  className={`${styles.select} ${
+                    values.gender ? styles.selectFilled : ''
+                  }`}
                   name="gender"
                   onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
                     const nextGender = event.target.value as OnboardingGenderValue;
