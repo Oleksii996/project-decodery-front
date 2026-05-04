@@ -11,7 +11,8 @@ import { useState } from 'react';
 export default function DiaryPage() {
   const isDesktop = useMediaQuery('only screen and (min-width: 1440px)');
   const [userSelectedDiaryId, seUserSelectedDiaryId] = useState<string | null>(
-    null);
+    null
+  );
   const {
     data: diaries = [],
     isLoading,

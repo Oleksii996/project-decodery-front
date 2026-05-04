@@ -62,7 +62,7 @@ export async function PATCH(request: Request, { params }: Props) {
 
     const res = await api.patch(`api/diaries/${entryId}`, body, {
       headers: {
-        'Content-Type': 'aplication/json',
+        'Content-Type': 'application/json',
       },
     });
     return NextResponse.json(res.data, { status: res.status });

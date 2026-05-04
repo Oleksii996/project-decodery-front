@@ -18,15 +18,26 @@ export default function DiaryList({
   isDesktop,
 }: DiaryListProps) {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const handleClick = () => {
+
+  const handleOpenAddModal = () => {
+    localStorage.removeItem('editEntry');
     setIsAddModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    localStorage.removeItem('editEntry');
+    setIsAddModalOpen(false);
   };
   return (
     <>
       <div className={css.container}>
         <div className={css.head}>
           <h3 className={css.title}>Ваші записи</h3>
-          <button type="button" className={css.addButton} onClick={handleClick}>
+          <button
+            type="button"
+            className={css.addButton}
+            onClick={handleOpenAddModal}
+          >
             Новий запис
             <svg className={css.icon} width={24} height={24}>
               <use href="/leleka-sprite.svg#icon-add_circle"></use>
@@ -50,7 +61,7 @@ export default function DiaryList({
           <p className={css.empty}> Наразі записи у щоденнику відсутні</p>
         )}
       </div>
-      {isAddModalOpen && <AddDiaryEntryModal />}
+      {isAddModalOpen && <AddDiaryEntryModal onClose={handleCloseModal} />}
     </>
   );
 }

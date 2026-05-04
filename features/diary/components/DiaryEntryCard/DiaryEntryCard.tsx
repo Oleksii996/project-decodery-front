@@ -21,10 +21,9 @@ export default function DiaryEntryCard({
     if (isDesktop) {
       onSelectDiary?.(diary._id as string);
       return;
+    } else {
+      router.push(`/diary/${diary._id}`);
     }
-else {
-    router.push(`/diary/${diary._id}`);
-}
   };
 
   return (
