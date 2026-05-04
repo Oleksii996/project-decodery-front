@@ -21,14 +21,13 @@ export default function JourneyPage() {
     setLoading(true);
     setError(null);
 
-    fetch(`http://localhost:4000/api/weeks/${weekNumber}`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/weeks/${weekNumber}`)
       .then(async (res) => {
         if (!res.ok) {
           throw new Error("Error fetching data");
         }
 
         const result = await res.json();
-
         setData(result);
         setLoading(false);
       })
