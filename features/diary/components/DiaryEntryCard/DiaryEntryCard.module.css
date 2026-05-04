@@ -30,7 +30,8 @@
 .emotions {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  column-gap: 8px;
+  row-gap: 4px;
 }
 .emotion {
   border: 1px solid rgba(255, 255, 255, 0);
@@ -43,9 +44,6 @@
 }
 
 @media screen and (min-width: 1440px)  {
-  .card {
-    height: 97px;
-  }
   .cardTitle {
   font-size: 18px;
 }
