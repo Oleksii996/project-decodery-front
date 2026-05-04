@@ -125,11 +125,11 @@
 
   border-radius: 100px;
   border: none;
-  background-color: #fef1db;
+  background-color: var(--color-primary-light);
 
   box-shadow:
-    0 6px 8px rgba(140, 110, 60, 0.18),
-    0 4px 0 rgba(140, 110, 60, 0.22);
+    0 6px 8px color-mix(in srgb, var(--color-primary-dark) 36%, transparent),
+    0 4px 0 color-mix(in srgb, var(--color-primary-dark) 52%, transparent);
 
   font-family: var(--font-family);
   font-weight: 500;

@@ -83,6 +83,18 @@ const getOffsetDate = (weeksFromToday: number) => {
 
 const getDefaultDueDate = () => getOffsetDate(39).toISOString().slice(0, 10);
 
+const applyGenderTheme = (gender: OnboardingGenderValue | BackendGenderValue) => {
+  document.body.classList.remove('theme-pink', 'theme-blue');
+
+  if (gender === 'girl') {
+    document.body.classList.add('theme-pink');
+  }
+
+  if (gender === 'boy') {
+    document.body.classList.add('theme-blue');
+  }
+};
+
 const validationSchema = Yup.object({
   dueDate: Yup.string()
     .required('Оберіть планову дату пологів')
@@ -136,6 +148,9 @@ export default function OnboardingForm() {
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+  const [selectedGenderTheme, setSelectedGenderTheme] = useState<
+    OnboardingGenderValue | null
+  >(null);
 
   const minDueDate = useMemo(() => getOffsetDate(onboardingMinWeeks), []);
   const maxDueDate = useMemo(() => getOffsetDate(onboardingMaxWeeks), []);
@@ -156,6 +171,12 @@ export default function OnboardingForm() {
 
   const isSubmitting = updateMutation.isPending || avatarMutation.isPending;
   const currentAvatar = avatarPreview ?? currentUserQuery.data?.avatar ?? null;
+  const currentUserGenderTheme: OnboardingGenderValue =
+    currentUserQuery.data?.gender === null ||
+    currentUserQuery.data?.gender === undefined
+      ? ''
+      : currentUserQuery.data.gender;
+  const activeGenderTheme = selectedGenderTheme ?? currentUserGenderTheme;
 
   useEffect(() => {
     return () => {
@@ -170,6 +191,14 @@ export default function OnboardingForm() {
       toast.error('Не вдалося завантажити дані профілю');
     }
   }, [currentUserQuery.isError]);
+
+  useEffect(() => {
+    applyGenderTheme(activeGenderTheme);
+
+    return () => {
+      document.body.classList.remove('theme-pink', 'theme-blue');
+    };
+  }, [activeGenderTheme]);
 
   const initialValues: OnboardingFormValues = {
     dueDate: currentUserQuery.data?.dueDate
@@ -224,7 +253,7 @@ export default function OnboardingForm() {
       }
 
       toast.success('Дані успішно збережено');
-      router.push('/profile');
+      router.push('/');
     } catch (error) {
       const message =
         error instanceof Error
@@ -305,7 +334,16 @@ export default function OnboardingForm() {
               <label className={styles.field1}>
                 <span className={styles.label}>Стать дитини</span>
 
-                <Field as="select" className={styles.select} name="gender">
+                <Field
+                  as="select"
+                  className={styles.select}
+                  name="gender"
+                  onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
+                    const nextGender = event.target.value as OnboardingGenderValue;
+                    setFieldValue('gender', nextGender);
+                    setSelectedGenderTheme(nextGender);
+                  }}
+                >
                   <option value="" disabled>
                     Оберіть стать
                   </option>
