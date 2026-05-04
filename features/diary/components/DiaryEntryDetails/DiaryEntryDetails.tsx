@@ -114,7 +114,14 @@ export default function DiaryEntryDetails({ diaryId }: DiaryEntryDetailsProps) {
         />
       )}
 
-      {isAddModalOpen && <AddDiaryEntryModal onClose={handleCloseModal} />}
+      {isAddModalOpen && (
+        <AddDiaryEntryModal
+          onClose={() => {
+            localStorage.removeItem('editEntry');
+            setIsAddModalOpen(false);
+          }}
+        />
+      )}
     </>
   );
 }
