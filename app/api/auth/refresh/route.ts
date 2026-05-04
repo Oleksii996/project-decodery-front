@@ -20,7 +20,7 @@ export const POST = async (request: NextRequest) => {
     });
   }
 
-  const response = await api.post('/auth/refresh', null, {
+  const response = await api.post('api/auth/refresh', null, {
     headers: {
       Cookie: cookisStore.toString(),
     },

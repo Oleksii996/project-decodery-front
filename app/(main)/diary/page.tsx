@@ -1,5 +1,5 @@
 import { getAllDiaries } from '@/features/diary/api';
-import DiaryPage from '@/features/diary/components/DiaryPage/DiaryPage';
+import DiaryPageClient from '@/features/diary/components/DiaryPage/DiaryPageClient';
 import {
   dehydrate,
   HydrationBoundary,
@@ -13,6 +13,6 @@ export default async function Diary() {
     queryFn: getAllDiaries,
   }
   )
-  return <HydrationBoundary state={dehydrate(queryClient)}><DiaryPage /></HydrationBoundary>
+  return <HydrationBoundary state={dehydrate(queryClient)}><DiaryPageClient /></HydrationBoundary>
   ;
 }
