@@ -1,29 +1,43 @@
+import { create } from "zustand";
+
+type Theme = "default" | "pink" | "blue";
+type Gender = "boy" | "girl" | "unknown";
+
 const THEME_KEY = "app-theme";
+const GENDER_KEY = "child-gender";
 
-export type Theme = "default" | "pink" | "blue";
-
-/**
- * Зберегти тему в localStorage
- */
-export const saveTheme = (theme: Theme) => {
-  try {
-    localStorage.setItem(THEME_KEY, theme);
-  } catch (error) {
-    console.error("Помилка при збереженні теми:", error);
-  }
+const saveTheme = (theme: Theme) => {
+  localStorage.setItem(THEME_KEY, theme);
 };
 
-/**
- * Отримати тему з localStorage
- */
-export const loadTheme = (): Theme => {
-  try {
-    const stored = localStorage.getItem(THEME_KEY);
-    if (stored === "pink" || stored === "blue" || stored === "default") {
-      return stored;
-    }
-    return "default";
-  } catch {
-    return "default";
-  }
+const loadTheme = (): Theme => {
+  return (localStorage.getItem(THEME_KEY) as Theme) || "default";
 };
+
+const loadGender = (): Gender => {
+  return (localStorage.getItem(GENDER_KEY) as Gender) || "unknown";
+};
+
+interface ThemeState {
+  theme: Theme;
+  initTheme: () => void;
+}
+
+export const useThemeStore = create<ThemeState>((set) => ({
+  theme: loadTheme(),
+
+  initTheme: () => {
+    const gender = loadGender();
+    let theme: Theme = "default";
+
+    if (gender === "boy") theme = "blue";
+    if (gender === "girl") theme = "pink";
+
+    document.body.classList.remove("theme-pink", "theme-blue");
+    if (theme === "pink") document.body.classList.add("theme-pink");
+    if (theme === "blue") document.body.classList.add("theme-blue");
+
+    saveTheme(theme);
+    set({ theme });
+  },
+}));
