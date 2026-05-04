@@ -5,7 +5,6 @@
   padding-left: 16px;
   padding-right: 16px;
   height: 92px;
-
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 
   margin-top: auto;
@@ -14,10 +13,9 @@
 .wrapperContent {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  justify-content: space-between;
 
-  width: 100%;
-  height: 44px;
+  height: 40px;
 
   background-color: #d49696;
 }
@@ -25,9 +23,12 @@
 .userInfo {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
 
   height: 100%;
+  width: 100%;
+
   background-color: rgb(255, 255, 255);
 }
 
@@ -37,16 +38,25 @@
   border-radius: 50%;
   object-fit: cover;
   border: 1px solid #ff6b6b;
+
+  flex-shrink: 0;
 }
 
 .textData {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   overflow: hidden;
   background-color: #ffd86b;
 
   margin-left: 12px;
   margin-right: 12px;
+
+  height: 100%;
+  width: 188px;
+
+  flex-grow: 1; /* Дозволяє блоку займати весь вільний простір */
+  min-width: 0;
 }
 
 .userName {
@@ -60,11 +70,9 @@
 }
 
 .userEmail {
-  font-size: 14px;
   color: #757575;
   margin: 0;
   white-space: nowrap;
-  text-overflow: ellipsis;
   overflow: hidden;
 }
 
@@ -72,13 +80,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
 
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+
+  flex-shrink: 0;
 }
 
 .logoutBtn svg {

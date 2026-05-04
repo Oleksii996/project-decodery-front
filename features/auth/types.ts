@@ -23,6 +23,9 @@ export interface PregnancyProgress {
 export interface RegisterResponse {
   user: User;
   pregnancyProgress: PregnancyProgress;
+  accessToken?: string;
+  refreshToken?: string;
+  sessionId?: string;
 }
 
 export interface LoginFormValues {
