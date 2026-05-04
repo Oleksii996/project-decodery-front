@@ -21,6 +21,8 @@ import type {
   OnboardingGenderValue,
 } from '../../types';
 import styles from './OnboardingForm.module.css';
+import { useAuthStore } from '@/store/authStore';
+import { User } from '@/features/auth/types';
 
 const genderOptions: Array<{ value: BabyGender; label: string }> = [
   { value: 'boy', label: 'Хлопчик' },
@@ -83,7 +85,9 @@ const getOffsetDate = (weeksFromToday: number) => {
 
 const getDefaultDueDate = () => getOffsetDate(39).toISOString().slice(0, 10);
 
-const applyGenderTheme = (gender: OnboardingGenderValue | BackendGenderValue) => {
+const applyGenderTheme = (
+  gender: OnboardingGenderValue | BackendGenderValue
+) => {
   document.body.classList.remove('theme-pink', 'theme-blue');
 
   if (gender === 'girl') {
@@ -145,12 +149,12 @@ const emptyValues: OnboardingFormValues = {
 };
 
 export default function OnboardingForm() {
+  const setAuthUser = useAuthStore(s => s.setAuthUser);
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
-  const [selectedGenderTheme, setSelectedGenderTheme] = useState<
-    OnboardingGenderValue | null
-  >(null);
+  const [selectedGenderTheme, setSelectedGenderTheme] =
+    useState<OnboardingGenderValue | null>(null);
 
   const minDueDate = useMemo(() => getOffsetDate(onboardingMinWeeks), []);
   const maxDueDate = useMemo(() => getOffsetDate(onboardingMaxWeeks), []);
@@ -251,6 +255,11 @@ export default function OnboardingForm() {
       if (values.avatar) {
         await avatarMutation.mutateAsync(values.avatar);
       }
+      const updatedUser = await getCurrentOnboardingUser();
+
+      if (updatedUser) {
+        setAuthUser(updatedUser as User);
+      }
 
       toast.success('Дані успішно збережено');
       router.push('/');
@@ -341,7 +350,8 @@ export default function OnboardingForm() {
                   }`}
                   name="gender"
                   onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
-                    const nextGender = event.target.value as OnboardingGenderValue;
+                    const nextGender = event.target
+                      .value as OnboardingGenderValue;
                     setFieldValue('gender', nextGender);
                     setSelectedGenderTheme(nextGender);
                   }}
