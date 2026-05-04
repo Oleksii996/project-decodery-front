@@ -5,7 +5,7 @@ import { useAuthStore } from '@/store/authStore';
 import ConfirmationModal from '../../shared/ConfirmationModal/ConfirmationModal';
 import styles from './UserBar.module.css';
 import { logoutUser } from '@/features/auth/api';
-import { clear } from 'console';
+// import { clear } from 'console';
 import { useRouter } from 'next/navigation';
 
 const UserBar = ({ onClose }: { onClose?: () => void }) => {
