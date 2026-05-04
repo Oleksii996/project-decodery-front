@@ -11,7 +11,8 @@ import { useState } from 'react';
 export default function DiaryPage() {
   const isDesktop = useMediaQuery('only screen and (min-width: 1440px)');
   const [userSelectedDiaryId, seUserSelectedDiaryId] = useState<string | null>(
-    null);
+    null
+  );
   const {
     data: diaries = [],
     isLoading,
@@ -27,21 +28,24 @@ export default function DiaryPage() {
   const selectedDiaryId =
     userSelectedDiaryId ??
     (isDesktop && diaries.length > 0 ? diaries[0]._id as string : null);
-    console.log('isDesktop in card:', isDesktop);
+
   if (isDesktop === undefined) return null;
+
   if (isLoading) return null;
+
   if (isError) return null;
+
   return (
     <section>
       {/* <GreetingBlock/> */}
-      <div className={css.pageContainer}>
+      <div className={`${css.pageContainer} ${diaries.length <= 0 ? css.fullScreen : ''}`}>
         <DiaryList
           diaries={diaries}
           selectedDiaryId={selectedDiaryId}
           onSelectDiary={seUserSelectedDiaryId}
           isDesktop={isDesktop}
         ></DiaryList>
-        {isDesktop && <DiaryEntryDetails diaryId={selectedDiaryId} />}
+        {isDesktop && diaries.length > 0 && <DiaryEntryDetails diaryId={selectedDiaryId} />}
       </div>
     </section>
   );

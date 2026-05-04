@@ -2,6 +2,7 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import css from './RegistrationForm.module.css';
 import { useId } from 'react';
+import { isAxiosError } from 'axios';
 import { RegistrationFormValues } from '../../types';
 import { registrationValidationSchema } from './registrationValidationSchema';
 import { registerUser } from '../../api';
@@ -23,11 +24,16 @@ const RegistrationForm = () => {
   const handleSubmit = async (values: RegistrationFormValues) => {
     try {
       const data = await registerUser(values);
+      if (data.accessToken) {
+        localStorage.setItem('accessToken', data.accessToken);
+      }
       toast.success('Реєстрація успішна');
       setAuthUser(data.user);
       router.push('/profile/edit');
-    } catch (error: any) {
-      const message = error.response?.data?.message || 'Користувач вже існує';
+    } catch (error: unknown) {
+      const message = isAxiosError(error)
+        ? error.response?.data?.message || 'Користувач вже існує'
+        : 'Користувач вже існує';
 
       toast.error(message);
     }
