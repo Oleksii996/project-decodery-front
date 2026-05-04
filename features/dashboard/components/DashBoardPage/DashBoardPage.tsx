@@ -43,7 +43,7 @@ export default function DashBoardPage() {
         <GreetingBlock />
         <div className={css.content}>
           <div className={css.leftColumn}>
-            <StatusBlock />
+            <StatusBlock week={dashboardData.weekNumber} daysToMeet={dashboardData.daysUntilDueDate} />
 
             <BabyTodayCard
               image={babyData.image}
