@@ -43,19 +43,18 @@ const UserBar = ({ onClose }: { onClose?: () => void }) => {
             <p className={styles.userName}>{userInfo?.name}</p>
             <p className={styles.userEmail}>{userInfo?.email}</p>
           </div>
+          <button
+            className={styles.logoutBtn}
+            onClick={() => {
+              if (onClose) onClose();
+              setShowModal(true);
+            }}
+          >
+            <svg className={styles.icon_logout}>
+              <use href="/leleka-sprite.svg#icon-logout" />
+            </svg>
+          </button>
         </div>
-
-        <button
-          className={styles.logoutBtn}
-          onClick={() => {
-            if (onClose) onClose();
-            setShowModal(true);
-          }}
-        >
-          <svg className={styles.icon_logout}>
-            <use href="/leleka-sprite.svg#icon-logout" />
-          </svg>
-        </button>
 
         {showModal && (
           <ConfirmationModal
