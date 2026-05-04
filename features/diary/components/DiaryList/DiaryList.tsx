@@ -23,7 +23,6 @@ export default function DiaryList({
   };
   return (
     <>
-      {' '}
       <div className={css.container}>
         <div className={css.head}>
           <h3 className={css.title}>Ваші записи</h3>

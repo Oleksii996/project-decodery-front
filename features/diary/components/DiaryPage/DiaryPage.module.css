@@ -15,5 +15,10 @@
     grid-template-columns: minmax(250px, 1fr) minmax(650px, 2fr);
     padding-left: 0;
     padding-right: 16px;
+
+  }
+  .fullScreen {
+    grid-template-columns: 1fr;
+    height: 100vh;
   }
 }
