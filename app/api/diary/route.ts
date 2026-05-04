@@ -16,7 +16,7 @@ export async function GET() {
 
     const res = await api.get('api/diaries', {
       headers: {
-        'Content-Type': 'applicaton/json',
+        'Content-Type': 'application/json',
       },
     });
     return NextResponse.json(res.data, { status: res.status });

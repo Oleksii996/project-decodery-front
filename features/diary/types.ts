@@ -6,6 +6,11 @@ export interface Diary {
   emotions: string[];
 }
 
+export interface Emotion {
+  _id: string;
+  title: string;
+}
+
 export interface AxiosGetAllDiariesResponse {
   diaries: Diary[];
 }
