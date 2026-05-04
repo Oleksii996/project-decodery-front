@@ -29,6 +29,13 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           onClose={() => setIsSidebarOpen(false)}
         />
 
+        {isSidebarOpen && (
+          <div
+            className={css.overlay}
+            onClick={() => setIsSidebarOpen(false)}
+          />
+        )}
+
         <main className={css.mainContent}>
           <Header onMenuClick={() => setIsSidebarOpen(true)} />
           <Breadcrumbs />
