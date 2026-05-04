@@ -1,4 +1,7 @@
 .headercontainer {
+  position: relative;
+  z-index: 1;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -27,4 +30,10 @@
   height: 32px;
 
   background-color: rgb(223, 185, 185);
+}
+
+@media (min-width: 1440px) {
+  .headercontainer {
+    display: none;
+  }
 }

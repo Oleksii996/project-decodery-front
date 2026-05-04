@@ -1,3 +1,5 @@
+import DashBoardPage from '@/features/dashboard/components/DashBoardPage/DashBoardPage';
+
 export default function Home() {
-  return <div>Home page</div>;
+  return <DashBoardPage />;
 }

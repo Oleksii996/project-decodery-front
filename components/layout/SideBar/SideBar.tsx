@@ -2,27 +2,30 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { useAuthStore } from '@/store/authStore';
+
 import UserBar from '../UserBar/UserBar';
 import AuthBar from '../AuthBar/AuthBar';
 import styles from './SideBar.module.css';
 import { useUserStore } from '@/store/userStore';
 
+import css from '../SideBar/SideBar.module.css';
+
 interface SideBarProps {
   onClose?: () => void;
+  isOpen?: boolean;
 }
 
-const SideBar = ({ onClose }: SideBarProps) => {
+const SideBar = ({ onClose, isOpen }: SideBarProps) => {
   const pathname = usePathname();
   const router = useRouter();
-  const { isLoggedIn } = useAuthStore();
+
   const isAuth = useUserStore(state => state.isAuth);
 
   const navItems = [
-    { label: 'Мій день', href: '/' },
-    { label: 'Подорож', href: '/journey' },
-    { label: 'Щоденник', href: '/diary' },
-    { label: 'Профіль', href: '/profile' },
+    { label: 'Мій день', href: '/', icon: 'icon-today' },
+    { label: 'Подорож', href: '/journey', icon: 'icon-conversion_path' },
+    { label: 'Щоденник', href: '/diary', icon: 'icon-book' },
+    { label: 'Профіль', href: '/profile', icon: 'icon-account_circle' },
   ];
 
   const handleLinkClick = (e: React.MouseEvent) => {
@@ -34,21 +37,23 @@ const SideBar = ({ onClose }: SideBarProps) => {
   };
 
   return (
-    <aside className={styles.sidebar}>
-      <div className={styles.topContent}>
-        <Link href="/" className={styles.logo} onClick={onClose}>
+    <aside className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
+      <div className={css.menuTop}>
+        <Link href="/" className={css.logo} onClick={onClose}>
           <Image
             src="/Company Logo.svg"
-            alt="Logo"
-            width={100}
-            height={100}
+            alt="Company logo"
+            width={105}
+            height={45}
           />
         </Link>
+      </div>
 
+      <div className={styles.topContent}>
         <nav className={styles.navigation}>
           <ul className={styles.navList}>
             {navItems.map(item => (
-              <li key={item.href}>
+              <li key={item.href} className={styles.navItem}>
                 <Link
                   href={item.href}
                   className={
@@ -56,7 +61,10 @@ const SideBar = ({ onClose }: SideBarProps) => {
                   }
                   onClick={handleLinkClick}
                 >
-                  {item.label}
+                  <svg className={styles.icon} width="24" height="24">
+                    <use href={`/leleka-sprite.svg#${item.icon}`} />
+                  </svg>
+                  <span>{item.label}</span>
                 </Link>
               </li>
             ))}
