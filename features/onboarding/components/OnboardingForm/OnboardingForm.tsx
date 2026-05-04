@@ -21,6 +21,7 @@ import type {
   OnboardingGenderValue,
 } from '../../types';
 import styles from './OnboardingForm.module.css';
+import { useThemeStore } from '@/utils/localStorageTheme';
 import { useAuthStore } from '@/store/authStore';
 import { User } from '@/features/auth/types';
 
@@ -260,6 +261,24 @@ export default function OnboardingForm() {
       if (updatedUser) {
         setAuthUser(updatedUser as User);
       }
+
+const theme =
+      values.gender === "boy"
+        ? "blue"
+        : values.gender === "girl"
+        ? "pink"
+        : "default";
+
+      await useThemeStore.getState().updateThemeOnServer(theme);
+
+// 🔑 зберігаємо стать у localStorage
+    localStorage.setItem("child-gender", values.gender);
+
+    // 🔑 викликаємо глобальну утиліту для теми
+      useThemeStore.getState().initTheme();
+      
+         // 🔑 після збереження теми очищаємо child-gender
+    // localStorage.removeItem("child-gender");
 
       toast.success('Дані успішно збережено');
       router.push('/');

@@ -5,6 +5,7 @@ import { QueryProvider } from '@/components/providers/QueryProvider';
 import { Toaster } from 'react-hot-toast';
 
 import { ModalProvider } from '@/components/providers/ModalProvider';
+import { ThemeProvider } from '@/components/providers/ThemeProvider'
 
 const lato = Lato({
   weight: ['400', '700', '900'],
@@ -53,10 +54,12 @@ export default function RootLayout({
       <body className={`${lato.variable} ${comfortaa.variable}`}>
         <QueryProvider>
           <ModalProvider>
+            <ThemeProvider>
             <Toaster position="top-right" />
 
-            {children}
-            {Modal}
+              {children}
+              {Modal}
+            </ThemeProvider>
           </ModalProvider>
         </QueryProvider>
       </body>
