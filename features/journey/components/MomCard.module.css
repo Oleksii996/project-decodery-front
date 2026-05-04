@@ -1,23 +1,15 @@
-/* ================= MOBILE ================= */
+/* ========= MOBILE ============= */
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 
 .card {
   background-color: var(--color-primary-light);
   border-radius: 20px;
-  padding: 16px;
-}
-
-/* TITLE */
-.title {
-  font-family: var(--second-family);
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 16px;
-  color: var(--color-neutral-dark);
-}
-
-/* SECTIONS */
-.section {
-  margin-bottom: 20px;
+  padding: 20px;
 }
 
 /* SUBTITLE */
@@ -25,101 +17,58 @@
   font-family: var(--font-family);
   font-size: 14px;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   color: var(--color-neutral-dark);
+}
+
+/* STATES */
+
+.states {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.stateItem {
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 16px;
+  background-color: var(--color-white);
 }
 
 /* TEXT */
 .text {
-  font-family: var(--font-family);
   font-size: 14px;
-  line-height: 1.5;
-  color: var(--color-neutral-dark);
+  line-height: 1.6;
 }
 
-/* ====== TIPS BLOCK ====== */
+/* ===== TIPS ===== */
 
 .tipItem {
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
+/* 🔥 ГОЛОВНЕ ВИПРАВЛЕННЯ */
 .tipTitle {
-  font-family: var(--font-family);
+  display: flex;
+  align-items: center; /* вертикально рівно */
+  gap: 10px; /* відстань між іконкою і текстом */
+
   font-size: 14px;
   font-weight: 600;
-  margin-bottom: 4px;
-  color: var(--color-neutral-dark);
+  margin-bottom: 6px;
 }
 
+/* іконка */
+.tipTitle img {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0; 
+}
+
+/* текст */
 .tipText {
-  font-family: var(--font-family);
   font-size: 14px;
-  line-height: 1.5;
-  color: var(--color-neutral-dark);
-}
-
-/* ================= TABLET ================= */
-
-@media (min-width: 768px) {
-  .card {
-    padding: 20px;
-  }
-
-  .title {
-    font-size: 20px;
-  }
-
-  .subtitle {
-    font-size: 15px;
-  }
-
-  .text {
-    font-size: 15px;
-  }
-
-  .tipTitle {
-    font-size: 15px;
-  }
-
-  .tipText {
-    font-size: 15px;
-  }
-}
-
-/* ================= DESKTOP ================= */
-
-@media (min-width: 1280px) {
-  .card {
-    padding: 24px;
-    border-radius: 24px;
-
-    /* як у макеті */
-    max-height: 420px;
-    overflow-y: auto;
-  }
-
-  .title {
-    font-size: 22px;
-    margin-bottom: 20px;
-  }
-
-  .subtitle {
-    font-size: 16px;
-  }
-
-  .text {
-    font-size: 16px;
-  }
-
-  .tipTitle {
-    font-size: 16px;
-  }
-
-  .tipText {
-    font-size: 15px;
-  }
-
-  .tipItem {
-    margin-bottom: 18px;
-  }
+  line-height: 1.6;
 }

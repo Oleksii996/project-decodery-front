@@ -21,7 +21,13 @@ export default function JourneyDetails({ data }: Props) {
 
       <div className={styles.content}>
         {tab === "baby" && <BabyCard data={data.baby} />}
-        {tab === "mom" && <MomCard data={data.mom} />}
+
+        {tab === "mom" && (
+          <div className={styles.grid}>
+            <MomCard data={data.mom} />
+            
+          </div>
+        )}
       </div>
     </div>
   );
