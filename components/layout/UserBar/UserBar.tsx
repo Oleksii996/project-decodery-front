@@ -59,9 +59,9 @@ const UserBar = ({ onClose }: { onClose?: () => void }) => {
 
         {showModal && (
           <ConfirmationModal
-            title="Ви впевнені, що хочете вийти?"
-            confirmButtonText="Вийти"
-            cancelButtonText="Скасувати"
+            title="Ви точно хочете вийти?"
+            confirmButtonText="Так"
+            cancelButtonText="Ні"
             onConfirm={handleLogout}
             onCancel={() => setShowModal(false)}
           ></ConfirmationModal>

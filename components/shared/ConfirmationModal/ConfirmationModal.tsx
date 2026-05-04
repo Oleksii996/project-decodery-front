@@ -54,7 +54,7 @@ export default function ConfirmationModal({
           ×
         </button>
 
-        <h2 className={styles['modal-title']}>{title}</h2>
+        <p className={styles['modal-title']}>{title}</p>  
         {children && <div className={styles['modal-body']}>{children}</div>}
 
         <div className={styles['modal-buttons']}>
