@@ -16,6 +16,8 @@ svg {
 
 button {
   cursor: pointer;
+  border: none;
+  padding: 0;
 }
 
 a {
@@ -26,8 +28,35 @@ a {
 ul,
 ol {
   list-style: none;
+  margin: 0;
+  padding-left: 0;
 }
-
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  max-width: 375px;
+}
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .container {
+    padding: 0 16px;
+    max-width: 1440px;
+  }
+}
 :root {
   --font-family: 'Lato', sans-serif;
   --second-family: 'Comfortaa', sans-serif;
@@ -52,6 +81,7 @@ ol {
   --color-primary: #feeccc;
   --color-primary-light: #fef1db;
   --color-primary-dark: #cbbca3;
+  --color-primary-lightest: #fefbf4;
 }
 
 /* 🌸 girl */
