@@ -1,20 +1,21 @@
 .wrapper {
- display: flex;
+display: flex;
 align-items: flex-start;
 justify-content: flex-start;
 flex-direction: column;
 padding: 0px 16px 24px;
-width: 312px;
-height: 92px;
+width: 300px;
+height: 80px;
+gap: 16px;
 }
 .wrapperContent {
  display: flex;
 align-items: center;
 justify-content: flex-start;
 flex-direction: row;
-
-/* width: 280px; */
-height: 44px;
+gap : 4px;
+width: 268px;
+height: 40px;
 }
 
 .userInfo {
@@ -22,9 +23,9 @@ display: flex;
 align-items: center;
 justify-content: flex-start;
 flex-direction: row;
-gap: 12px;
-/* width: 240px; */
-height: 44px;
+gap: 8px;
+width: 228px;
+height: 40px;
 }
 
 .avatar {
@@ -42,26 +43,21 @@ align-items: flex-start;
 justify-content: flex-start;
 flex-direction: column;
 gap: 0px;
-/* width: 188px; */
-height: 44px;
-
-  margin-left: 12px;
-  margin-right: 12px;
-
-  flex-grow: 1; /* Дозволяє блоку займати весь вільний простір */
-  min-width: 0;
+width: 180px;
+height: 38px;
+ flex-grow: 1; /* Дозволяє блоку займати весь вільний простір */
 }
 
 .userName {
  font-weight: 500;
-font-size: 14px;
+font-size: 12px;
 line-height: 1.6;
 color: #000;
 }
 
 .userEmail {
  font-weight: 400;
-font-size: 14px;
+font-size: 12px;
 line-height: 1.6;
 color: #000;
 }
@@ -71,14 +67,12 @@ color: #000;
 align-items: center;
 justify-content: flex-start;
 flex-direction: row;
-gap: 10px;
 padding: 8px;
 width: 40px;
 height: 40px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  flex-shrink: 0;
+cursor: pointer;
+transition: all 0.3s ease;
+flex-shrink: 0;
 }
 
 .logoutBtn svg {
@@ -100,8 +94,29 @@ height: 40px;
 
 @media (min-width: 1440px) {
   .wrapper {
+  width: 312px;
+  height: 92px;
   }
 
-  .avatar {
+  .wrapperContent {
+  width: 280px; 
+  height: 44px;
+  }
+
+  .userInfo {
+  width: 240px;
+  height: 44px;
+  }
+
+  .textData {
+  width: 188px;
+  height: 44px;
+  }
+
+  .userName {
+  font-size: 14px;
+  }
+  .userEmail {
+  font-size: 14px;
   }
 }
