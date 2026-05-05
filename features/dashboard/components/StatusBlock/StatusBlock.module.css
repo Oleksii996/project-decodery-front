@@ -1,29 +1,29 @@
-.container {
-display: flex;
-gap: 16px;
+.containerSB {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
 }
 .statCard {
   display: flex;
   flex-direction: column;
-  width: 160px;
-  height: 105px;
-  border: 1px solid transparent;
+  width: 100%;
+  height: auto;
+  border: 1px solid #00000026;
   border-radius: 32px;
-  background-color: var(--color-primary);
-  padding-left: 16px;
-  padding-top: 16px;
+  background-color: var(--color-primary-lightest);
+  padding: 16px;
   gap: 4px;
 }
 .title {
-  font-family: var(--font-family), sans-serif;
+  font-family: var(--font-family);
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 0;
   line-height: 1.5;
   color: var(--color-black);
 }
-.value{
-  font-family: var(--second-family), sans-serif;
+.value {
+  font-family: var(--second-family);
   font-size: 40px;
   font-weight: 700;
   line-height: 1.2;
@@ -31,21 +31,18 @@ gap: 16px;
   color: var(--color-black);
 }
 @media screen and (min-width: 768px) {
-  .statCard{
-    width: 336px;
-    height: 105px;
+  .containerSB {
+    gap: 32px;
   }
-
 }
-@media  screen and (min-width: 1024px) {
-  .statCard{
-    width: 305px;
+@media screen and (min-width: 1024px) {
+  .statCard {
     height: 127px;
   }
-  .title{
+  .title {
     font-size: 16px;
   }
-  .value{
+  .value {
     font-size: 56px;
   }
 }
