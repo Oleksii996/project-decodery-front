@@ -1,12 +1,47 @@
 .breadcrumbsContainer {
-  display: flex;
+  font-family: var(--second-family), sans-serif;
 
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  height: 24px;
-  background-color: rgb(255, 224, 203);
+
+  padding-left: 0px;
+
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  white-space: nowrap;
+
+  background-color: rgb(255, 255, 255);
 }
 
 .current {
   font-weight: 600;
   color: black;
+
+  background-color: rgb(255, 255, 255);
+}
+
+.separator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 8px;
+}
+
+.separator svg {
+  width: 16px;
+  height: 16px;
+
+  transform: rotate(270deg);
+  fill: currentColor;
+
+  background-color: rgb(255, 255, 255);
+}
+
+@media (min-width: 1440px) {
+  .breadcrumbsContainer {
+    padding-top: 24px;
+    padding-left: 32px;
+  }
 }

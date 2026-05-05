@@ -31,12 +31,15 @@ export default function Breadcrumbs() {
         <Link href="/">Лелека</Link>
         {isHome && (
           <>
-            <span className={css.separator}> / </span>
+            <span className={css.separator}>
+              <svg width="16" height="16">
+                <use href="/leleka-sprite.svg#icon-keyboard_arrow_down" />
+              </svg>
+            </span>
             <span className={css.current}>Мій день</span>
           </>
         )}
 
-        {/* Інші сторінки */}
         {!isHome &&
           segments.map((segment, index) => {
             const path = '/' + segments.slice(0, index + 1).join('/');
@@ -49,7 +52,11 @@ export default function Breadcrumbs() {
 
             return (
               <span key={path} className={css.item}>
-                <span className={css.separator}> / </span>
+                <span className={css.separator}>
+                  <svg width="16" height="16">
+                    <use href="/leleka-sprite.svg#icon-keyboard_arrow_down" />
+                  </svg>
+                </span>
 
                 {isLast ? (
                   <span className={css.current}>{name}</span>

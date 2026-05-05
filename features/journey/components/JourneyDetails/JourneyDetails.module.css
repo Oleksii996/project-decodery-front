@@ -1,0 +1,33 @@
+/* ================= MOBILE ================= */
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ================= TABLET ================= */
+
+@media (min-width: 768px) {
+  .content {
+    gap: 20px;
+  }
+}
+
+/* ================= DESKTOP ================= */
+
+@media (min-width: 1024px) {
+  .content {
+    flex-direction: row; /* 🔥 дві колонки */
+    gap: 24px;
+  }
+
+  .content > * {
+    flex: 1;
+  }
+}

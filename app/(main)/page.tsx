@@ -5,10 +5,5 @@ import TasksReminderCard from "@/features/tasks/components/TasksReminderCard/Tas
 import FeelingCheckCard from '@/features/dashboard/components/FeelingCheckCard/FeelingCheckCard';
 
 export default function Home() {
-  return (
-    <>
-      <DashBoardPage />
-
-    </>
-  );
+  return <DashBoardPage />;
 }

@@ -1,0 +1,74 @@
+/* ========= MOBILE ============= */
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  background-color: var(--color-primary-light);
+  border-radius: 20px;
+  padding: 20px;
+}
+
+/* SUBTITLE */
+.subtitle {
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--color-neutral-dark);
+}
+
+/* STATES */
+
+.states {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.stateItem {
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 16px;
+  background-color: var(--color-white);
+}
+
+/* TEXT */
+.text {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ===== TIPS ===== */
+
+.tipItem {
+  margin-bottom: 18px;
+}
+
+/* 🔥 ГОЛОВНЕ ВИПРАВЛЕННЯ */
+.tipTitle {
+  display: flex;
+  align-items: center; /* вертикально рівно */
+  gap: 10px; /* відстань між іконкою і текстом */
+
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+/* іконка */
+.tipTitle img {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0; 
+}
+
+/* текст */
+.tipText {
+  font-size: 14px;
+  line-height: 1.6;
+}

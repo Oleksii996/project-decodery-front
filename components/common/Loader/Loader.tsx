@@ -1,18 +1,18 @@
-import React from "react";
-import { Blocks } from "react-loader-spinner"; 
-import "../Loader/Loader.module.css";
+import React from 'react';
+import { ColorRing } from 'react-loader-spinner';
+import css from './Loader.module.css';
 
 const Loader: React.FC = () => {
   return (
-    <div className="loader-container">
-      <Blocks
+    <div className={css.loaderContainer}>
+      <ColorRing
+        visible={true}
         height="80"
-width="80"
-color="#4fa94d"
-ariaLabel="blocks-loading"
-wrapperStyle={{}}
-wrapperClass="blocks-wrapper"
-visible={true}
+        width="80"
+        ariaLabel="color-ring-loading"
+        wrapperStyle={{}}
+        wrapperClass="color-ring-wrapper"
+        colors={['#feeccc', '#FEF1DB', '#FFCBD3', '#FFDAE0FF', '#C4F2FE']}
       />
     </div>
   );

@@ -1,5 +1,17 @@
+.greeting {
+  width: 100%;
+  margin: 0 auto;
+  height: auto;
+  overflow: visible;
+}
+
 @media screen and (min-width: 1440px) {
-  .content {
+  .dashboard {
+    padding: 32px;
+    padding-top: 16px;
+  }
+  .contentDB {
+    /* padding: 0 12px; */
     display: grid;
     grid-template-columns: 1fr 390px;
     gap: 32px;

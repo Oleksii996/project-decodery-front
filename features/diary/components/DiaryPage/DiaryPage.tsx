@@ -7,6 +7,7 @@ import DiaryEntryDetails from '../DiaryEntryDetails/DiaryEntryDetails';
 import css from './DiaryPage.module.css';
 import { useMediaQuery } from '@uidotdev/usehooks';
 import { useState } from 'react';
+import GreetingBlock from '@/components/shared/GreetingBlock/GreetingBlock';
 
 export default function DiaryPage() {
   const isDesktop = useMediaQuery('only screen and (min-width: 1440px)');
@@ -27,7 +28,7 @@ export default function DiaryPage() {
 
   const selectedDiaryId =
     userSelectedDiaryId ??
-    (isDesktop && diaries.length > 0 ? diaries[0]._id as string : null);
+    (isDesktop && diaries.length > 0 ? (diaries[0]._id as string) : null);
 
   if (isDesktop === undefined) return null;
 
@@ -37,15 +38,19 @@ export default function DiaryPage() {
 
   return (
     <section>
-      {/* <GreetingBlock/> */}
-      <div className={`${css.pageContainer} ${diaries.length <= 0 ? css.fullScreen : ''}`}>
+      <GreetingBlock />
+      <div
+        className={`${css.pageContainer} ${diaries.length <= 0 ? css.fullScreen : ''}`}
+      >
         <DiaryList
           diaries={diaries}
           selectedDiaryId={selectedDiaryId}
           onSelectDiary={seUserSelectedDiaryId}
           isDesktop={isDesktop}
         ></DiaryList>
-        {isDesktop && diaries.length > 0 && <DiaryEntryDetails diaryId={selectedDiaryId} />}
+        {isDesktop && diaries.length > 0 && (
+          <DiaryEntryDetails diaryId={selectedDiaryId} />
+        )}
       </div>
     </section>
   );

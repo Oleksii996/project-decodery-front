@@ -8,7 +8,7 @@ export default function GreetingBlock() {
   return (
     <section className={css.greetingBlock}>
       <p className={css.title}>
-        {'Доброго дня, ' + (userInfo?.name || 'User') + '!'}
+        {'Доброго дня, ' + (userInfo?.name || 'сонечко') + '!'}
       </p>
     </section>
   );
