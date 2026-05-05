@@ -1,6 +1,11 @@
-import styles from "./BabyCard.module.css";
+import Image from 'next/image';
+import { BabyData } from '../../types';
+import styles from './BabyCard.module.css';
 
-export default function BabyCard({ data }: any) {
+interface BabyCardProps {
+  data: BabyData;
+}
+export default function BabyCard({ data }: BabyCardProps) {
   return (
     <div className={styles.card}>
       <h2 className={styles.title}>Розвиток малюка</h2>
@@ -9,9 +14,11 @@ export default function BabyCard({ data }: any) {
         {/* LEFT - IMAGE */}
         <div className={styles.imageWrapper}>
           {data.image && (
-            <img
+            <Image
               src={data.image}
               alt="baby"
+              width={461}
+              height={379}
               className={styles.image}
             />
           )}

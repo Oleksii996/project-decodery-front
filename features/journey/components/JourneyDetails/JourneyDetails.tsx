@@ -1,16 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import Tabs from "./Tabs";
-import BabyCard from "./BabyCard";
-import MomCard from "./MomCard";
+import Tabs from "../Tabs/Tabs";
+import BabyCard from "../BabyCard/BabyCard";
+import MomCard from "../MomCard/MomCard";
 import styles from "./JourneyDetails.module.css";
+import { JourneyWeek } from "../../types";
 
-type Props = {
-  data: any;
+interface JourneyDeyailsProps  {
+  data: JourneyWeek;
 };
 
-export default function JourneyDetails({ data }: Props) {
+export default function JourneyDetails({ data }: JourneyDeyailsProps) {
   const [tab, setTab] = useState<"baby" | "mom">("baby");
 
   if (!data) return null;
