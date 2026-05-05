@@ -41,6 +41,7 @@
 
 @media (min-width: 1440px) {
   .breadcrumbsContainer {
+    padding-top: 24px;
     padding-left: 32px;
   }
 }
