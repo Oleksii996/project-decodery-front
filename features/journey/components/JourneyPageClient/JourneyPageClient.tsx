@@ -7,6 +7,8 @@ import GreetingBlock from '@/components/shared/GreetingBlock/GreetingBlock';
 import JourneyDetails from '@/features/journey/components/JourneyDetails/JourneyDetails';
 import { getJourneyWeek } from '@/features/journey/api';
 
+import styles from './JourneyPageClient.module.css';
+
 type Props = {
   currentWeek: number;
 };
@@ -18,14 +20,20 @@ export default function JourneyPageClient({ currentWeek }: Props) {
     placeholderData: keepPreviousData,
     refetchOnMount: false,
   });
+
   if (isLoading) return null;
   if (isError || !data) return null;
 
   return (
-    <main className="dashboard">
-      <div className="container">
+    <main className={styles.wrapper}>
+      <div className={styles.container}>
         <GreetingBlock />
-        <WeekSelector currentWeek={currentWeek} userWeek={data.userWeek} />
+
+        <WeekSelector
+          currentWeek={currentWeek}
+          userWeek={data.userWeek}
+        />
+
         <JourneyDetails data={data} />
       </div>
     </main>

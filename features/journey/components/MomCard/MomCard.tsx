@@ -5,7 +5,7 @@ import type { MomData } from "@/features/journey/types";
 interface MomCardProps  {
   data: MomData;
 };
-// 🔥 функція для іконок
+//  функція для іконок
 const getIcon = (category: string) => {
   switch (category) {
     case "Харчування":
@@ -45,7 +45,7 @@ export default function MomCard({ data }: MomCardProps) {
         {data.tips?.map((item, i: number) => (
           <div key={i} className={styles.tipItem}>
             
-            {/* 🔥 ІКОНКА + КАТЕГОРІЯ */}
+            {/*  ІКОНКА + КАТЕГОРІЯ */}
             <p className={styles.tipTitle}>
               {getIcon(item.category)}
               <span>{item.category}</span>
