@@ -1,5 +1,7 @@
-﻿export interface Task {
-  _id: string;
-  task: string;
-  date: string;
-}
+export type Task = {
+  id: number;
+  title: string;
+  done: boolean;
+  date?: string;
+};
+
