@@ -1,0 +1,123 @@
+/* Mobile-first базові токени у стилі макета.
+   Кольори сторінок і карток — через --color-* (тема: базова / хлопчик / дівчинка). */
+:root {
+  --text: #4e4a55;
+  --text-h: #1d1a24;
+  --bg: #f7f4ed;
+  --surface: #fffdfb;
+  --border: #ece8e3;
+  --muted: #a6a1ad;
+  --accent: #f0c7d1;
+  --accent-strong: #eab5c4;
+  --accent-border: #e8c4cd;
+  --shadow: 0 10px 28px rgba(77, 62, 72, 0.08);
+  --danger: #c45d6a;
+  --danger-bg: #fff1f3;
+  --danger-border: #f2c8ce;
+
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --page-pad: 18px;
+
+  --sans: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  --heading: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  --font-family: var(--sans);
+  --second-family: var(--heading);
+
+  /* Тема за замовчуванням (жовта / нейтральна) — для карток і акцентів */
+  --color-primary: #d4a012;
+  --color-primary-light: #fff6e0;
+  --color-primary-muted: #e8d49a;
+  --color-primary-border: #edd9a0;
+
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--text);
+  background: var(--bg);
+  color-scheme: light;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --page-pad: 24px;
+  }
+}
+
+/* Тема: хлопчик / дівчинка — встановлюйте data-theme на <html> (див. ProfileWorkspace). */
+html[data-theme='boy'] {
+  --color-primary: #3d7cc9;
+  --color-primary-light: #e8f2fc;
+  --color-primary-muted: #9ec5eb;
+  --color-primary-border: #bcd8f3;
+}
+
+html[data-theme='girl'] {
+  --color-primary: #c76b8a;
+  --color-primary-light: #fdf2f6;
+  --color-primary-muted: #eab5c4;
+  --color-primary-border: #e8c4cd;
+}
+
+/* Глобальний контейнер брейкпоінтів (клас у JSX рядком: className="container"). */
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  max-width: 375px; /* mobile */
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 768px; /* tablet */
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    max-width: 1024px; /* desktop */
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    padding: 0 16px;
+    max-width: 1440px; /* large desktop */
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100dvh;
+  background:
+    radial-gradient(circle at 50% 8%, #ffffff 0%, #f9f4ed 45%, #f6f0e6 100%);
+}
+
+h1,
+h2 {
+  font-family: var(--second-family);
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+a {
+  color: inherit;
+}
