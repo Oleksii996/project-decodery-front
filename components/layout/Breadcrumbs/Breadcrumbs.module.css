@@ -5,10 +5,14 @@
   flex-direction: row;
   align-items: center;
 
+  padding-left: 0px;
+
   flex-wrap: nowrap; /* ❗ забороняє перенос */
   overflow-x: auto; /* якщо не влазить — можна скролити */
 
   white-space: nowrap; /* ❗ текст теж не переноситься */
+
+  background-color: rgb(255, 255, 255);
 }
 
 .current {
@@ -33,5 +37,11 @@
   transform: rotate(270deg); /* замість rotate */
   fill: currentColor; /* щоб підхоплював колір тексту */
 
-  background-color: turquoise;
+  background-color: rgb(255, 255, 255);
+}
+
+@media (min-width: 1440px) {
+  .breadcrumbsContainer {
+    padding-left: 32px;
+  }
 }
