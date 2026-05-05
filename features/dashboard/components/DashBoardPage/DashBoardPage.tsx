@@ -7,6 +7,7 @@ import StatusBlock from '../StatusBlock/StatusBlock';
 import FeelingCheckCard from '../FeelingCheckCard/FeelingCheckCard';
 import { getWeeksDashboard, getBabyWeekData } from '../../api';
 import css from './DashBoardPage.module.css';
+import TasksReminderCard from '@/features/tasks/components/TasksReminderCard/TasksReminderCard';
 import Loader from '@/components/common/Loader/Loader';
 
 export default function DashBoardPage() {
@@ -60,12 +61,11 @@ export default function DashBoardPage() {
                 <MomTipCard momTip={dashboardData.momTip} />
               </div>
 
-              <div className={css.rightColumn}>
-                <FeelingCheckCard />
-              </div>
-            </div>
-          </>
-        )}
+          <div className={css.rightColumn}>
+            <TasksReminderCard isAuth={true} />
+            <FeelingCheckCard isAuth={true} />
+          </div>
+        </div>
       </div>
     </main>
   );
