@@ -22,8 +22,13 @@ const SideBar = ({ onClose, isOpen }: SideBarProps) => {
   const isAuth = useUserStore(state => state.isAuth);
   const [week, setWeek] = useState<number | null>(null);
 
-   useEffect(() => {
-  fetch('/api/weeks/me')
+useEffect(() => {
+  if (!isAuth) {
+    setWeek(1);
+    return;
+  }
+
+  fetch('/api/weeks/private/1')
     .then(res => res.json())
     .then(data => {
       if (data?.weekNumber) {
@@ -33,14 +38,13 @@ const SideBar = ({ onClose, isOpen }: SideBarProps) => {
       }
     })
     .catch(() => setWeek(1));
-}, []);
-
+}, [isAuth]);
   const navItems = [
     { label: 'Мій день', href: '/', icon: 'icon-today' },
 
 {
   label: 'Подорож',
-  href: week ? `/journey/${week}` : `/journey/1`,
+  href: `/journey/${week ?? 1}`,
   icon: 'icon-conversion_path',
 },
 
