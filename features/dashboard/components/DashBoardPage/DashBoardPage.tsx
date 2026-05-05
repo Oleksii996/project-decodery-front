@@ -7,6 +7,8 @@ import StatusBlock from '../StatusBlock/StatusBlock';
 import FeelingCheckCard from '../FeelingCheckCard/FeelingCheckCard';
 import { getWeeksDashboard, getBabyWeekData } from '../../api';
 import css from './DashBoardPage.module.css';
+import TasksReminderCard from '@/features/tasks/components/TasksReminderCard/TasksReminderCard';
+import Loader from '@/components/common/Loader/Loader';
 
 export default function DashBoardPage() {
   const {
@@ -26,39 +28,46 @@ export default function DashBoardPage() {
     queryKey: ['baby-week'],
     queryFn: getBabyWeekData,
   });
-
-  // 🔄 loading
-  if (isDashboardLoading || isBabyLoading) {
-    return <p>Завантаження...</p>;
-  }
-
-  // ❌ error
-  if (isDashboardError || isBabyError || !dashboardData || !babyData) {
-    return <p>Помилка при завантаженні</p>;
-  }
+  const isLoading = isDashboardLoading || isBabyLoading;
+  const isError =
+    isDashboardError || isBabyError || !dashboardData || !babyData;
 
   return (
-    <main className={css.dashboard}>
-      <div className="container">
-        <GreetingBlock />
-        <div className={css.content}>
-          <div className={css.leftColumn}>
-            <StatusBlock />
+    <main>
+      <div className={css.dashboard}>
+        {isLoading && <Loader />}
 
-            <BabyTodayCard
-              image={babyData.image}
-              babySize={babyData.babySize}
-              babyWeight={babyData.babyWeight}
-              babyActivity={babyData.babyActivity}
-              babyDevelopment={babyData.babyDevelopment}
-            />
-            <MomTipCard momTip={dashboardData.momTip} />
-          </div>
+        {!isLoading && isError && <p>Помилка при завантаженні.</p>}
 
-          <div className={css.rightColumn}>
-            <FeelingCheckCard />
-          </div>
-        </div>
+        {!isLoading && !isError && (
+          <>
+            <div className={css.greeting}>
+              <GreetingBlock />
+            </div>
+            <div className={css.contentDB}>
+              <div className={css.leftColumn}>
+                <StatusBlock
+                  week={dashboardData.weekNumber}
+                  daysToMeet={dashboardData.daysUntilDueDate}
+                />
+
+                <BabyTodayCard
+                  image={babyData.image}
+                  babySize={babyData.babySize}
+                  babyWeight={babyData.babyWeight}
+                  babyActivity={babyData.babyActivity}
+                  babyDevelopment={babyData.babyDevelopment}
+                />
+                <MomTipCard momTip={dashboardData.momTip} />
+              </div>
+
+              <div className={css.rightColumn}>
+                <TasksReminderCard isAuth={true} />
+                <FeelingCheckCard isAuth={true} />
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </main>
   );

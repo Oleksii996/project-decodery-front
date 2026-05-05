@@ -7,7 +7,7 @@ import UserBar from '../UserBar/UserBar';
 import AuthBar from '../AuthBar/AuthBar';
 import styles from './SideBar.module.css';
 import { useUserStore } from '@/store/userStore';
-
+import { useEffect, useState } from 'react';
 import css from '../SideBar/SideBar.module.css';
 
 interface SideBarProps {
@@ -20,11 +20,35 @@ const SideBar = ({ onClose, isOpen }: SideBarProps) => {
   const router = useRouter();
 
   const isAuth = useUserStore(state => state.isAuth);
+  const [week, setWeek] = useState<number | null>(null);
 
+useEffect(() => {
+  if (!isAuth) {
+    setWeek(1);
+    return;
+  }
+
+    fetch('/api/weeks/me')
+    .then(res => res.json())
+    .then(data => {
+      if (data?.weekNumber) {
+        setWeek(data.weekNumber);
+      } else {
+        setWeek(1);
+      }
+    })
+    .catch(() => setWeek(1));
+}, [isAuth]);
   const navItems = [
     { label: 'Мій день', href: '/', icon: 'icon-today' },
-    { label: 'Подорож', href: '/journey', icon: 'icon-conversion_path' },
-    { label: 'Щоденник', href: '/diary', icon: 'icon-book' },
+
+{
+  label: 'Подорож',
+  href: `/journey/${week ?? 1}`,
+  icon: 'icon-conversion_path',
+},
+
+    { label: `Щоденник`, href: '/diary', icon: 'icon-book' },
     { label: 'Профіль', href: '/profile', icon: 'icon-account_circle' },
   ];
 

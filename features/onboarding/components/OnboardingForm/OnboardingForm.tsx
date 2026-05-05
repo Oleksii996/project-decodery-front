@@ -21,6 +21,9 @@ import type {
   OnboardingGenderValue,
 } from '../../types';
 import styles from './OnboardingForm.module.css';
+import { useThemeStore } from '@/utils/localStorageTheme';
+import { useAuthStore } from '@/store/authStore';
+import { User } from '@/features/auth/types';
 
 const genderOptions: Array<{ value: BabyGender; label: string }> = [
   { value: 'boy', label: 'Хлопчик' },
@@ -83,7 +86,9 @@ const getOffsetDate = (weeksFromToday: number) => {
 
 const getDefaultDueDate = () => getOffsetDate(39).toISOString().slice(0, 10);
 
-const applyGenderTheme = (gender: OnboardingGenderValue | BackendGenderValue) => {
+const applyGenderTheme = (
+  gender: OnboardingGenderValue | BackendGenderValue
+) => {
   document.body.classList.remove('theme-pink', 'theme-blue');
 
   if (gender === 'girl') {
@@ -145,12 +150,12 @@ const emptyValues: OnboardingFormValues = {
 };
 
 export default function OnboardingForm() {
+  const setAuthUser = useAuthStore(s => s.setAuthUser);
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
-  const [selectedGenderTheme, setSelectedGenderTheme] = useState<
-    OnboardingGenderValue | null
-  >(null);
+  const [selectedGenderTheme, setSelectedGenderTheme] =
+    useState<OnboardingGenderValue | null>(null);
 
   const minDueDate = useMemo(() => getOffsetDate(onboardingMinWeeks), []);
   const maxDueDate = useMemo(() => getOffsetDate(onboardingMaxWeeks), []);
@@ -251,6 +256,29 @@ export default function OnboardingForm() {
       if (values.avatar) {
         await avatarMutation.mutateAsync(values.avatar);
       }
+      const updatedUser = await getCurrentOnboardingUser();
+
+      if (updatedUser) {
+        setAuthUser(updatedUser as User);
+      }
+
+const theme =
+      values.gender === "boy"
+        ? "blue"
+        : values.gender === "girl"
+        ? "pink"
+        : "default";
+
+      await useThemeStore.getState().updateThemeOnServer(theme);
+
+// 🔑 зберігаємо стать у localStorage
+    localStorage.setItem("child-gender", values.gender);
+
+    // 🔑 викликаємо глобальну утиліту для теми
+      useThemeStore.getState().initTheme();
+      
+         // 🔑 після збереження теми очищаємо child-gender
+    // localStorage.removeItem("child-gender");
 
       toast.success('Дані успішно збережено');
       router.push('/');
@@ -336,10 +364,13 @@ export default function OnboardingForm() {
 
                 <Field
                   as="select"
-                  className={styles.select}
+                  className={`${styles.select} ${
+                    values.gender ? styles.selectFilled : ''
+                  }`}
                   name="gender"
                   onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
-                    const nextGender = event.target.value as OnboardingGenderValue;
+                    const nextGender = event.target
+                      .value as OnboardingGenderValue;
                     setFieldValue('gender', nextGender);
                     setSelectedGenderTheme(nextGender);
                   }}

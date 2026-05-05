@@ -1,0 +1,82 @@
+.container {
+  display: flex;
+  width: 580px;
+  height: 132px;
+  gap: 24px;
+  align-items: center;
+  padding: 0;
+}
+
+.avatarWrap {
+  width: 132px;
+  height: 132px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: #ececec;
+  display: grid;
+  place-items: center;
+  opacity: 1;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatarPlaceholder {
+  font-size: 28px;
+  font-weight: 700;
+  color: #667085;
+}
+
+.info {
+  display: grid;
+  gap: 4px;
+}
+
+.name {
+  margin: 0;
+  font-family: var(--font-comfortaa), sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 140%;
+  letter-spacing: 1%;
+  color: #1f1f1f;
+}
+
+.email {
+  margin: 0;
+  font-family: var(--font-lato), sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0;
+  color: #1f1f1f;
+}
+
+.fileInput {
+  display: none;
+}
+
+.uploadButton {
+  width: 218px;
+  height: 42px;
+  border: none;
+  border-radius: 999px;
+  margin-top: 6px;
+  padding: 0 22px;
+  background-color: #ececec;
+  color: #131313;
+  font-family: var(--font-lato), sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 160%;
+  letter-spacing: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  opacity: 1;
+  cursor: pointer;
+}

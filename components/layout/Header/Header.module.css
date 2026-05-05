@@ -7,11 +7,7 @@
   align-items: center;
   height: 68px;
 
-  background-color: rgb(168, 196, 196);
-}
-
-.logo {
-  background-color: rgb(255, 180, 180);
+  background-color: rgb(255, 255, 255);
 }
 
 .burger {
@@ -21,15 +17,12 @@
 
   width: 32px;
   height: 32px;
-
   background-color: rgb(255, 255, 255);
 }
 
 .icon {
   width: 32px;
   height: 32px;
-
-  background-color: rgb(223, 185, 185);
 }
 
 @media (min-width: 1440px) {

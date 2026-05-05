@@ -1,23 +1,21 @@
 .greetingBlock {
-  height: 34px;
-  margin: 0 auto;
-  background-color: rgba(10, 10, 10, 0.15);
+  height: auto;
 }
-.greetingText {
-  text-align: center;
-  font-family: var(--second-family);
+.title {
+  font-family: var(--second-family), sans-serif;
   font-size: 24px;
+  color: var(--color-black);
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: 1%;
+  text-align: left;
 }
-@media screen and (min-width: 768px) {
-  .greetingText {
-    text-align: left;
-  }
-}
+
 @media screen and (min-width: 1440px) {
   .greetingBlock {
     height: 45px;
   }
-  .greetingText {
+  .title {
     font-size: 32px;
   }
 }

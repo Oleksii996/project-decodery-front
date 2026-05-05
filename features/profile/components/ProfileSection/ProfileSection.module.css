@@ -1,0 +1,24 @@
+.container {
+
+  padding-top: 32px;
+}
+
+.errorState {
+  display: grid;
+  gap: 12px;
+  justify-items: start;
+}
+
+.message {
+  margin: 0;
+  color: #23262f;
+}
+
+.retry {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 16px;
+  background-color: #3d8bfd;
+  color: #fff;
+  cursor: pointer;
+}

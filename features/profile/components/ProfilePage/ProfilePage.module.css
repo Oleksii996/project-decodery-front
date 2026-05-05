@@ -1,0 +1,12 @@
+.page {
+  display: grid;
+  gap: 20px;
+  width: 644px;
+  height: 902px;
+  padding-top: 6px;
+  padding-left: 32px;
+}
+
+.title {
+  display: none;
+}

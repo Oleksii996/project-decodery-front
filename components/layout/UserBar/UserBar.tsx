@@ -5,7 +5,7 @@ import { useAuthStore } from '@/store/authStore';
 import ConfirmationModal from '../../shared/ConfirmationModal/ConfirmationModal';
 import styles from './UserBar.module.css';
 import { logoutUser } from '@/features/auth/api';
-import { clear } from 'console';
+// import { clear } from 'console';
 import { useRouter } from 'next/navigation';
 
 const UserBar = ({ onClose }: { onClose?: () => void }) => {
@@ -33,7 +33,7 @@ const UserBar = ({ onClose }: { onClose?: () => void }) => {
       <div className={styles.wrapperContent}>
         <div className={styles.userInfo}>
           <Image
-            src={userInfo?.avatar || '/default.png'}
+            src={userInfo?.avatar || '/img/company_logo_both.svg'}
             alt="Avatar"
             className={styles.avatar}
             width={40}
@@ -43,25 +43,24 @@ const UserBar = ({ onClose }: { onClose?: () => void }) => {
             <p className={styles.userName}>{userInfo?.name}</p>
             <p className={styles.userEmail}>{userInfo?.email}</p>
           </div>
+          <button
+            className={styles.logoutBtn}
+            onClick={() => {
+              if (onClose) onClose();
+              setShowModal(true);
+            }}
+          >
+            <svg className={styles.icon_logout}>
+              <use href="/leleka-sprite.svg#icon-logout" />
+            </svg>
+          </button>
         </div>
-
-        <button
-          className={styles.logoutBtn}
-          onClick={() => {
-            if (onClose) onClose();
-            setShowModal(true);
-          }}
-        >
-          <svg className={styles.icon_logout}>
-            <use href="/leleka-sprite.svg#icon-logout" />
-          </svg>
-        </button>
 
         {showModal && (
           <ConfirmationModal
-            title="Ви впевнені, що хочете вийти?"
-            confirmButtonText="Вийти"
-            cancelButtonText="Скасувати"
+            title="Ви точно хочете вийти?"
+            confirmButtonText="Так"
+            cancelButtonText="Ні"
             onConfirm={handleLogout}
             onCancel={() => setShowModal(false)}
           ></ConfirmationModal>

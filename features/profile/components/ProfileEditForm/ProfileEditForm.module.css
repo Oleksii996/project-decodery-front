@@ -1,0 +1,85 @@
+.container {
+  padding: 8px 0 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.heading {
+  display: none;
+}
+
+.form {
+  display: grid;
+  gap: 18px;
+  width: 100%;
+  max-width: 580px;
+  box-sizing: border-box;
+}
+
+.formField {
+  display: grid;
+  gap: 8px;
+  color: #1f1f1f;
+  font-family: var(--font-lato), sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0;
+}
+
+.formInput {
+  width: 100%;
+  max-width: 580px;
+  height: 40px;
+  border: none;
+  border-radius: 12px;
+  background: #ececec;
+  padding: 8px 12px;
+  font-family: var(--font-lato), sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0;
+  color: #7f7f7f;
+  opacity: 1;
+}
+
+.formError {
+  color: #d92d20;
+  font-size: 14px;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 14px;
+  width: 100%;
+  max-width: 580px;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.saveButton,
+.cancelButton {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-size: 16px;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  flex: 0 1 auto;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.saveButton {
+  background: #f5d6df;
+  color: #1f1f1f;
+}
+
+.cancelButton {
+  background: #ececec;
+  color: #1f1f1f;
+}
