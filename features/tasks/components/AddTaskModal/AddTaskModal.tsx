@@ -1,32 +1,71 @@
-﻿'use client';
-import { useEffect } from 'react';
-import AddTaskForm from '../AddTaskForm/AddTaskForm';
-import { Task } from '../../types';
+'use client';
 
-interface Props {
-  isOpen: boolean;
+import { useState } from 'react';
+import styles from './AddTaskModal.module.css';
+
+type Task = {
+  id: number;
+  title: string;
+  done: boolean;
+  date: string;
+};
+
+type Props = {
   onClose: () => void;
-  taskToEdit?: Task | null;
-  onTaskSaved: () => void;
-}
+  onSuccess: (task: Task) => void;
+};
 
-export default function AddTaskModal({ isOpen, onClose, taskToEdit, onTaskSaved }: Props) {
-  useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+export default function AddTaskModal({ onClose, onSuccess }: Props) {
+  const [title, setTitle] = useState('');
+  const [date, setDate] = useState('');
+
+  const handleSubmit = () => {
+    if (!title || !date) return;
+
+    const newTask: Task = {
+      id: Date.now(),
+      title,
+      done: false,
+      date,
     };
-    if (isOpen) document.addEventListener('keydown', handleKey);
-    return () => document.removeEventListener('keydown', handleKey);
-  }, [isOpen, onClose]);
 
-  if (!isOpen) return null;
+    onSuccess(newTask);
+    onClose();
+  };
 
   return (
-    <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000 }}>
-      <div onClick={(e) => e.stopPropagation()} style={{ background: 'white', padding: '24px', borderRadius: '8px', minWidth: '400px', position: 'relative' }}>
-        <h2>{taskToEdit ? 'Редагувати завдання' : 'Нове завдання'}</h2>
-        <button onClick={onClose} style={{ position: 'absolute', top: '12px', right: '12px' }}>x</button>
-        <AddTaskForm taskToEdit={taskToEdit} onClose={onClose} onTaskSaved={onTaskSaved} />
+    <div className={styles.overlay}>
+      <div className={styles.modal}>
+        {/* CLOSE */}
+        <button className={styles.close} onClick={onClose}>
+          ×
+        </button>
+
+        <h2 className={styles.title}>Нове завдання</h2>
+
+        {/* INPUT */}
+        <label className={styles.label}>Назва завдання</label>
+        <input
+          className={styles.input}
+          placeholder="Прийняти вітаміни"
+          value={title}
+          onChange={e => setTitle(e.target.value)}
+        />
+
+        {/* DATE */}
+        <label className={styles.label}>Дата</label>
+        <div className={styles.dateWrapper}>
+          <input
+            className={styles.input}
+            placeholder="дд.мм.рррр"
+            value={date}
+            onChange={e => setDate(e.target.value)}
+          />
+        </div>
+        {/* BUTTON */}
+        <button className={styles.saveBtn} onClick={handleSubmit}>
+          Зберегти
+        </button>
       </div>
     </div>
   );
