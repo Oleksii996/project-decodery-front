@@ -1,20 +1,20 @@
-.wrapper {
-  display: grid;
-  gap: 20px;
+.container {
+
+  padding-top: 32px;
 }
 
-.fallback {
+.errorState {
   display: grid;
   gap: 12px;
   justify-items: start;
 }
 
-.status {
+.message {
   margin: 0;
   color: #23262f;
 }
 
-.retryButton {
+.retry {
   border: none;
   border-radius: 999px;
   padding: 10px 16px;

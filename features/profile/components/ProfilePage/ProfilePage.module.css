@@ -1,11 +1,12 @@
 .page {
   display: grid;
-  gap: 16px;
+  gap: 20px;
+  width: 644px;
+  height: 902px;
+  padding-top: 6px;
+  padding-left: 32px;
 }
 
 .title {
-  margin: 0;
-  font-size: 28px;
-  font-weight: 700;
-  color: #23262f;
+  display: none;
 }

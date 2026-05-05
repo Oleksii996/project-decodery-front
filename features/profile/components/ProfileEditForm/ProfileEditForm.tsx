@@ -34,8 +34,8 @@ export default function ProfileEditForm({ profile }: Props) {
   const { mutateAsync: updateProfile, isPending } = useUpdateProfileMutation();
 
   return (
-    <section className={css.card}>
-      <h2 className={css.title}>Редагування даних</h2>
+    <section className={css.container}>
+      <h2 className={css.heading}>Редагування даних</h2>
       <Formik<UpdateProfilePayload>
         initialValues={toInitialValues(profile)}
         enableReinitialize
@@ -53,29 +53,29 @@ export default function ProfileEditForm({ profile }: Props) {
       >
         {({ isSubmitting, resetForm }) => (
           <Form className={css.form}>
-            <label className={css.label}>
+            <label className={css.formField}>
               <span>Ім&apos;я</span>
-              <Field name="name" className={css.input} />
+              <Field name="name" className={css.formInput} />
               <ErrorMessage
                 name="name"
                 component="span"
-                className={css.error}
+                className={css.formError}
               />
             </label>
 
-            <label className={css.label}>
+            <label className={css.formField}>
               <span>Email</span>
-              <Field name="email" type="email" className={css.input} />
+              <Field name="email" type="email" className={css.formInput} />
               <ErrorMessage
                 name="email"
                 component="span"
-                className={css.error}
+                className={css.formError}
               />
             </label>
 
-            <label className={css.label}>
+            <label className={css.formField}>
               <span>Стать дитини</span>
-              <Field as="select" name="childGender" className={css.input}>
+              <Field as="select" name="childGender" className={css.formInput}>
                 {GENDER_OPTIONS.map(option => (
                   <option key={option.value} value={option.value}>
                     {option.label}
@@ -85,31 +85,35 @@ export default function ProfileEditForm({ profile }: Props) {
               <ErrorMessage
                 name="childGender"
                 component="span"
-                className={css.error}
+                className={css.formError}
               />
             </label>
 
-            <label className={css.label}>
+            <label className={css.formField}>
               <span>Планова дата пологів</span>
-              <Field name="expectedDueDate" type="date" className={css.input} />
+              <Field
+                name="expectedDueDate"
+                type="date"
+                className={css.formInput}
+              />
               <ErrorMessage
                 name="expectedDueDate"
                 component="span"
-                className={css.error}
+                className={css.formError}
               />
             </label>
 
-            <div className={css.actions}>
+            <div className={css.buttons}>
               <button
                 type="button"
-                className={css.secondaryButton}
+                className={css.cancelButton}
                 onClick={() => resetForm({ values: toInitialValues(profile) })}
               >
                 Відмінити зміни
               </button>
               <button
                 type="submit"
-                className={css.primaryButton}
+                className={css.saveButton}
                 disabled={isSubmitting || isPending}
               >
                 {isSubmitting || isPending ? 'Збереження...' : 'Зберегти зміни'}

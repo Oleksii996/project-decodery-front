@@ -28,11 +28,13 @@ export default function Breadcrumbs() {
   return (
     <nav className={css.breadcrumbs}>
       <div className={css.breadcrumbsContainer}>
-        <Link href="/">Лелека</Link>
+        <Link href="/" className={css.brand}>
+          Лелека
+        </Link>
         {isHome && (
           <>
             <span className={css.separator}>
-              <svg width="16" height="16">
+              <svg width="24" height="24" aria-hidden>
                 <use href="/leleka-sprite.svg#icon-keyboard_arrow_down" />
               </svg>
             </span>
@@ -53,7 +55,7 @@ export default function Breadcrumbs() {
             return (
               <span key={path} className={css.item}>
                 <span className={css.separator}>
-                  <svg width="16" height="16">
+                  <svg width="24" height="24" aria-hidden>
                     <use href="/leleka-sprite.svg#icon-keyboard_arrow_down" />
                   </svg>
                 </span>

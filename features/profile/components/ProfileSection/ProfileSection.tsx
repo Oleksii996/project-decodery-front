@@ -10,16 +10,16 @@ export default function ProfileSection() {
   const { data: profile, isLoading, error, refetch } = useProfileQuery();
 
   if (isLoading) {
-    return <p className={css.status}>Завантаження профілю...</p>;
+    return <p className={css.message}>Завантаження профілю...</p>;
   }
 
   if (error || !profile) {
     return (
-      <div className={css.fallback}>
-        <p className={css.status}>Не вдалося завантажити профіль</p>
+      <div className={css.errorState}>
+        <p className={css.message}>Не вдалося завантажити профіль</p>
         <button
           type="button"
-          className={css.retryButton}
+          className={css.retry}
           onClick={async () => {
             const result = await refetch();
             if (result.isError) {
@@ -34,7 +34,7 @@ export default function ProfileSection() {
   }
 
   return (
-    <div className={css.wrapper}>
+    <div className={css.container}>
       <ProfileAvatar profile={profile} />
       <ProfileEditForm profile={profile} />
     </div>

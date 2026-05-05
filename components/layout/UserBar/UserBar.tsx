@@ -33,7 +33,7 @@ const UserBar = ({ onClose }: { onClose?: () => void }) => {
       <div className={styles.wrapperContent}>
         <div className={styles.userInfo}>
           <Image
-            src={userInfo?.avatar || '/default.png'}
+            src={userInfo?.avatar || '/img/company_logo_both.svg'}
             alt="Avatar"
             className={styles.avatar}
             width={40}

@@ -37,31 +37,31 @@ export default function ProfileAvatar({ profile }: Props) {
   };
 
   return (
-    <section className={css.card}>
-      <div className={css.imageWrap}>
+    <section className={css.container}>
+      <div className={css.avatarWrap}>
         {profile.avatarUrl ? (
           <img
             src={profile.avatarUrl}
             alt="Аватар профілю"
-            className={css.image}
+            className={css.avatar}
           />
         ) : (
-          <span className={css.placeholder}>{initials || '—'}</span>
+          <span className={css.avatarPlaceholder}>{initials || '—'}</span>
         )}
       </div>
-      <div className={css.meta}>
+      <div className={css.info}>
         <p className={css.name}>{profile.name}</p>
         <p className={css.email}>{profile.email}</p>
         <input
           ref={fileInputRef}
           type="file"
           accept="image/jpeg,image/png,image/webp"
-          className={css.input}
+          className={css.fileInput}
           onChange={onFileChange}
         />
         <button
           type="button"
-          className={css.button}
+          className={css.uploadButton}
           onClick={onPick}
           disabled={isPending}
         >

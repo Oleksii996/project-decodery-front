@@ -8,16 +8,20 @@ type Gender = "boy" | "girl" | "unknown";
 
 const THEME_KEY = "app-theme";
 const GENDER_KEY = "child-gender";
+const isBrowser = typeof window !== "undefined";
 
 const saveTheme = (theme: Theme) => {
+  if (!isBrowser) return;
   localStorage.setItem(THEME_KEY, theme);
 };
 
 const loadTheme = (): Theme => {
+  if (!isBrowser) return "default";
   return (localStorage.getItem(THEME_KEY) as Theme) || "default";
 };
 
 const loadGender = (): Gender => {
+  if (!isBrowser) return "unknown";
   return (localStorage.getItem(GENDER_KEY) as Gender) || "unknown";
 };
 
@@ -31,6 +35,7 @@ export const useThemeStore = create<ThemeState>((set) => ({
   theme: loadTheme(),
 
   initTheme: () => {
+    if (!isBrowser) return;
     const gender = loadGender();
     let theme: Theme = "default";
 
@@ -45,14 +50,15 @@ export const useThemeStore = create<ThemeState>((set) => ({
     set({ theme });
   },
 
-    updateThemeOnServer: async (theme: Theme) => {
+  updateThemeOnServer: async (theme: Theme) => {
     try {
+      if (!isBrowser) return;
       // дістаємо токен з auth-storage
       const auth = JSON.parse(localStorage.getItem("auth-storage") || "{}");
       const token = auth?.state?.token;
 
       await axios.patch(
-        "/api/users/theme",
+        "/api/profile",
         { theme },
         { headers: { Authorization: `Bearer ${token}` } }
       );

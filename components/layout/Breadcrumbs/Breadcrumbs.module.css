@@ -1,3 +1,7 @@
+.breadcrumbs {
+  width: 100%;
+}
+
 .breadcrumbsContainer {
   font-family: var(--second-family), sans-serif;
 
@@ -14,9 +18,51 @@
   background-color: rgb(255, 255, 255);
 }
 
+.brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  font-family: var(--font-lato), sans-serif;
+  font-weight: 400;
+  font-size: var(--text-size-small, 14px);
+  line-height: 160%;
+  letter-spacing: 0;
+  text-align: center;
+  color: inherit;
+  text-decoration: none;
+}
+
+.item {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  font-family: var(--font-lato), sans-serif;
+  font-weight: 400;
+  font-size: var(--text-size-small, 14px);
+  line-height: 160%;
+  letter-spacing: 0;
+  text-align: center;
+  color: inherit;
+  text-decoration: none;
+}
+
 .current {
-  font-weight: 600;
-  color: black;
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  font-family: var(--font-lato), sans-serif;
+  font-weight: 400;
+  font-size: var(--text-size-small, 14px);
+  line-height: 160%;
+  letter-spacing: 0;
+  text-align: center;
+  color: #7f7f7f;
 
   background-color: rgb(255, 255, 255);
 }
@@ -25,13 +71,16 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
 
   margin: 0 8px;
 }
 
 .separator svg {
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
 
   transform: rotate(270deg);
   fill: currentColor;

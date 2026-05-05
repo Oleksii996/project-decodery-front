@@ -28,7 +28,7 @@ useEffect(() => {
     return;
   }
 
-  fetch('/api/weeks/private/1')
+    fetch('/api/weeks/me')
     .then(res => res.json())
     .then(data => {
       if (data?.weekNumber) {
