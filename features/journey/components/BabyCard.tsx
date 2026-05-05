@@ -1,6 +1,11 @@
 import styles from "./BabyCard.module.css";
+import type { JourneyBabyData } from "./JourneyDetails";
 
-export default function BabyCard({ data }: any) {
+type Props = {
+  data: JourneyBabyData;
+};
+
+export default function BabyCard({ data }: Props) {
   return (
     <div className={styles.card}>
       <h2 className={styles.title}>Розвиток малюка</h2>

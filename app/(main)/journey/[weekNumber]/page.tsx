@@ -6,20 +6,17 @@ import { useParams } from "next/navigation";
 import WeekSelector from "@/features/journey/components/WeekSelector";
 import GreetingBlock from "@/features/journey/components/GreetingBlock";
 import JourneyDetails from "@/features/journey/components/JourneyDetails";
+import type { JourneyData } from "@/features/journey/components/JourneyDetails";
 
 export default function JourneyPage() {
   const params = useParams();
   const weekNumber = Number(params?.weekNumber);
 
-  const [data, setData] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState<JourneyData | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!weekNumber) return;
-
-    setLoading(true);
-    setError(null);
 
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/weeks/${weekNumber}`)
       .then(async (res) => {
@@ -29,16 +26,14 @@ export default function JourneyPage() {
 
         const result = await res.json();
         setData(result);
-        setLoading(false);
       })
       .catch((err) => {
         console.error(err);
         setError("Помилка завантаження даних");
-        setLoading(false);
       });
   }, [weekNumber]);
 
-  if (loading) return <div>Loading...</div>;
+  if (!data && !error) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
   return (

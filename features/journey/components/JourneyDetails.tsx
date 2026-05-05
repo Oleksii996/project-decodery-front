@@ -7,7 +7,30 @@ import MomCard from "./MomCard";
 import styles from "./JourneyDetails.module.css";
 
 type Props = {
-  data: any;
+  data: JourneyData | null;
+};
+
+export type JourneyTip = {
+  category: string;
+  tip: string;
+};
+
+export type JourneyBabyData = {
+  image?: string;
+  description: string;
+  size: string;
+  facts?: string[];
+};
+
+export type JourneyMomData = {
+  states?: string[];
+  description: string;
+  tips?: JourneyTip[];
+};
+
+export type JourneyData = {
+  baby: JourneyBabyData;
+  mom: JourneyMomData;
 };
 
 export default function JourneyDetails({ data }: Props) {

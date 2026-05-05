@@ -1,4 +1,5 @@
 import styles from "./MomCard.module.css";
+import type { JourneyMomData } from "./JourneyDetails";
 
 // 🔥 функція для іконок
 const getIcon = (category: string) => {
@@ -14,7 +15,11 @@ const getIcon = (category: string) => {
   }
 };
 
-export default function MomCard({ data }: any) {
+type Props = {
+  data: JourneyMomData;
+};
+
+export default function MomCard({ data }: Props) {
   return (
     <div className={styles.wrapper}>
 
@@ -37,7 +42,7 @@ export default function MomCard({ data }: any) {
       <div className={styles.card}>
         <h3 className={styles.subtitle}>Поради для вашого комфорту</h3>
 
-        {data.tips?.map((item: any, i: number) => (
+        {data.tips?.map((item, i: number) => (
           <div key={i} className={styles.tipItem}>
             
             {/* 🔥 ІКОНКА + КАТЕГОРІЯ */}

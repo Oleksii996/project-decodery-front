@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { loginUser } from '../../api';
 import toast from 'react-hot-toast';
 import { useAuthStore } from '@/store/authStore';
+import { isAxiosError } from 'axios';
 
 const initialValues: LoginFormValues = {
   email: '',
@@ -26,11 +27,13 @@ export default function LoginForm() {
 
       router.push('/');
       router.refresh();
-    } catch (error: any) {
+    } catch (error: unknown) {
       const message =
-        error.response?.data?.message ||
-        error.response?.message ||
-        'Невірний email або пароль';
+        isAxiosError(error)
+          ? error.response?.data?.message ||
+            error.response?.data?.error ||
+            error.message
+          : 'Невірний email або пароль';
 
       toast.error(message);
     }
