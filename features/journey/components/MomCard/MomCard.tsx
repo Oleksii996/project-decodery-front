@@ -1,20 +1,25 @@
+import Image from "next/image";
 import styles from "./MomCard.module.css";
+import type { MomData } from "@/features/journey/types";
 
+interface MomCardProps  {
+  data: MomData;
+};
 // 🔥 функція для іконок
 const getIcon = (category: string) => {
   switch (category) {
     case "Харчування":
-      return <img src="/icons/food.svg" alt="" />;
+      return <Image src="/icons/food.svg" alt="food"  width={24} height={24}/>;
     case "Активність":
-      return <img src="/icons/activity.svg" alt="" />;
+      return <Image src="/icons/activity.svg" alt="activity" width={24} height={24}/>;
     case "Відпочинок та комфорт":
-      return <img src="/icons/rest.svg" alt="" />;
+      return <Image src="/icons/rest.svg" alt="rest" width={24} height={24}/>;
     default:
       return null;
   }
 };
 
-export default function MomCard({ data }: any) {
+export default function MomCard({ data }: MomCardProps) {
   return (
     <div className={styles.wrapper}>
 
@@ -37,7 +42,7 @@ export default function MomCard({ data }: any) {
       <div className={styles.card}>
         <h3 className={styles.subtitle}>Поради для вашого комфорту</h3>
 
-        {data.tips?.map((item: any, i: number) => (
+        {data.tips?.map((item, i: number) => (
           <div key={i} className={styles.tipItem}>
             
             {/* 🔥 ІКОНКА + КАТЕГОРІЯ */}

@@ -1,58 +1,32 @@
-"use client";
+import {
+  HydrationBoundary,
+  QueryClient,
+  dehydrate,
+} from '@tanstack/react-query';
 
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import JourneyPageClient from '@/features/journey/components/JourneyPageClient/JourneyPageClient';
+import { getJourneyWeek } from '@/features/journey/api';
 
-import WeekSelector from "@/features/journey/components/WeekSelector";
-import GreetingBlock from "@/features/journey/components/GreetingBlock";
-import JourneyDetails from "@/features/journey/components/JourneyDetails";
+type Props = {
+  params: Promise<{
+    weekNumber: string;
+  }>;
+};
 
-export default function JourneyPage() {
-  const params = useParams();
-  const weekNumber = Number(params?.weekNumber);
+export default async function JourneyPage({ params }: Props) {
+  const { weekNumber } = await params;
+  const currentWeek = Number(weekNumber);
 
-  const [data, setData] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const queryClient = new QueryClient();
 
-  useEffect(() => {
-    if (!weekNumber) return;
-
-    setLoading(true);
-    setError(null);
-
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/weeks/${weekNumber}`)
-      .then(async (res) => {
-        if (!res.ok) {
-          throw new Error("Error fetching data");
-        }
-
-        const result = await res.json();
-        setData(result);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setError("Помилка завантаження даних");
-        setLoading(false);
-      });
-  }, [weekNumber]);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+  await queryClient.prefetchQuery({
+    queryKey: ['journey-week', currentWeek],
+    queryFn: () => getJourneyWeek(currentWeek),
+  });
 
   return (
-    <main className="dashboard">
-      <div className="container">
-        <GreetingBlock week={weekNumber} />
-
-        <WeekSelector
-          currentWeek={weekNumber}
-          userWeek={weekNumber}
-        />
-
-        <JourneyDetails data={data} />
-      </div>
-    </main>
+    <HydrationBoundary key={currentWeek} state={dehydrate(queryClient)}>
+      <JourneyPageClient currentWeek={currentWeek} />
+    </HydrationBoundary>
   );
 }

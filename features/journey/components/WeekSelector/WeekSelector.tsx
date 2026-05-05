@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { useRouter } from "next/navigation";
-import { useEffect, useRef } from "react";
-import styles from "./WeekSelector.module.css";
+import { useRouter } from 'next/navigation';
+import { useEffect, useRef } from 'react';
+import styles from './WeekSelector.module.css';
 
 type Props = {
   currentWeek: number; // обраний
-  userWeek: number;    // реальний
+  userWeek: number; // реальний
 };
 
 export default function WeekSelector({ currentWeek, userWeek }: Props) {
@@ -25,9 +25,9 @@ export default function WeekSelector({ currentWeek, userWeek }: Props) {
 
     if (activeEl) {
       activeEl.scrollIntoView({
-        behavior: "smooth",
-        inline: "center",
-        block: "nearest",
+        behavior: 'smooth',
+        inline: 'center',
+        block: 'nearest',
       });
     }
   }, [currentWeek]);
@@ -36,31 +36,29 @@ export default function WeekSelector({ currentWeek, userWeek }: Props) {
     <div
       ref={containerRef}
       className={styles.container}
-      onWheel={(e) => {
+      onWheel={e => {
         e.currentTarget.scrollLeft += e.deltaY; //   горизонтальний скрол
       }}
     >
-      {weeks.map((week) => {
+      {weeks.map(week => {
         const isActive = week === currentWeek;
-        const isPast = week < currentWeek;
+        const isPast = week < userWeek;
         const isFuture = week > userWeek;
 
         return (
-          <div
+          <button
             key={week}
-            onClick={() => {
-              if (!isFuture) {
-                router.push(`/journey/${week}`);
-              }
-            }}
+            type="button"
+            disabled={isFuture}
+            onClick={() => router.push(`/journey/${week}`)}
             className={`${styles.card}
-              ${isActive ? styles.active : ""}
-              ${isPast ? styles.past : ""}
-              ${isFuture ? styles.future : ""}`}
+    ${isActive ? styles.active : ''}
+    ${isPast ? styles.past : ''}
+    ${isFuture ? styles.future : ''}`}
           >
-            <div className={styles.number}>{week}</div>
-            <div className={styles.label}>тиждень</div>
-          </div>
+            <span className={styles.number}>{week}</span>
+            <span className={styles.label}>тиждень</span>
+          </button>
         );
       })}
     </div>
