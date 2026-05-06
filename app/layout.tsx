@@ -5,7 +5,8 @@ import { QueryProvider } from '@/components/providers/QueryProvider';
 import { Toaster } from 'react-hot-toast';
 
 import { ModalProvider } from '@/components/providers/ModalProvider';
-import { ThemeProvider } from '@/components/providers/ThemeProvider'
+import { ThemeProvider } from '@/components/providers/ThemeProvider';
+import { AuthProvider } from '@/components/providers/AuthProvider';
 
 const lato = Lato({
   weight: ['400', '700', '900'],
@@ -44,10 +45,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  Modal
+  Modal,
 }: Readonly<{
   Modal: React.ReactNode;
-  children: React.ReactNode; 
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="uk">
@@ -55,10 +56,12 @@ export default function RootLayout({
         <QueryProvider>
           <ModalProvider>
             <ThemeProvider>
-            <Toaster position="top-right" />
+              <AuthProvider>
+                <Toaster position="top-right" />
 
-              {children}
-              {Modal}
+                {children}
+                {Modal}
+              </AuthProvider>
             </ThemeProvider>
           </ModalProvider>
         </QueryProvider>
