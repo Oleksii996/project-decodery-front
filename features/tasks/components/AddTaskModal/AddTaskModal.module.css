@@ -5,26 +5,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  flex-direction: column;
 }
 
 /* МОДАЛКА */
 .modal {
-  background: #ffff;
+  background: var(--color-white);
   border-radius: 28px;
   padding: 24px 20px 20px;
   position: relative;
   width: 75%;
+  flex-direction: column;
 }
 
 /* ХРЕСТИК */
 .close {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 25px;
+  right: 32px;
   border: none;
   background: none;
-  font-size: 18px;
+  font-size: 32px;
   cursor: pointer;
 }
 
@@ -37,8 +38,6 @@
   margin-top: 30px;
   margin-bottom: 48px;
   letter-spacing: 1px;
-  
- 
 }
 
 /* LABEL */
@@ -54,7 +53,7 @@
   padding: 12px 14px;
   border-radius: 14px;
   border: none;
-  background: #F2F2F2;
+  background: var(--color-neutral-lightest);
   margin-bottom: 16px;
   font-size: 14px;
 }
@@ -69,8 +68,9 @@
   padding: 12px 40px 12px 14px;
   border-radius: 14px;
   border: none;
-  background: #e8e3db;
+  background: var(--color-neutral-lightest);
   font-size: 14px;
+  
 }
 
 /* ІКОНКА КАЛЕНДАРЯ */
@@ -84,12 +84,41 @@
 
 /* КНОПКА */
 .saveBtn {
+  margin-bottom: 12px;
+  min-width: 176px;
   width: 100%;
-  margin-top: 10px;
   padding: 14px;
   border-radius: 20px;
   border: none;
-  background: #FEF1DB;
+  background: var(--color-primary-light);
   font-weight: 500;
   cursor: pointer;
+  position: center;
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: center;}
+
+
+@media screen and (min-width: 768px) {
+  .modal{
+   padding: 24px 32px 32px;}
+.saveBtn{
+  width: 50%;
+}
+  }
+@media screen and (min-width: 1440px) {
+  .modal{
+    width: 568px;
+    padding: 40px 42px;
+  }
+ .input {
+  margin-bottom: 24px;
+ }
+
+  .saveBtn {
+    margin-top: 0%;
+    margin-bottom: 12px;
+  }
 }
