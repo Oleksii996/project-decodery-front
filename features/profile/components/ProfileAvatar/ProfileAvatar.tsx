@@ -13,6 +13,7 @@ type Props = {
 export default function ProfileAvatar({ profile }: Props) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { mutateAsync: uploadAvatar, isPending } = useUploadAvatarMutation();
+  const avatarSrc = profile.avatarUrl ?? profile.avatar ?? null;
 
   const initials = profile.name
     .split(/\s+/)
@@ -39,9 +40,9 @@ export default function ProfileAvatar({ profile }: Props) {
   return (
     <section className={css.container}>
       <div className={css.avatarWrap}>
-        {profile.avatarUrl ? (
+        {avatarSrc ? (
           <img
-            src={profile.avatarUrl}
+            src={avatarSrc}
             alt="Аватар профілю"
             className={css.avatar}
           />
