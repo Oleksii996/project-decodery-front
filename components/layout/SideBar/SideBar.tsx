@@ -5,10 +5,10 @@ import { usePathname, useRouter } from 'next/navigation';
 
 import UserBar from '../UserBar/UserBar';
 import AuthBar from '../AuthBar/AuthBar';
-import styles from './SideBar.module.css';
+import css from './SideBar.module.css';
 import { useUserStore } from '@/store/userStore';
 import { useEffect, useState } from 'react';
-import css from '../SideBar/SideBar.module.css';
+// import css from '../SideBar/SideBar.module.css';
 
 interface SideBarProps {
   onClose?: () => void;
@@ -41,11 +41,11 @@ const SideBar = ({ onClose, isOpen }: SideBarProps) => {
   const navItems = [
     { label: 'Мій день', href: '/', icon: 'icon-today' },
 
-{
-  label: 'Подорож',
-  href: `/journey/${week}`,
-  icon: 'icon-conversion_path',
-},
+    {
+      label: 'Подорож',
+      href: `/journey/${week}`,
+      icon: 'icon-conversion_path',
+    },
 
     { label: `Щоденник`, href: '/diary', icon: 'icon-book' },
     { label: 'Профіль', href: '/profile', icon: 'icon-account_circle' },
@@ -60,7 +60,7 @@ const SideBar = ({ onClose, isOpen }: SideBarProps) => {
   };
 
   return (
-    <aside className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
+    <aside className={`${css.sidebar} ${isOpen ? css.open : ''}`}>
       <div className={css.menuTop}>
         <Link href="/" className={css.logo} onClick={onClose}>
           <Image
@@ -68,23 +68,35 @@ const SideBar = ({ onClose, isOpen }: SideBarProps) => {
             alt="Company logo"
             width={105}
             height={45}
+            loading="eager"
           />
         </Link>
+        <button
+          type="button"
+          className={css.closeBtn}
+          onClick={onClose}
+          aria-label="Закрити сайдбар меню"
+        >
+          <svg className={css.closeIcon} width="32" height="32">
+            <use href="/leleka-sprite.svg#icon-close" />
+          </svg>
+        </button>
       </div>
 
-      <div className={styles.topContent}>
-        <nav className={styles.navigation}>
-          <ul className={styles.navList}>
+      <div className={css.topContent}>
+        <nav className={css.navigation}>
+          <ul className={css.navList}>
             {navItems.map(item => (
-              <li key={item.href} className={styles.navItem}>
+              <li
+                key={item.href}
+                className={pathname === item.href ? css.active : css.navItem}
+              >
                 <Link
                   href={item.href}
-                  className={
-                    pathname === item.href ? styles.active : styles.link
-                  }
+                  className={css.link}
                   onClick={handleLinkClick}
                 >
-                  <svg className={styles.icon} width="24" height="24">
+                  <svg className={css.icon} width="24" height="24">
                     <use href={`/leleka-sprite.svg#${item.icon}`} />
                   </svg>
                   <span>{item.label}</span>
@@ -95,7 +107,7 @@ const SideBar = ({ onClose, isOpen }: SideBarProps) => {
         </nav>
       </div>
 
-      <div className={styles.bottomContent}>
+      <div className={css.bottomContent}>
         {isAuth ? <UserBar onClose={onClose} /> : <AuthBar onClose={onClose} />}
       </div>
     </aside>

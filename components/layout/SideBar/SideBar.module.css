@@ -7,71 +7,98 @@
   position: absolute; /* 🔥 замість fixed */
   top: 0;
   left: 0;
-  padding: 8px 0px 0px;
+  padding: 0px;
   height: 100vh;
-  width: 312px;
-
+  width: 300px;
   transform: translateX(-100%);
-  transition: transform 0.3s ease;
-  border-right: 1px solid rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease,
+    visibility 0s linear 0.3s; /* 🔥 затримка */
+
   background-color: #fff;
   z-index: 1000;
 }
+
 /* відкритий стан */
-.open {
+
+.sidebar.open {
   transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
+
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease,
+    visibility 0s; /* без затримки */
 }
 .menuTop {
-display: flex;
-align-items: flex-start;
-justify-content: flex-start;
-flex-direction: column;
-gap: 10px;
-padding: 16px;
-width: 312px;
-height: 64px;
-}
-.logo {
-width: 105px;
-height: 45px;;
-}
-.topContent {
-display: flex;
-align-items: flex-start;
-justify-content: flex-start;
-flex-direction: column;
-gap: 16px;
-padding: 0px 16px;
-width: 300px;
-height: 683px;
-}
-.navigation {
-background-color: #fff;
-display: flex;
-align-items: flex-start;
-justify-content: flex-start;
-flex-direction: column;
-gap: 0px;
-width: 268px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  flex-direction: row;
+  padding: 16px 24px;
+  width: 100%;
+  height: 77px;
 }
 
+.closeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.closeIcon {
+  width: 32px;
+  height: 32px;
+  stroke: var(--color-black);
+  fill: none;
+}
+
+.logo {
+  width: 105px;
+  height: 45px;
+}
+.topContent {
+  padding: 0px 16px;
+  width: 100%;
+  height: 100%;
+}
+
+.navItem {
+  height: 40px;
+  width: 100%;
+  padding: 8px;
+}
 .link {
   display: flex;
   align-items: center;
-  background-color: rgb(255, 255, 255);
-  height: 40px;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 12px;
 
-  border-radius: 8px;
-  color: #333;
-  transition: color 0.2s;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0%;
+  color: #000;
 }
-
 .active {
-  display: flex;
-  align-items: center;
-  background-color: #fcf4b9;
   height: 40px;
-
+  width: 100%;
+  padding: 8px;
+  background: var(--color-primary-lightest);
   border-radius: 8px;
 }
 
@@ -79,47 +106,29 @@ width: 268px;
   margin-top: auto;
 }
 
-.icon {
-  margin-left: 8px;
-  margin-right: 12px;
-}
-
-@media (max-width: 1439px) {
-  .sidebar {
-    position: fixed;
-    width: 300px;
-    left: 0;
-    top: 0;
-    height: 100vh;
-
-    transform: translateX(-100%);
-    opacity: 0;
-    visibility: hidden;
-
-    transition:
-      transform 0.3s ease,
-      opacity 0.3s ease,
-      visibility 0s linear 0.3s; /* 🔥 затримка */
-  }
-
-  .sidebar.open {
-    transform: translateX(0);
-    opacity: 1;
-    visibility: visible;
-
-    transition:
-      transform 0.3s ease,
-      opacity 0.3s ease,
-      visibility 0s; /* без затримки */
-  }
-}
-
 @media (min-width: 1440px) {
   .sidebar {
     position: static;
     transform: none;
+    opacity: 1;
+    visibility: visible;
     width: 312px;
     left: 0;
     top: 0;
+    border-right: 1px solid #00000026;
+    padding-top: 8px;
+  }
+  .menuTop {
+    padding: 16px;
+    padding-left: 8px;
+  }
+  .closeBtn {
+    display: none;
+  }
+  .topContent {
+    padding-top: 8px;
+    padding-right: 16px;
+    width: 100%;
+    height: 100%;
   }
 }
