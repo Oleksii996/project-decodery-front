@@ -12,36 +12,62 @@
 
 .modal {
   position: relative;
-  width: 506px;
+  width: 334px;
   max-width: 100%;
   max-height: calc(100vh - 32px);
-  padding: 40px 42px;
-  background-color: #ffffff;
-  border-radius: 30px;
+  padding: 48px 20px;
+  background-color: var(--color-white);
+  border-radius: 40px;
   overflow-y: auto;
 }
 
 .closeButton {
   position: absolute;
-  top: 20px;
+  top: 24px;
   right: 24px;
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   background: transparent;
-  font-size: 28px;
+  font-size: 24px;
   line-height: 1;
+  color: var(--color-neutral-dark);
   cursor: pointer;
-  color: #444;
+  transition: color 0.15s ease;
 }
 
-.closeButton:hover {
-  color: #000;
+.closeButton:hover,
+.closeButton:focus-visible {
+  color: var(--color-black);
+  outline: none;
 }
 
-@media (max-width: 560px) {
+@media screen and (min-width: 768px) {
   .modal {
-    padding: 32px 20px;
-    border-radius: 20px;
+    width: 704px;
+    padding: 64px 32px;
+  }
+
+  .closeButton {
+    top: 32px;
+    right: 32px;
+    width: 32px;
+    height: 32px;
+    font-size: 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .modal {
+    width: 704px;
+    padding: 64px;
+  }
+
+  .closeButton {
+    top: 36px;
+    right: 36px;
   }
 }
