@@ -11,7 +11,7 @@
 
 @media screen and (max-width: 1439px) {
   .overlay {
-    position: absolute; /* 🔥 бо у тебе контейнер */
+    position: fixed;
     inset: 0;
 
     background: rgba(0, 0, 0, 0.4);

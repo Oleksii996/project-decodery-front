@@ -8,6 +8,28 @@ import css from './AppLayout.module.css';
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(min-width: 1440px)');
+
+    const handleViewportChange = (event: MediaQueryList | MediaQueryListEvent) => {
+      const desktopViewport = event.matches;
+
+      setIsDesktop(desktopViewport);
+
+      if (desktopViewport) {
+        setIsSidebarOpen(false);
+      }
+    };
+
+    handleViewportChange(mediaQuery);
+    mediaQuery.addEventListener('change', handleViewportChange);
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleViewportChange);
+    };
+  }, []);
 
   useEffect(() => {
     if (isSidebarOpen) {
@@ -29,7 +51,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           onClose={() => setIsSidebarOpen(false)}
         />
 
-        {isSidebarOpen && (
+        {isSidebarOpen && !isDesktop && (
           <div
             className={css.overlay}
             onClick={() => setIsSidebarOpen(false)}

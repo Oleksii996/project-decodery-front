@@ -20,31 +20,30 @@ const SideBar = ({ onClose, isOpen }: SideBarProps) => {
   const router = useRouter();
 
   const isAuth = useUserStore(state => state.isAuth);
-  const [week, setWeek] = useState<number | null>(null);
+  const [week, setWeek] = useState(1);
 
-useEffect(() => {
-  if (!isAuth) {
-    setWeek(1);
-    return;
-  }
+  useEffect(() => {
+    if (!isAuth) {
+      return;
+    }
 
     fetch('/api/weeks/me')
-    .then(res => res.json())
-    .then(data => {
-      if (data?.weekNumber) {
-        setWeek(data.weekNumber);
-      } else {
-        setWeek(1);
-      }
-    })
-    .catch(() => setWeek(1));
-}, [isAuth]);
+      .then(res => res.json())
+      .then(data => {
+        if (data?.weekNumber) {
+          setWeek(data.weekNumber);
+        } else {
+          setWeek(1);
+        }
+      })
+      .catch(() => setWeek(1));
+  }, [isAuth]);
   const navItems = [
     { label: 'Мій день', href: '/', icon: 'icon-today' },
 
 {
   label: 'Подорож',
-  href: `/journey/${week ?? 1}`,
+  href: `/journey/${week}`,
   icon: 'icon-conversion_path',
 },
 
