@@ -5,6 +5,7 @@ export interface UserProfile {
   email: string;
   childGender: ChildGender;
   expectedDueDate: string;
+  avatar?: string | null;
   avatarUrl?: string | null;
 }
 

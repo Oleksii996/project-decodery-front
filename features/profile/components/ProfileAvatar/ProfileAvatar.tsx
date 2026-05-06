@@ -23,6 +23,8 @@ export default function ProfileAvatar({ profile }: Props) {
 
   const onPick = () => fileInputRef.current?.click();
 
+  const avatarSrc = profile.avatarUrl ?? profile.avatar ?? null;
+
   const onFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     e.target.value = '';
@@ -39,9 +41,9 @@ export default function ProfileAvatar({ profile }: Props) {
   return (
     <section className={css.container}>
       <div className={css.avatarWrap}>
-        {profile.avatarUrl ? (
+        {avatarSrc ? (
           <img
-            src={profile.avatarUrl}
+            src={avatarSrc}
             alt="Аватар профілю"
             className={css.avatar}
           />
