@@ -11,14 +11,21 @@
 
 .message {
   margin: 0;
-  color: #23262f;
+  color: var(--color-neutral-dark);
+  font-family: var(--font-family);
 }
 
 .retry {
   border: none;
   border-radius: 999px;
   padding: 10px 16px;
-  background-color: #3d8bfd;
-  color: #fff;
+  background-color: var(--color-primary-light);
+  color: var(--color-black);
+  font-family: var(--font-family);
   cursor: pointer;
+  box-shadow: 0 2px 0 color-mix(in srgb, var(--color-primary-dark) 28%, transparent);
+}
+
+.retry:hover {
+  background-color: var(--color-primary);
 }

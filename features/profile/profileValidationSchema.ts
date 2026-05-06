@@ -12,5 +12,9 @@ export const profileValidationSchema = Yup.object({
   childGender: Yup.string()
     .oneOf(['male', 'female', 'unspecified'])
     .required('Оберіть стать дитини'),
-  expectedDueDate: Yup.string().required('Вкажіть планову дату пологів'),
+  expectedDueDate: Yup.string()
+    .required('Вкажіть планову дату пологів')
+    .test('is-valid-date', 'Введіть коректну дату', value =>
+      value ? !Number.isNaN(new Date(value).getTime()) : false
+    ),
 });

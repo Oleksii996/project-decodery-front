@@ -30,14 +30,35 @@ function toBackendGender(value: ChildGender): BackendGender {
   return null;
 }
 
+/** Як у онбордингу: у PATCH лише YYYY-MM-DD. Повний ISO з GET часто ламає валідацію бекенду. */
+function toBackendDueDateOnly(value: string): string {
+  const trimmed = value?.trim() ?? '';
+  if (!trimmed) return trimmed;
+  const ymd = trimmed.match(/^(\d{4}-\d{2}-\d{2})/);
+  if (ymd) return ymd[1];
+  const d = new Date(trimmed);
+  if (Number.isNaN(d.getTime())) return trimmed;
+  return new Date(d.getTime() - d.getTimezoneOffset() * 60000)
+    .toISOString()
+    .slice(0, 10);
+}
+
+function dateOnlyFromApi(value: string | null | undefined): string {
+  if (value == null || value === '') return '';
+  const m = String(value).match(/^(\d{4}-\d{2}-\d{2})/);
+  return m ? m[1] : toBackendDueDateOnly(String(value));
+}
+
 function normalizeProfile(data: BackendProfile): UserProfile {
   const resolvedAvatar = data.avatar ?? data.avatarUrl ?? null;
+  const rawDue =
+    data.expectedDueDate ?? data.dueDate ?? '';
 
   return {
     name: data.name,
     email: data.email,
     childGender: toChildGender(data.childGender ?? data.gender ?? null),
-    expectedDueDate: data.expectedDueDate ?? data.dueDate ?? '',
+    expectedDueDate: dateOnlyFromApi(rawDue),
     avatar: resolvedAvatar,
     avatarUrl: data.avatarUrl ?? resolvedAvatar,
   };
@@ -51,14 +72,14 @@ export async function getCurrentProfile(): Promise<UserProfile> {
 export async function updateCurrentProfile(
   payload: UpdateProfilePayload
 ): Promise<UserProfile> {
-  const requestBody = {
-    name: payload.name,
-    email: payload.email,
+  await clientApi.patch('/profile', {
+    name: payload.name.trim(),
+    email: payload.email.trim(),
     gender: toBackendGender(payload.childGender),
-    dueDate: payload.expectedDueDate,
-  };
+    dueDate: toBackendDueDateOnly(payload.expectedDueDate),
+  });
 
-  const { data } = await clientApi.patch<BackendProfile>('/profile', requestBody);
+  const { data } = await clientApi.get<BackendProfile>('/profile/me');
   return normalizeProfile(data);
 }
 
@@ -66,15 +87,12 @@ export async function uploadProfileAvatar(file: File): Promise<UserProfile> {
   const formData = new FormData();
   formData.append('avatar', file);
 
-  const { data } = await clientApi.patch<BackendProfile>(
-    '/profile/avatar',
-    formData,
-    {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    }
-  );
+  await clientApi.patch('/profile/avatar', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
 
+  const { data } = await clientApi.get<BackendProfile>('/profile/me');
   return normalizeProfile(data);
 }

@@ -12,6 +12,7 @@ export default function Header({ onMenuClick }: { onMenuClick: () => void }) {
             alt="Company logo"
             width={105}
             height={45}
+            priority
           />
         </Link>
 

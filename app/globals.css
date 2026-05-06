@@ -101,6 +101,9 @@ body.theme-blue {
 }
 
 body {
+  /* Поверх загальних імен з :root — реальні шрифти з next/font (змінні з className на body) */
+  --font-family: var(--font-lato), 'Lato', sans-serif;
+  --second-family: var(--font-comfortaa), 'Comfortaa', sans-serif;
   font-family: var(--font-family);
   background-color: var(--app-background);
   color: var(--color-black);
