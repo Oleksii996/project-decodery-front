@@ -86,9 +86,11 @@ width: 268px;
 
 @media (max-width: 1439px) {
   .sidebar {
+    position: fixed;
     width: 300px;
     left: 0;
     top: 0;
+    height: 100vh;
 
     transform: translateX(-100%);
     opacity: 0;
