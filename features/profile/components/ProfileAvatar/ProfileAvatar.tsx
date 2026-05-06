@@ -41,11 +41,7 @@ export default function ProfileAvatar({ profile }: Props) {
     <section className={css.container}>
       <div className={css.avatarWrap}>
         {avatarSrc ? (
-          <img
-            src={avatarSrc}
-            alt="Аватар профілю"
-            className={css.avatar}
-          />
+          <img src={avatarSrc} alt="Аватар профілю" className={css.avatar} />
         ) : (
           <span className={css.avatarPlaceholder}>{initials || '—'}</span>
         )}
