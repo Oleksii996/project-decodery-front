@@ -5,12 +5,13 @@ import styles from './BabyCard.module.css';
 interface BabyCardProps {
   data: BabyData;
 }
+
 export default function BabyCard({ data }: BabyCardProps) {
   return (
     <div className={styles.card}>
-      <h2 className={styles.title}>Розвиток малюка</h2>
-
-      <div className={styles.content}>
+      
+      <div className={styles.row}>
+        
         {/* LEFT - IMAGE */}
         <div className={styles.imageWrapper}>
           {data.image && (
@@ -22,6 +23,9 @@ export default function BabyCard({ data }: BabyCardProps) {
               className={styles.image}
             />
           )}
+            <p className={styles.imageCaption}>
+           Ваш малюк зараз розміром з «{data.size}»
+          </p>
         </div>
 
         {/* RIGHT - TEXT */}
@@ -32,8 +36,13 @@ export default function BabyCard({ data }: BabyCardProps) {
             <span className={styles.label}>Розмір:</span> {data.size}
           </p>
 
+          {/* СПИСОК ФАКТІВ */}
           <div className={styles.facts}>
-            <p className={styles.subtitle}>Цікаві факти:</p>
+            
+            <div className={styles.factsHeader}>
+              <img src="/icons/star.svg" alt="icon" />
+              <p className={styles.subtitle}>Цікаві факти:</p>
+            </div>
 
             <ul className={styles.list}>
               {data.facts?.map((fact: string, i: number) => (
@@ -43,7 +52,21 @@ export default function BabyCard({ data }: BabyCardProps) {
               ))}
             </ul>
           </div>
+
+          {/*   БЛОК — ФАКТ ТИЖНЯ */}
+          <div className={styles.factBox}>
+          <div className={styles.factHeader}>
+          <img src="/icons/star.svg" alt="star" />
+          <p className={styles.factTitle}>Цікавий факт тижня</p>
+         </div>
+
+           <p className={styles.factText}>
+          {data.facts?.[0]}
+         </p>
         </div>
+
+        </div>
+
       </div>
     </div>
   );
