@@ -25,11 +25,6 @@ export const logoutUser = async () => {
   return response.data;
 };
 
-export const getMe = async () => {
-  const response = await clientApi.get<User>('/auth/me');
-  return response.data;
-};
-
 export const refreshToken = async () => {
   const response = await clientApi.post<LoginResponse>('/auth/refresh');
   return response.data;
