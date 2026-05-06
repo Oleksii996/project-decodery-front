@@ -5,6 +5,10 @@ export const getWeeksDashboard = async () => {
   const { data } = await clientApi.get<WeeksDashboardResponse>('/weeks/me');
   return data.data;
 };
+export const getWeeksDashboardNA = async () => {
+  const { data } = await clientApi.get<WeeksDashboardResponse>('/weeks');
+  return data.data;
+};
 
 export const getBabyWeekData = async () => {
   const { data } = await clientApi.get<BabyWeekResponse>('/weeks/baby');

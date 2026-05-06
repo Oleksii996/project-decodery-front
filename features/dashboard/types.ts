@@ -37,11 +37,11 @@ export interface BabyWeekResponse {
   message: string;
   data: BabyWeekData;
 }
+export interface BabyCardData {
+  image: string;
+  babySize: number;
+  babyWeight: number;
+  babyActivity: string;
+  babyDevelopment: string;
+}
 
-type DiaryEntry = {
-  id: number;
-  title: string;
-  text: string;
-  date: string;
-  categories: string[];
-};

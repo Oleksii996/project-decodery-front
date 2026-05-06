@@ -1,23 +1,28 @@
 'use client';
+
 import { useQuery } from '@tanstack/react-query';
-import GreetingBlock from '@/components/shared/GreetingBlock/GreetingBlock';
-import BabyTodayCard from '../BabyTodayCard/BabyTodayCard';
-import MomTipCard from '../MomTipCard/MomTipCard';
-import StatusBlock from '../StatusBlock/StatusBlock';
-import FeelingCheckCard from '../FeelingCheckCard/FeelingCheckCard';
-import { getWeeksDashboard, getBabyWeekData } from '../../api';
-import css from './DashBoardPage.module.css';
-import TasksReminderCard from '@/features/tasks/components/TasksReminderCard/TasksReminderCard';
+
+import {
+  getWeeksDashboard,
+  getBabyWeekData,
+  getWeeksDashboardNA,
+} from '../../api';
+
 import Loader from '@/components/common/Loader/Loader';
+import DashBoardContent from './DashBoardContent';
+import { useAuthStore } from '@/store/authStore';
+import type { BabyCardData } from '../../types';
 
 export default function DashBoardPage() {
+  const isAuth = useAuthStore(state => state.isAuth);
+
   const {
     data: dashboardData,
     isLoading: isDashboardLoading,
     isError: isDashboardError,
   } = useQuery({
-    queryKey: ['weeks-dashboard'],
-    queryFn: getWeeksDashboard,
+    queryKey: ['weeks-dashboard', isAuth],
+    queryFn: isAuth ? getWeeksDashboard : getWeeksDashboardNA,
   });
 
   const {
@@ -27,48 +32,43 @@ export default function DashBoardPage() {
   } = useQuery({
     queryKey: ['baby-week'],
     queryFn: getBabyWeekData,
+    enabled: isAuth,
   });
-  const isLoading = isDashboardLoading || isBabyLoading;
-  const isError =
-    isDashboardError || isBabyError || !dashboardData || !babyData;
+
+  const isLoading = isDashboardLoading || (isAuth && isBabyLoading);
+
+  if (isLoading) return <Loader />;
+
+  if (
+    isDashboardError ||
+    (isAuth && isBabyError) ||
+    !dashboardData ||
+    (isAuth && !babyData)
+  ) {
+    return <p>Помилка при завантаженні.</p>;
+  }
+
+  const babyForCard: BabyCardData = isAuth
+    ? {
+        image: babyData!.image,
+        babySize: babyData!.babySize,
+        babyWeight: babyData!.babyWeight,
+        babyActivity: babyData!.babyActivity,
+        babyDevelopment: babyData!.babyDevelopment,
+      }
+    : {
+        image: dashboardData.baby.image,
+        babySize: dashboardData.baby.babySize,
+        babyWeight: dashboardData.baby.babyWeight,
+        babyActivity: dashboardData.baby.interestingFact,
+        babyDevelopment: dashboardData.baby.interestingFact,
+      };
 
   return (
-    <main>
-      <div className={css.dashboard}>
-        {isLoading && <Loader />}
-
-        {!isLoading && isError && <p>Помилка при завантаженні.</p>}
-
-        {!isLoading && !isError && (
-          <>
-            <div className={css.greeting}>
-              <GreetingBlock />
-            </div>
-            <div className={css.contentDB}>
-              <div className={css.leftColumn}>
-                <StatusBlock
-                  week={dashboardData.weekNumber}
-                  daysToMeet={dashboardData.daysUntilDueDate}
-                />
-
-                <BabyTodayCard
-                  image={babyData.image}
-                  babySize={babyData.babySize}
-                  babyWeight={babyData.babyWeight}
-                  babyActivity={babyData.babyActivity}
-                  babyDevelopment={babyData.babyDevelopment}
-                />
-                <MomTipCard momTip={dashboardData.momTip} />
-              </div>
-
-              <div className={css.rightColumn}>
-                <TasksReminderCard isAuth={true} />
-                <FeelingCheckCard isAuth={true} />
-              </div>
-            </div>
-          </>
-        )}
-      </div>
-    </main>
+    <DashBoardContent
+      isAuth={isAuth}
+      dashboardData={dashboardData}
+      babyData={babyForCard}
+    />
   );
 }

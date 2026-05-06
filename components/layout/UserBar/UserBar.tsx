@@ -18,7 +18,7 @@ const UserBar = ({ onClose }: { onClose?: () => void }) => {
     await logoutUser();
     clearAuthUser();
 
-    router.push('/auth/login');
+    router.push('/');
     router.refresh();
 
 
