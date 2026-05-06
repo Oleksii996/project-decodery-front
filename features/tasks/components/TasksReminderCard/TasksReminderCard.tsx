@@ -9,18 +9,17 @@ type Task = {
   id: number;
   title: string;
   done: boolean;
-  date: string; // 🔥 тепер обовʼязково
+  date: string; 
 };
 
 type Props = {
   isAuth: boolean;
 };
 
-// 🔥 функція для парсингу "04.23"
+
 const parseDate = (str: string) => {
-  const [month, day] = str.split('.').map(Number);
-  const now = new Date();
-  return new Date(now.getFullYear(), month - 1, day);
+  const [day, month, year] = str.split('.').map(Number);
+  return new Date(year, month - 1, day);
 };
 
 export default function TasksReminderCard({ isAuth }: Props) {
@@ -45,8 +44,9 @@ export default function TasksReminderCard({ isAuth }: Props) {
   };
 
   const today = new Date();
+  today.setHours(0, 0, 0, 0);;
 
-  // 🔥 СЬОГОДНІ
+ 
   const todayTasks = tasks.filter(t => {
     const d = parseDate(t.date);
     return (
@@ -55,7 +55,7 @@ export default function TasksReminderCard({ isAuth }: Props) {
     );
   });
 
-  // 🔥 ТИЖДЕНЬ
+ 
   const weekTasks = tasks.filter(t => {
     const d = parseDate(t.date);
     const diff = (d.getTime() - today.getTime()) / (1000 * 60 * 60 * 24);

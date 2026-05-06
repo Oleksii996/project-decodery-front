@@ -7,11 +7,12 @@
   
 }
 .card {
-  background-color: #FEFBF4;  
+  background-color: var(--color-primary-lightest);  
   border-radius: 20px;
   padding: 20px;
-  margin-top: 16px;
+  margin-top: 32px;
   max-width: 100%;
+  border: 1px solid #00000026;
 }
 
 /* TITLE */
@@ -40,7 +41,7 @@
 
 /* BUTTON */
 .button {
-  background:#FEF1DB;
+  background: var(--color-primary-light);
   border: none;
   border-radius: 20px;
   padding: 10px 16px;
