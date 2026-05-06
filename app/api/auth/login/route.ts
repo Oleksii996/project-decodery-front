@@ -13,9 +13,12 @@ export const POST = async (req: NextRequest) => {
     const cookiesStore = await cookies();
     const setCookies = response.headers['set-cookie'];
     if (!setCookies)
-      return NextResponse.json('smth going wrong', {
-        status: 400,
-      });
+      return NextResponse.json(
+        { error: 'No cookies received from server' },
+        {
+          status: 502,
+        }
+      );
 
     const cookieArray = Array.isArray(setCookies) ? setCookies : [setCookies];
 
@@ -24,7 +27,9 @@ export const POST = async (req: NextRequest) => {
       const options = {
         expires: parsedItem.Expires ? new Date(parsedItem.Expires) : undefined,
         path: parsedItem.Path,
-        maxAge: Number(parsedItem['Max-Age']),
+        maxAge: parsedItem['Max-Age']
+          ? Number(parsedItem['Max-Age'])
+          : undefined,
       };
 
       if (parsedItem.refreshToken) {
