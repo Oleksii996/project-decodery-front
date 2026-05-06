@@ -26,7 +26,7 @@ export default function Breadcrumbs() {
   const isHome = segments.length === 0;
 
   return (
-    <nav className={css.breadcrumbs}>
+    <nav className={css.breadcrumbs} aria-label="Breadcrumbs">
       <div className={css.breadcrumbsContainer}>
         <Link href="/" className={css.brand}>
           Лелека
@@ -38,7 +38,9 @@ export default function Breadcrumbs() {
                 <use href="/leleka-sprite.svg#icon-keyboard_arrow_down" />
               </svg>
             </span>
-            <span className={css.current}>Мій день</span>
+            <span className={css.current} aria-current="page">
+              Мій день
+            </span>
           </>
         )}
 
@@ -61,7 +63,9 @@ export default function Breadcrumbs() {
                 </span>
 
                 {isLast ? (
-                  <span className={css.current}>{name}</span>
+                  <span className={css.current} aria-current="page">
+                    {name}
+                  </span>
                 ) : (
                   <Link className={css.link} href={path}>
                     {name}
