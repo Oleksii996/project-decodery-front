@@ -45,11 +45,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  modal,
-}: Readonly<{
-  modal: React.ReactNode;
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="uk">
       <body className={`${lato.variable} ${comfortaa.variable}`}>
@@ -58,9 +56,7 @@ export default function RootLayout({
             <ThemeProvider>
               <AuthProvider>
                 <Toaster position="top-right" />
-
                 {children}
-                {modal}
               </AuthProvider>
             </ThemeProvider>
           </ModalProvider>
