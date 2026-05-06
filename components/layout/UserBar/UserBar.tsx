@@ -30,18 +30,21 @@ const UserBar = ({ onClose }: { onClose?: () => void }) => {
 
   return (
     <div className={styles.wrapper}>
+      <div className={styles.divider}></div>
       <div className={styles.wrapperContent}>
         <div className={styles.userInfo}>
-          <Image
-            src={userInfo?.avatar || '/default.png'}
-            alt="Avatar"
-            className={styles.avatar}
-            width={40}
-            height={40}
-          />
-          <div className={styles.textData}>
-            <p className={styles.userName}>{userInfo?.name}</p>
-            <p className={styles.userEmail}>{userInfo?.email}</p>
+          <div className={styles.userData}>
+            <Image
+              src={userInfo?.avatar || '/default.png'}
+              alt="Avatar"
+              className={styles.avatar}
+              width={40}
+              height={40}
+            />
+            <div className={styles.textData}>
+              <p className={styles.userName}>{userInfo?.name}</p>
+              <p className={styles.userEmail}>{userInfo?.email}</p>
+            </div>
           </div>
           <button
             className={styles.logoutBtn}
@@ -55,7 +58,6 @@ const UserBar = ({ onClose }: { onClose?: () => void }) => {
             </svg>
           </button>
         </div>
-
         {showModal && (
           <ConfirmationModal
             title="Ви точно хочете вийти?"

@@ -9,19 +9,22 @@ interface AuthBarProps {
 
 const AuthBar = ({ onClose }: AuthBarProps) => {
   return (
-    <div className={styles.authWrapper}>
-      <Link
-        href="/auth/register"
-        className={styles.registerLink}
-        onClick={onClose}
-      >
-        Зареєструватися
-      </Link>
+    <>
+      <div className={styles.dividerAuth}></div>
+      <div className={styles.authWrapper}>
+        <Link
+          href="/auth/register"
+          className={styles.registerLink}
+          onClick={onClose}
+        >
+          Зареєструватись
+        </Link>
 
-      <Link href="/auth/login" className={styles.loginLink} onClick={onClose}>
-        Увійти
-      </Link>
-    </div>
+        <Link href="/auth/login" className={styles.loginLink} onClick={onClose}>
+          Увійти
+        </Link>
+      </div>
+    </>
   );
 };
 

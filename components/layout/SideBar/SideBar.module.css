@@ -3,14 +3,12 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-
   position: absolute; /* 🔥 замість fixed */
   top: 0;
   left: 0;
   padding: 8px 0px 0px;
   height: 100vh;
-  width: 312px;
-
+  width: 300px;
   transform: translateX(-100%);
   transition: transform 0.3s ease;
   border-right: 1px solid rgba(0, 0, 0, 0.15);
@@ -69,10 +67,13 @@ width: 268px;
 .active {
   display: flex;
   align-items: center;
-  background-color: #fcf4b9;
-  height: 40px;
-
+  justify-content: flex-start;
+  flex-direction: row;
+  background: #fff4f6;
   border-radius: 8px;
+  padding: 8px;
+  width: 268px;
+  height: 40px;
 }
 
 .bottomContent {
