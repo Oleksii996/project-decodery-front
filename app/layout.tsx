@@ -45,9 +45,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  Modal,
+  modal,
 }: Readonly<{
-  Modal: React.ReactNode;
+  modal: React.ReactNode;
   children: React.ReactNode;
 }>) {
   return (
@@ -60,7 +60,7 @@ export default function RootLayout({
                 <Toaster position="top-right" />
 
                 {children}
-                {Modal}
+                {modal}
               </AuthProvider>
             </ThemeProvider>
           </ModalProvider>
