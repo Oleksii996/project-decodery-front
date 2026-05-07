@@ -257,7 +257,7 @@ export default function OnboardingForm() {
         await avatarMutation.mutateAsync(values.avatar);
       }
       const updatedUser = await getCurrentOnboardingUser();
-      console.log(updatedUser);
+    
 
       if (updatedUser) {
         setAuthUser(updatedUser as User);

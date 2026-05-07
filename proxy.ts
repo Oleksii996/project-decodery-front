@@ -15,8 +15,7 @@ export function proxy(req: NextRequest) {
   const isPrivateRoute = privateRoutes.some(route =>
     route === '/' ? pathname === '/' : pathname.startsWith(route)
   );
-  console.log(isPublicRoute);
-  console.log(isPrivateRoute);
+ 
 
   if (accessToken && isPublicRoute && pathname !== '/') {
     return NextResponse.redirect(new URL('/', req.url));

@@ -13,19 +13,36 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const clearAuthUser = useAuthStore(s => s.clearAuthUser);
 
   useEffect(() => {
+    let ignore = false;
+
     const checkAuth = async () => {
       try {
         const data = await refreshToken();
-        if (data.success) {
-          const user = await getMe();
-          setAuthUser(user);
+
+        if (ignore) return;
+
+        if (!data.success) {
+          clearAuthUser();
+          return;
         }
+
+        const user = await getMe();
+
+        if (ignore) return;
+
+        setAuthUser(user);
       } catch {
-        clearAuthUser();
+        if (!ignore) {
+          clearAuthUser();
+        }
       }
     };
 
     checkAuth();
+
+    return () => {
+      ignore = true;
+    };
   }, [setAuthUser, clearAuthUser]);
 
   return children;

@@ -6,12 +6,12 @@ import { getAllDiaries } from '../../api';
 import DiaryEntryDetails from '../DiaryEntryDetails/DiaryEntryDetails';
 import css from './DiaryPage.module.css';
 import { useMediaQuery } from '@uidotdev/usehooks';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import GreetingBlock from '@/components/shared/GreetingBlock/GreetingBlock';
 
 export default function DiaryPage() {
   const isDesktop = useMediaQuery('only screen and (min-width: 1440px)');
-  const [userSelectedDiaryId, seUserSelectedDiaryId] = useState<string | null>(
+  const [userSelectedDiaryId, setUserSelectedDiaryId] = useState<string | null>(
     null
   );
   const {
@@ -25,7 +25,15 @@ export default function DiaryPage() {
     refetchOnMount: false,
     retry: false,
   });
+  useEffect(() => {
+    if (!userSelectedDiaryId) return;
 
+    const exists = diaries.some(diary => diary._id === userSelectedDiaryId);
+
+    if (!exists) {
+      setUserSelectedDiaryId(null);
+    }
+  }, [diaries, userSelectedDiaryId]);
   const selectedDiaryId =
     userSelectedDiaryId ??
     (isDesktop && diaries.length > 0 ? (diaries[0]._id as string) : null);
@@ -45,10 +53,10 @@ export default function DiaryPage() {
         <DiaryList
           diaries={diaries}
           selectedDiaryId={selectedDiaryId}
-          onSelectDiary={seUserSelectedDiaryId}
+          onSelectDiary={setUserSelectedDiaryId}
           isDesktop={isDesktop}
         ></DiaryList>
-        {isDesktop && diaries.length > 0 && (
+        {isDesktop && diaries.length > 0 && selectedDiaryId && (
           <DiaryEntryDetails diaryId={selectedDiaryId} />
         )}
       </div>

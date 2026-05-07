@@ -23,6 +23,8 @@ export default function DashBoardPage() {
   } = useQuery({
     queryKey: ['weeks-dashboard', isAuth],
     queryFn: isAuth ? getWeeksDashboard : getWeeksDashboardNA,
+    retry: false,
+    refetchOnMount: false,
   });
 
   const {
@@ -33,6 +35,8 @@ export default function DashBoardPage() {
     queryKey: ['baby-week'],
     queryFn: getBabyWeekData,
     enabled: isAuth,
+    retry: false,
+    refetchOnMount: false,
   });
 
   const isLoading = isDashboardLoading || (isAuth && isBabyLoading);

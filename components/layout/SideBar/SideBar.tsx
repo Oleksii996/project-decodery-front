@@ -7,7 +7,6 @@ import UserBar from '../UserBar/UserBar';
 import AuthBar from '../AuthBar/AuthBar';
 import css from './SideBar.module.css';
 
-import { useEffect, useState } from 'react';
 import { useAuthStore } from '@/store/authStore';
 // import css from '../SideBar/SideBar.module.css';
 
@@ -21,30 +20,13 @@ const SideBar = ({ onClose, isOpen }: SideBarProps) => {
   const router = useRouter();
 
   const isAuth = useAuthStore(s => s.isAuth);
-  const [week, setWeek] = useState(1);
 
-  useEffect(() => {
-    if (!isAuth) {
-      return;
-    }
-
-    fetch('/api/weeks/me')
-      .then(res => res.json())
-      .then(data => {
-        if (data?.weekNumber) {
-          setWeek(data.weekNumber);
-        } else {
-          setWeek(1);
-        }
-      })
-      .catch(() => setWeek(1));
-  }, [isAuth]);
   const navItems = [
     { label: 'Мій день', href: '/', icon: 'icon-today' },
 
     {
       label: 'Подорож',
-      href: `/journey/${week}`,
+      href: `/journey/1`,
       icon: 'icon-conversion_path',
     },
 
