@@ -25,7 +25,6 @@ export default function LoginForm() {
       setAuthStore(data.user);
 
       router.push('/');
-      router.refresh();
     } catch (error: any) {
       const message =
         error.response?.data?.message ||

@@ -55,7 +55,7 @@ export default function RootLayout({
           <ModalProvider>
             <ThemeProvider>
               <AuthProvider>
-                <Toaster position="top-right" />
+                <Toaster position="top-left" />
                 {children}
               </AuthProvider>
             </ThemeProvider>

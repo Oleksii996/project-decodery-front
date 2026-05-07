@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { refreshToken } from '@/features/auth/api';
+import { getMe, refreshToken } from '@/features/auth/api';
 import { useAuthStore } from '@/store/authStore';
 
 interface AuthProviderProps {
@@ -16,8 +16,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
     const checkAuth = async () => {
       try {
         const data = await refreshToken();
-
-        setAuthUser(data.user);
+        if (data.success) {
+          const user = await getMe();
+          setAuthUser(user);
+        }
       } catch {
         clearAuthUser();
       }

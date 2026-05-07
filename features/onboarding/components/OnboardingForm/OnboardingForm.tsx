@@ -257,28 +257,29 @@ export default function OnboardingForm() {
         await avatarMutation.mutateAsync(values.avatar);
       }
       const updatedUser = await getCurrentOnboardingUser();
+      console.log(updatedUser);
 
       if (updatedUser) {
         setAuthUser(updatedUser as User);
       }
 
-const theme =
-      values.gender === "boy"
-        ? "blue"
-        : values.gender === "girl"
-        ? "pink"
-        : "default";
+      const theme =
+        values.gender === 'boy'
+          ? 'blue'
+          : values.gender === 'girl'
+            ? 'pink'
+            : 'default';
 
-      await useThemeStore.getState().updateThemeOnServer(theme);
+      // await useThemeStore.getState().updateThemeOnServer(theme);
 
-// 🔑 зберігаємо стать у localStorage
-    localStorage.setItem("child-gender", values.gender);
+      // 🔑 зберігаємо стать у localStorage
+      localStorage.setItem('child-gender', values.gender);
 
-    // 🔑 викликаємо глобальну утиліту для теми
+      // 🔑 викликаємо глобальну утиліту для теми
       useThemeStore.getState().initTheme();
-      
-         // 🔑 після збереження теми очищаємо child-gender
-    // localStorage.removeItem("child-gender");
+
+      // 🔑 після збереження теми очищаємо child-gender
+      // localStorage.removeItem("child-gender");
 
       toast.success('Дані успішно збережено');
       router.push('/');
