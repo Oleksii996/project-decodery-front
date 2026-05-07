@@ -98,7 +98,8 @@
   height: 40px;
   width: 100%;
   padding: 8px;
-  background: var(--color-primary-lightest);
+
+  background-color: var(--color-primary-light);
   border-radius: 8px;
 }
 
