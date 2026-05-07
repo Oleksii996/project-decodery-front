@@ -1,9 +1,21 @@
+import { getWeeksDashboard, getWeeksDashboardNA } from '@/features/dashboard/api';
 import DashBoardPage from '@/features/dashboard/components/DashBoardPage/DashBoardPage';
-import Header from '@/components/layout/Header/Header';
-import Breadcrumbs from '@/components/layout/Breadcrumbs/Breadcrumbs';
-import TasksReminderCard from "@/features/tasks/components/TasksReminderCard/TasksReminderCard";
-import FeelingCheckCard from '@/features/dashboard/components/FeelingCheckCard/FeelingCheckCard';
+import { QueryClient, HydrationBoundary, dehydrate } from '@tanstack/react-query';
 
-export default function Home() {
-  return <DashBoardPage />;
+interface HomePageProps {
+  params: Promise<{ isAuth: boolean }>;
+}
+export default async function Home({params}: HomePageProps) {
+  const {isAuth} = await params;
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery({
+    queryKey: ['weeks-dashboard', isAuth],
+        queryFn: isAuth ? getWeeksDashboard : getWeeksDashboardNA,
+  })
+  return (
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <DashBoardPage />;
+    </HydrationBoundary>
+  )
+  
 }
