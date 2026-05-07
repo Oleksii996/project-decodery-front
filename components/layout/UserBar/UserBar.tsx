@@ -11,6 +11,7 @@ const UserBar = ({ onClose }: { onClose?: () => void }) => {
   const [showModal, setShowModal] = useState(false);
   const router = useRouter();
   const userInfo = useAuthStore(s => s.userInfo);
+  console.log(userInfo);
 
   const clearAuthUser = useAuthStore(s => s.clearAuthUser);
 
@@ -19,8 +20,6 @@ const UserBar = ({ onClose }: { onClose?: () => void }) => {
     clearAuthUser();
 
     router.push('/auth/login');
-    router.refresh();
-
 
     setShowModal(false);
     if (onClose) onClose();

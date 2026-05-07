@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const publicRoutes = ['/', '/auth/login', '/auth/register'];
-const privateRoutes = ['/diary', '/journey', '/profile'];
+const publicRoutes = ['/auth/login', '/auth/register'];
+const privateRoutes = ['/', '/diary', '/journey', '/profile'];
 
 export function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
@@ -13,8 +13,11 @@ export function proxy(req: NextRequest) {
   );
 
   const isPrivateRoute = privateRoutes.some(route =>
-    pathname.startsWith(route)
+    route === '/' ? pathname === '/' : pathname.startsWith(route)
   );
+  console.log(isPublicRoute);
+  console.log(isPrivateRoute);
+
   if (accessToken && isPublicRoute && pathname !== '/') {
     return NextResponse.redirect(new URL('/', req.url));
   }
