@@ -294,3 +294,19 @@
   color: var(--color-neutral-light);
   cursor: not-allowed;
 }
+/* MOBILE */
+@media (max-width: 767px) {
+  .form {
+    max-width: 100%;
+  }
+
+  .formInput,
+  .datePickerInput {
+    max-width: 100%;
+  }
+
+  .buttons {
+    max-width: 100%;
+    justify-content: center;
+  }
+}
