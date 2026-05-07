@@ -1,12 +1,12 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import styles from './WeekSelector.module.css';
 
 type Props = {
-  currentWeek: number; // активний тиждень із props
-  userWeek: number; // доступний користувачу тиждень
+  currentWeek: number; // обраний
+  userWeek: number; // реальний
 };
 
 export default function WeekSelector({ currentWeek, userWeek }: Props) {
@@ -14,12 +14,9 @@ export default function WeekSelector({ currentWeek, userWeek }: Props) {
 
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  // окремий state для натиснутої картки
-  const [clickedWeek, setClickedWeek] = useState<number | null>(null);
-
   const weeks = Array.from({ length: 42 }, (_, i) => i + 1);
 
-  // авто-скрол до active
+  //  авто-скрол до активного тижня
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -40,12 +37,11 @@ export default function WeekSelector({ currentWeek, userWeek }: Props) {
       ref={containerRef}
       className={styles.container}
       onWheel={e => {
-        e.currentTarget.scrollLeft += e.deltaY;
+        e.currentTarget.scrollLeft += e.deltaY; //   горизонтальний скрол
       }}
     >
       {weeks.map(week => {
         const isActive = week === currentWeek;
-        const isClicked = week === clickedWeek;
         const isPast = week < userWeek;
         const isFuture = week > userWeek;
 
@@ -54,19 +50,13 @@ export default function WeekSelector({ currentWeek, userWeek }: Props) {
             key={week}
             type="button"
             disabled={isFuture}
-            onClick={() => {
-              setClickedWeek(week);
-
-              router.push(`/journey/${week}`);
-            }}
+            onClick={() => router.push(`/journey/${week}`)}
             className={`${styles.card}
-              ${isActive ? styles.active : ''}
-              ${isClicked ? styles.clicked : ''}
-              ${isPast ? styles.past : ''}
-              ${isFuture ? styles.future : ''}`}
+    ${isActive ? styles.active : ''}
+    ${isPast ? styles.past : ''}
+    ${isFuture ? styles.future : ''}`}
           >
             <span className={styles.number}>{week}</span>
-
             <span className={styles.label}>тиждень</span>
           </button>
         );
