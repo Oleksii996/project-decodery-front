@@ -4,8 +4,10 @@
   border-radius: 32px;
   padding: 24px;
   overflow-y: auto;
-  width: 390px;
+  width: 100%;
+  max-width: 100%;
   box-sizing: border-box;
+  margin-top: 24px;
   flex-shrink: 0;
 }
 /* верх карточки */
@@ -106,6 +108,18 @@
   height: 20px;
 }
 
-.card {
-  height: 100%;
+@media (min-width: 767px) {
+  .infoText {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+@media (min-width: 1400px) {
+  .infoText {
+   
+    max-width: 350px;
+    width: 100%;
+    margin-top: 0;
+  }
 }

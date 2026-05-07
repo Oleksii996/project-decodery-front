@@ -12,11 +12,12 @@
 
 /* МОДАЛКА */
 .modal {
+  width: 287px;
   background: var(--color-white);
   border-radius: 28px;
   padding: 24px 20px 20px;
   position: relative;
-  width: 75%;
+
   flex-direction: column;
 }
 
@@ -72,7 +73,6 @@
   border: none;
   background: var(--color-neutral-lightest);
   font-size: 14px;
-  
 }
 
 /* ІКОНКА КАЛЕНДАРЯ */
@@ -98,26 +98,39 @@
   position: center;
 }
 
+.saveBtn:hover {
+  background: var(--color-primary);
+  transition: all 0.3s ease;
+}
+
 .buttonWrapper {
   display: flex;
-  justify-content: center;}
-
+  justify-content: center;
+}
 
 @media screen and (min-width: 768px) {
-  .modal{
-   padding: 24px 32px 32px;}
-.saveBtn{
-  width: 50%;
-}
+  .modal {
+    padding: 24px 32px 32px;
+    width: 680px;
   }
+
+  .saveBtn {
+    width: 50%;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+  }
+}
 @media screen and (min-width: 1440px) {
-  .modal{
+  .modal {
     width: 568px;
     padding: 40px 42px;
   }
- .input {
-  margin-bottom: 24px;
- }
+  .input {
+    margin-bottom: 24px;
+  }
 
   .saveBtn {
     margin-top: 0%;
