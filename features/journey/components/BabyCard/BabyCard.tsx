@@ -9,9 +9,7 @@ interface BabyCardProps {
 export default function BabyCard({ data }: BabyCardProps) {
   return (
     <div className={styles.card}>
-      
       <div className={styles.row}>
-        
         {/* LEFT - IMAGE */}
         <div className={styles.imageWrapper}>
           {data.image && (
@@ -23,12 +21,11 @@ export default function BabyCard({ data }: BabyCardProps) {
               className={styles.image}
             />
           )}
-            <p className={styles.imageCaption}>
-           Ваш малюк зараз розміром з «{data.size}»
+          <p className={styles.imageCaption}>
+            Ваш малюк зараз розміром з «{data.size}»
           </p>
         </div>
 
-        {/* RIGHT - TEXT */}
         <div className={styles.textBlock}>
           <p className={styles.description}>{data.description}</p>
 
@@ -36,9 +33,7 @@ export default function BabyCard({ data }: BabyCardProps) {
             <span className={styles.label}>Розмір:</span> {data.size}
           </p>
 
-          {/* СПИСОК ФАКТІВ */}
           <div className={styles.facts}>
-            
             <div className={styles.factsHeader}>
               <img src="/icons/star.svg" alt="icon" />
               <p className={styles.subtitle}>Цікаві факти:</p>
@@ -53,20 +48,15 @@ export default function BabyCard({ data }: BabyCardProps) {
             </ul>
           </div>
 
-          {/*   БЛОК — ФАКТ ТИЖНЯ */}
           <div className={styles.factBox}>
-          <div className={styles.factHeader}>
-          <img src="/icons/star.svg" alt="star" />
-          <p className={styles.factTitle}>Цікавий факт тижня</p>
-         </div>
+            <div className={styles.factHeader}>
+              <img src="/icons/star.svg" alt="star" />
+              <p className={styles.factTitle}>Цікавий факт тижня</p>
+            </div>
 
-           <p className={styles.factText}>
-          {data.facts?.[0]}
-         </p>
+            <p className={styles.factText}>{data.facts?.[0]}</p>
+          </div>
         </div>
-
-        </div>
-
       </div>
     </div>
   );
