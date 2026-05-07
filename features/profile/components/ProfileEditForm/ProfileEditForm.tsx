@@ -173,7 +173,12 @@ export default function ProfileEditForm({ profile }: Props) {
 
             <label className={css.formField}>
               <span>Email</span>
-              <Field name="email" type="email" className={css.formInput} />
+              <Field
+                name="email"
+                disabled
+                type="email"
+                className={css.formInput}
+              />
               <ErrorMessage
                 name="email"
                 component="span"
