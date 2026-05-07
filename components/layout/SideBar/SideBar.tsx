@@ -6,8 +6,9 @@ import { usePathname, useRouter } from 'next/navigation';
 import UserBar from '../UserBar/UserBar';
 import AuthBar from '../AuthBar/AuthBar';
 import css from './SideBar.module.css';
-import { useUserStore } from '@/store/userStore';
+
 import { useEffect, useState } from 'react';
+import { useAuthStore } from '@/store/authStore';
 // import css from '../SideBar/SideBar.module.css';
 
 interface SideBarProps {
@@ -19,7 +20,7 @@ const SideBar = ({ onClose, isOpen }: SideBarProps) => {
   const pathname = usePathname();
   const router = useRouter();
 
-  const isAuth = useUserStore(state => state.isAuth);
+  const isAuth = useAuthStore(s => s.isAuth);
   const [week, setWeek] = useState(1);
 
   useEffect(() => {
