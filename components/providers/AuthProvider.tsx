@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { getMe, refreshToken } from '@/features/auth/api';
+import { getMe, getSession } from '@/features/auth/api';
 import { useAuthStore } from '@/store/authStore';
 
 interface AuthProviderProps {
@@ -15,22 +15,20 @@ export function AuthProvider({ children }: AuthProviderProps) {
   useEffect(() => {
     let ignore = false;
 
-    const checkAuth = async () => {
+    const checkSession = async () => {
       try {
-        const data = await refreshToken();
+        const session = await getSession();
 
-        if (ignore) return;
-
-        if (!data.success) {
+        if (!session.authenticated) {
           clearAuthUser();
           return;
         }
 
         const user = await getMe();
-
         if (ignore) return;
-
-        setAuthUser(user);
+        if (!ignore) {
+          setAuthUser(user);
+        }
       } catch {
         if (!ignore) {
           clearAuthUser();
@@ -38,7 +36,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       }
     };
 
-    checkAuth();
+    checkSession();
 
     return () => {
       ignore = true;
