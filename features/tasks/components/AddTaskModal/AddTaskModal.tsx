@@ -19,19 +19,19 @@ export default function AddTaskModal({ onClose, onSuccess }: Props) {
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
 
-    const handleSubmit = () => {
-      if (!title || !date) return;
+  const handleSubmit = () => {
+    if (!title || !date) return;
 
-      const newTask: Task = {
-        id: Date.now(),
-        title,
-        done: false,
-        date,
-      };
-
-      onSuccess(newTask);
-      onClose();
+    const newTask: Task = {
+      id: Date.now(),
+      title,
+      done: false,
+      date,
     };
+
+    onSuccess(newTask);
+    onClose();
+  };
 
   return (
     <div className={styles.overlay}>
@@ -49,26 +49,23 @@ export default function AddTaskModal({ onClose, onSuccess }: Props) {
           className={styles.input}
           placeholder="Прийняти вітаміни"
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={e => setTitle(e.target.value)}
         />
 
         {/* DATE */}
-                <label className={styles.label}>Дата</label>
-              <div className={styles.dateWrapper}>
-            <input
+        <label className={styles.label}>Дата</label>
+        <div className={styles.dateWrapper}>
+          <input
             className={styles.input}
             placeholder="дд.мм.рррр"
             value={date}
-            onChange={(e) => setDate(e.target.value)}
-            />  
-
+            onChange={e => setDate(e.target.value)}
+          />
         </div>
         {/* BUTTON */}
-        <div className={styles.buttonWrapper}>
         <button className={styles.saveBtn} onClick={handleSubmit}>
           Зберегти
         </button>
-        </div>
       </div>
     </div>
   );

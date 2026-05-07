@@ -9,6 +9,7 @@ import { getJourneyWeek } from '@/features/journey/api';
 import TasksReminderCard from '@/features/tasks/components/TasksReminderCard/TasksReminderCard';
 import FeelingCheckCard from '@/features/dashboard/components/FeelingCheckCard/FeelingCheckCard';
 import styles from './JourneyPageClient.module.css';
+
 type Props = {
   currentWeek: number;
 };
@@ -20,25 +21,23 @@ export default function JourneyPageClient({ currentWeek }: Props) {
     placeholderData: keepPreviousData,
     refetchOnMount: false,
   });
+
   if (isLoading) return null;
   if (isError || !data) return null;
 
   return (
-    <main className={styles.dashboard}>
+    <main className={styles.wrapper}>
       <div className={styles.container}>
         <GreetingBlock />
-        <WeekSelector currentWeek={currentWeek} userWeek={data.userWeek} />
-        <div className={styles.contentWrapper}>
-          <div className={styles.leftColumn}>
-            <JourneyDetails data={data} />
-          </div>
 
-          <div className={styles.rightColumn}>
-            <TasksReminderCard isAuth={true} />
-            <FeelingCheckCard isAuth={true} />
-          </div>
-        </div>
-    </div>
- </main>
+        <WeekSelector
+          currentWeek={currentWeek}
+          userWeek={data.userWeek}
+        />
+
+        <JourneyDetails data={data} />
+
+      </div>
+    </main>
   );
 }

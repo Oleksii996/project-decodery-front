@@ -1,76 +1,67 @@
-/* ================= MOBILE ================= */
-
 .container {
   display: flex;
-  gap: 8px;
-  margin: 16px 0;
+  gap: 4px;
+
+  padding: 4px;
+
+  width: 100%;
+  max-width: 335px;
+  height: 50px;
+
+  border-radius: 100px;
+
+  background: var(--color-primary-lightest);
+
+  margin: 16px auto; 
 }
 
-/* кнопка */
 .tab {
   flex: 1;
 
-  height: 40px;
+  border-radius: 100px;
+  border: none;
 
-  border-radius: 999px;
+  background: transparent;
 
-  border: 1px solid var(--color-border);
-  background-color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  font-family: var(--second-family);
-  font-size: 13px;
+  font-family: var(--font-family);
   font-weight: 500;
+  font-size: 16px;
+  line-height: 1.6;
 
   color: var(--color-neutral-dark);
-  text-align: center;
 
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-/* hover */
-.tab:hover {
-  background-color: var(--color-primary-light);
-}
-
-/* active */
+/*  АКТИВНА */
 .active {
-  background-color: var(--color-primary-light);
-  color: var(--color-neutral-dark);
+  background: var(--color-primary-light);
+  color: var(--color-black);
 
-  border: 1px solid var(--color-primary);
-  font-weight: 600;
-}
-/* натиск */
-.tab:active {
-  transform: scale(0.97);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-/* ================= TABLET ================= */
+.tab:hover {
+  opacity: 0.8;
+}
 
+/* TABLET */
 @media (min-width: 768px) {
   .container {
-    gap: 10px;
-  }
-
-  .tab {
-    height: 44px;
-    font-size: 14px;
-    padding: 0 16px;
+    max-width: 704px;
+    height: 50px;
   }
 }
 
-/* ================= DESKTOP ================= */
-
+/* DESKTOP */
 @media (min-width: 1024px) {
   .container {
-    gap: 12px;
-    margin: 20px 0;
-  }
-
-  .tab {
-    height: 48px;
-    font-size: 15px;
-    padding: 0 20px;
+    max-width: 572px;
+    height: 54px;
   }
 }

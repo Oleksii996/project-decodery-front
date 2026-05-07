@@ -5,10 +5,10 @@ import { usePathname, useRouter } from 'next/navigation';
 
 import UserBar from '../UserBar/UserBar';
 import AuthBar from '../AuthBar/AuthBar';
-import styles from './SideBar.module.css';
+import css from './SideBar.module.css';
 import { useUserStore } from '@/store/userStore';
 import { useEffect, useState } from 'react';
-import css from '../SideBar/SideBar.module.css';
+// import css from '../SideBar/SideBar.module.css';
 
 interface SideBarProps {
   onClose?: () => void;
@@ -20,33 +20,32 @@ const SideBar = ({ onClose, isOpen }: SideBarProps) => {
   const router = useRouter();
 
   const isAuth = useUserStore(state => state.isAuth);
-  const [week, setWeek] = useState<number | null>(null);
+  const [week, setWeek] = useState(1);
 
-useEffect(() => {
-  if (!isAuth) {
-    setWeek(1);
-    return;
-  }
+  useEffect(() => {
+    if (!isAuth) {
+      return;
+    }
 
     fetch('/api/weeks/me')
-    .then(res => res.json())
-    .then(data => {
-      if (data?.weekNumber) {
-        setWeek(data.weekNumber);
-      } else {
-        setWeek(1);
-      }
-    })
-    .catch(() => setWeek(1));
-}, [isAuth]);
+      .then(res => res.json())
+      .then(data => {
+        if (data?.weekNumber) {
+          setWeek(data.weekNumber);
+        } else {
+          setWeek(1);
+        }
+      })
+      .catch(() => setWeek(1));
+  }, [isAuth]);
   const navItems = [
     { label: 'Мій день', href: '/', icon: 'icon-today' },
 
-{
-  label: 'Подорож',
-  href: `/journey/${week ?? 1}`,
-  icon: 'icon-conversion_path',
-},
+    {
+      label: 'Подорож',
+      href: `/journey/${week}`,
+      icon: 'icon-conversion_path',
+    },
 
     { label: `Щоденник`, href: '/diary', icon: 'icon-book' },
     { label: 'Профіль', href: '/profile', icon: 'icon-account_circle' },
@@ -61,7 +60,7 @@ useEffect(() => {
   };
 
   return (
-    <aside className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
+    <aside className={`${css.sidebar} ${isOpen ? css.open : ''}`}>
       <div className={css.menuTop}>
         <Link href="/" className={css.logo} onClick={onClose}>
           <Image
@@ -69,23 +68,35 @@ useEffect(() => {
             alt="Company logo"
             width={105}
             height={45}
+            loading="eager"
           />
         </Link>
+        <button
+          type="button"
+          className={css.closeBtn}
+          onClick={onClose}
+          aria-label="Закрити сайдбар меню"
+        >
+          <svg className={css.closeIcon} width="32" height="32">
+            <use href="/leleka-sprite.svg#icon-close" />
+          </svg>
+        </button>
       </div>
 
-      <div className={styles.topContent}>
-        <nav className={styles.navigation}>
-          <ul className={styles.navList}>
+      <div className={css.topContent}>
+        <nav className={css.navigation}>
+          <ul className={css.navList}>
             {navItems.map(item => (
-              <li key={item.href} className={styles.navItem}>
+              <li
+                key={item.href}
+                className={pathname === item.href ? css.active : css.navItem}
+              >
                 <Link
                   href={item.href}
-                  className={
-                    pathname === item.href ? styles.active : styles.link
-                  }
+                  className={css.link}
                   onClick={handleLinkClick}
                 >
-                  <svg className={styles.icon} width="24" height="24">
+                  <svg className={css.icon} width="24" height="24">
                     <use href={`/leleka-sprite.svg#${item.icon}`} />
                   </svg>
                   <span>{item.label}</span>
@@ -96,7 +107,7 @@ useEffect(() => {
         </nav>
       </div>
 
-      <div className={styles.bottomContent}>
+      <div className={css.bottomContent}>
         {isAuth ? <UserBar onClose={onClose} /> : <AuthBar onClose={onClose} />}
       </div>
     </aside>

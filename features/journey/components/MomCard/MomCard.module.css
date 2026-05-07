@@ -1,74 +1,108 @@
-/* ========= MOBILE ============= */
+ /* ========= WRAPPER ========= */
 
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
+  align-items: flex-start; /* з ліва  */
 }
+
+/* ========= CARD ========= */
 
 .card {
-  background-color: var(--color-primary-light);
-  border-radius: 20px;
-  padding: 20px;
+  width: 100%;
+  max-width: 650px;
+
+  background-color: #FEFBF4;
+  border-radius: 24px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 }
 
-/* SUBTITLE */
+/* ========= TITLE ========= */
+
 .subtitle {
-  font-family: var(--font-family);
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 600;
-  margin-bottom: 12px;
-  color: var(--color-neutral-dark);
+  color: #2f2f2f;
 }
 
-/* STATES */
+/* ========= STATES ========= */
 
 .states {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 14px;
+  gap: 10px;
 }
 
 .stateItem {
-  font-size: 12px;
-  padding: 6px 12px;
-  border-radius: 16px;
-  background-color: var(--color-white);
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background-color: #ffffff;
+  border: 1px solid #f0e6d2;
 }
 
-/* TEXT */
+/* ========= TEXT ========= */
+
 .text {
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.6;
+  color: #4a4a4a;
 }
 
-/* ===== TIPS ===== */
+/* ========= TIPS ========= */
 
 .tipItem {
-  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
-/* 🔥 ГОЛОВНЕ ВИПРАВЛЕННЯ */
+/* заголовок з іконкою */
 .tipTitle {
   display: flex;
-  align-items: center; /* вертикально рівно */
-  gap: 10px; /* відстань між іконкою і текстом */
+  align-items: center;
+  gap: 10px;
 
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
-  margin-bottom: 6px;
+  color: #2f2f2f;
 }
 
 /* іконка */
 .tipTitle img {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0; 
+  width: 20px;
+  height: 20px;
 }
 
-/* текст */
+/* текст поради */
 .tipText {
   font-size: 14px;
   line-height: 1.6;
+  color: #555;
+}
+
+/* ========= RESPONSIVE ========= */
+
+@media (max-width: 768px) {
+  .card {
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .text {
+    font-size: 14px;
+  }
+
+  .tipText {
+    font-size: 13px;
+  }
 }

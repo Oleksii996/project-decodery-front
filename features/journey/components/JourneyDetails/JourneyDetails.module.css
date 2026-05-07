@@ -10,7 +10,11 @@
   flex-direction: column;
   gap: 16px;
 }
-
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
 /* ================= TABLET ================= */
 
 @media (min-width: 768px) {
@@ -23,11 +27,14 @@
 
 @media (min-width: 1024px) {
   .content {
-    flex-direction: row; /* 🔥 дві колонки */
+    flex-direction: row;
     gap: 24px;
+    align-items: flex-start;
   }
 
-  .content > * {
-    flex: 1;
+ 
+  .cards {
+    width: 350px;
+    flex-shrink: 0;
   }
 }

@@ -18,6 +18,9 @@ export const POST = async (req: NextRequest) => {
     cookiesStore.delete('sessionId');
     return NextResponse.json({ success: true });
   } catch (error) {
+    cookiesStore.delete('accessToken');
+    cookiesStore.delete('refreshToken');
+    cookiesStore.delete('sessionId');
     if (isAxiosError(error)) {
       return NextResponse.json(
         { error: error.message, response: error.response?.data },

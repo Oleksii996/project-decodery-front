@@ -4,13 +4,13 @@ import { getServerApi } from '@/lib/api/serverApi';
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { taskId: string } }
+  { params }: { params: Promise<{ taskId: string }> }
 ) {
   try {
     const body = await request.json();
     const api = await getServerApi();
 
-    const { taskId } = params;
+    const { taskId } = await params; // 👈 ВАЖЛИВО
 
     const { data, status } = await api.patch(
       `/api/tasks/${taskId}/status`,

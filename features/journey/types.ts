@@ -3,6 +3,7 @@ export interface BabyData {
   description: string;
   size: string;
   facts: string[];
+ 
 }
 
 export interface MomTip {
@@ -17,6 +18,7 @@ export interface MomData {
 }
 
 export type JourneyWeek = {
+  data: JourneyWeek;
   weekNumber: number;
   userWeek: number;
   daysToBirth: number | null;
