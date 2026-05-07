@@ -270,7 +270,7 @@ export default function OnboardingForm() {
             ? 'pink'
             : 'default';
 
-      // await useThemeStore.getState().updateThemeOnServer(theme);
+      await useThemeStore.getState().updateThemeOnServer(theme);
 
       // 🔑 зберігаємо стать у localStorage
       localStorage.setItem('child-gender', values.gender);
