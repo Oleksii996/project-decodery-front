@@ -15,26 +15,39 @@
   flex-direction: column;
   gap: 24px;
 }
+
+.smallCard {
+  background: #f6e6c8;
+  border-radius: 24px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;}
 /* ================= TABLET ================= */
 
+
 @media (min-width: 768px) {
-  .content {
-    gap: 20px;
+
+
+
+  .smallCard {
+    width: 100%;
+    max-width: 340px;
   }
 }
 
+
 /* ================= DESKTOP ================= */
 
-@media (min-width: 1024px) {
-  .content {
-    flex-direction: row;
-    gap: 24px;
-    align-items: flex-start;
-  }
+@media (min-width: 1400px) {
+ .grid {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
 
- 
-  .cards {
-    width: 350px;
-    flex-shrink: 0;
-  }
+.smallCard {
+  width: 340px;
+  flex-shrink: 0;
+}
 }

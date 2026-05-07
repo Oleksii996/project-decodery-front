@@ -14,6 +14,7 @@ type Task = {
 
 type Props = {
   isAuth: boolean;
+  className?: string;
 };
 
 
