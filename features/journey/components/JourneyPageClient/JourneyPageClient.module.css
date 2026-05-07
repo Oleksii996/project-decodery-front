@@ -2,10 +2,9 @@
   width: 100%;
   display: flex;
   justify-content: center;
-
-
   min-height: 100vh;
 }
+
 /* головний контейнер */
 .container {
   width: 100%;
@@ -83,3 +82,6 @@
   width: 260px;
   border-radius: 16px;
 }
+
+
+

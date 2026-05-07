@@ -18,6 +18,7 @@ export interface MomData {
 }
 
 export type JourneyWeek = {
+  data: JourneyWeek;
   weekNumber: number;
   userWeek: number;
   daysToBirth: number | null;

@@ -16,11 +16,9 @@
   background-color: #FEFBF4;
   border-radius: 24px;
   padding: 24px;
-
   display: flex;
   flex-direction: column;
   gap: 16px;
-
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 }
 
