@@ -24,9 +24,8 @@
     /* gap: 18px; */
   }
 
-.rightColumn {
- margin-top: 16px;
-  gap: 24px;
-  
-}
+  .rightColumn {
+    margin-top: 16px;
+    gap: 24px;
+  }
 }

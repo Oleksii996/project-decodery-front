@@ -108,3 +108,12 @@ body {
   background-color: var(--app-background);
   color: var(--color-black);
 }
+
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
