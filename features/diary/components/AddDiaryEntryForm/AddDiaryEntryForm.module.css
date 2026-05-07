@@ -141,11 +141,15 @@
   height: 42px;
   border: none;
   border-radius: 100px;
-  background-color: #fef1db;
+  background-color: var(--color-primary-light);
   font-family: 'Lato', sans-serif;
   font-size: 16px;
   line-height: 160%;
   color: #000;
+}
+
+.submitButton:hover {
+  background-color: var(--color-primary);
 }
 
 @media screen and (min-width: 768px) {
@@ -209,7 +213,7 @@
     height: 42px;
     margin: 0;
     border: none;
-    background-color: #fef1db;
+    background-color: var(--color-primary-light);
     cursor: pointer;
     font: inherit;
     transition: background-color 0.15s ease;
@@ -225,7 +229,7 @@
   }
 
   .submitButton:hover {
-    background-color: #fef1db;
+    background-color: var(--color-primary);
   }
 
   .submitButton:disabled {
