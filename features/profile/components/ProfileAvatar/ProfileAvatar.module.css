@@ -8,14 +8,24 @@
 }
 
 .avatarWrap {
+  position: relative;
   width: 132px;
   height: 132px;
   border-radius: 999px;
   overflow: hidden;
-  background: #ececec;
+  background: var(--color-neutral-lightest);
   display: grid;
   place-items: center;
   opacity: 1;
+}
+
+.avatarLoading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgb(0 0 0 / 35%);
+  border-radius: inherit;
 }
 
 .avatar {
@@ -27,7 +37,7 @@
 .avatarPlaceholder {
   font-size: 28px;
   font-weight: 700;
-  color: #667085;
+  color: var(--color-neutral);
 }
 
 .info {
@@ -37,22 +47,22 @@
 
 .name {
   margin: 0;
-  font-family: var(--font-comfortaa), sans-serif;
+  font-family: var(--second-family);
   font-weight: 700;
   font-size: 24px;
   line-height: 140%;
-  letter-spacing: 1%;
-  color: #1f1f1f;
+  letter-spacing: 0.01em;
+  color: var(--color-black);
 }
 
 .email {
   margin: 0;
-  font-family: var(--font-lato), sans-serif;
+  font-family: var(--font-family);
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
   letter-spacing: 0;
-  color: #1f1f1f;
+  color: var(--color-neutral-dark);
 }
 
 .fileInput {
@@ -66,9 +76,9 @@
   border-radius: 999px;
   margin-top: 6px;
   padding: 0 22px;
-  background-color: #ececec;
-  color: #131313;
-  font-family: var(--font-lato), sans-serif;
+  background-color: var(--color-primary-light);
+  color: var(--color-black);
+  font-family: var(--font-family);
   font-weight: 500;
   font-size: 16px;
   line-height: 160%;
@@ -79,4 +89,14 @@
   gap: 10px;
   opacity: 1;
   cursor: pointer;
+  box-shadow: 0 2px 0 color-mix(in srgb, var(--color-primary-dark) 28%, transparent);
+}
+
+.uploadButton:hover:not(:disabled) {
+  background-color: var(--color-primary);
+}
+
+.uploadButton:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
 }

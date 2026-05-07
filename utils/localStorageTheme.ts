@@ -1,10 +1,12 @@
 "use client";
 
 import { create } from "zustand";
-import axios from "axios";
 
 type Theme = "default" | "pink" | "blue";
 type Gender = "boy" | "girl" | "unknown";
+
+/** Значення статі в формі редагування профілю */
+export type ProfileChildGender = "male" | "female" | "unspecified";
 
 const THEME_KEY = "app-theme";
 const GENDER_KEY = "child-gender";
@@ -51,27 +53,33 @@ export const useThemeStore = create<ThemeState>((set) => ({
   },
 
   updateThemeOnServer: async (theme: Theme) => {
-    try {
-      if (!isBrowser) return;
-      // дістаємо токен з auth-storage
-      const auth = JSON.parse(localStorage.getItem("auth-storage") || "{}");
-      const token = auth?.state?.token;
+    if (!isBrowser) return;
+    // Тема лише на клієнті: PATCH /api/profile проксується на /api/users/current і
+    // очікує поля профілю (name, email, gender, dueDate) — тіло { theme } давало 400.
+    document.body.classList.remove("theme-pink", "theme-blue");
+    if (theme === "pink") document.body.classList.add("theme-pink");
+    if (theme === "blue") document.body.classList.add("theme-blue");
 
-      await axios.patch(
-        "/api/profile",
-        { theme },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-
-      // локально застосовуємо тему
-      document.body.classList.remove("theme-pink", "theme-blue");
-      if (theme === "pink") document.body.classList.add("theme-pink");
-      if (theme === "blue") document.body.classList.add("theme-blue");
-
-      saveTheme(theme);
-      set({ theme });
-    } catch (err) {
-      console.error("Не вдалося оновити тему:", err);
-    }
+    saveTheme(theme);
+    set({ theme });
   },
 }));
+
+/** Тема сторінки за статтю дитини (як на онбордингу). */
+export function applyProfileChildGenderTheme(gender: ProfileChildGender) {
+  if (!isBrowser) return;
+
+  const lsGender: Gender =
+    gender === "male" ? "boy" : gender === "female" ? "girl" : "unknown";
+  localStorage.setItem(GENDER_KEY, lsGender);
+
+  const theme: Theme =
+    gender === "female" ? "pink" : gender === "male" ? "blue" : "default";
+
+  document.body.classList.remove("theme-pink", "theme-blue");
+  if (theme === "pink") document.body.classList.add("theme-pink");
+  if (theme === "blue") document.body.classList.add("theme-blue");
+
+  saveTheme(theme);
+  useThemeStore.setState({ theme });
+}
