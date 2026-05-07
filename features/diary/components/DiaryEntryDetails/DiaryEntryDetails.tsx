@@ -1,6 +1,11 @@
 'use client';
 
-import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import {
+  keepPreviousData,
+  QueryClient,
+  useMutation,
+  useQuery,
+} from '@tanstack/react-query';
 import css from './DiaryEntryDetails.module.css';
 import { deleteDiary, getDiaryById } from '../../api';
 import { useRouter } from 'next/navigation';
@@ -20,7 +25,7 @@ export default function DiaryEntryDetails({ diaryId }: DiaryEntryDetailsProps) {
 
   const setDraft = useDiaryDraftStore(state => state.setDraft);
   const router = useRouter();
-
+  const queryClient = new QueryClient();
   const {
     data: diary,
     isLoading,
@@ -33,14 +38,27 @@ export default function DiaryEntryDetails({ diaryId }: DiaryEntryDetailsProps) {
     refetchOnMount: false,
     retry: false,
   });
-
-  const handleDelete = async () => {
+  const deleteMutation = useMutation({
+    mutationFn: () => deleteDiary(diaryId as string),
+    onSuccess: async() => {
+      toast.success('Запис успішно видалений');
+      queryClient.removeQueries({queryKey: ['diary', diaryId]});
+      await queryClient.invalidateQueries({ queryKey: ['diaries'] });
+      setShowConfirmModal(false);
+      router.push('/diary');
+    },
+    onError: (error: unknown) => {
+      const message =
+        (error as { response?: { data?: { message?: string } } })?.response
+          ?.data?.message ??
+        (error as Error)?.message ??
+        'Не вдалося видалити запис';
+      toast.error(message);
+    },
+  });
+  const handleDelete = () => {
     if (!diary) return;
-
-    await deleteDiary(diary._id as string);
-    setShowConfirmModal(false);
-    router.push('/diary');
-    toast.success('Запис щоденника видалений');
+    deleteMutation.mutate();
   };
 
   const handleEdit = () => {
@@ -55,11 +73,6 @@ export default function DiaryEntryDetails({ diaryId }: DiaryEntryDetailsProps) {
     });
 
     setIsAddModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    localStorage.removeItem('editEntry');
-    setIsAddModalOpen(false);
   };
 
   if (!diaryId) return null;
