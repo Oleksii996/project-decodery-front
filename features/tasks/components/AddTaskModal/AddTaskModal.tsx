@@ -63,9 +63,11 @@ export default function AddTaskModal({ onClose, onSuccess }: Props) {
           />
         </div>
         {/* BUTTON */}
+        <div className={styles.buttons}>
         <button className={styles.saveBtn} onClick={handleSubmit}>
           Зберегти
         </button>
+        </div>
       </div>
     </div>
   );

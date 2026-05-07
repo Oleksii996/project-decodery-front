@@ -28,14 +28,14 @@ export default function JourneyDetails({ data }: JourneyDeyailsProps) {
         {tab === 'mom' && (
           <div className={styles.grid}>
             <MomCard data={data.mom} />
+            <TasksReminderCard
+                isAuth={true}
+                 className={styles.smallCard}
+              />
           </div>
         )}
-         {tab === 'mom' && (
-        <div className={styles.cards}>
-          <TasksReminderCard isAuth={true} />
-        </div>
-      )}
-    </div>
+
+      </div>
     </div>
   );
 }

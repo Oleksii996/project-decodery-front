@@ -106,9 +106,15 @@
 @media screen and (min-width: 768px) {
   .modal{
    padding: 24px 32px 32px;}
-.saveBtn{
-  width: 50%;
+
+  .saveBtn{
+    width: 50%;
 }
+
+ .buttons{
+  display: flex;
+  justify-content: center;
+ }
   }
 @media screen and (min-width: 1440px) {
   .modal{
@@ -118,9 +124,10 @@
  .input {
   margin-bottom: 24px;
  }
-
+ 
   .saveBtn {
     margin-top: 0%;
     margin-bottom: 12px;
+    
   }
 }
