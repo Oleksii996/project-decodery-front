@@ -34,3 +34,10 @@ export const getMe = async () => {
   const response = await clientApi.get<User>('/auth/getMe');
   return response.data;
 };
+export const getSession = async () => {
+  const response = await clientApi.get<{ authenticated: boolean }>(
+    '/auth/session'
+  );
+
+  return response.data;
+};

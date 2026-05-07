@@ -15,6 +15,7 @@ import type { BabyCardData } from '../../types';
 
 export default function DashBoardPage() {
   const isAuth = useAuthStore(state => state.isAuth);
+  const isAuthReady = useAuthStore(state => state.isAuthReady);
 
   const {
     data: dashboardData,
@@ -23,6 +24,7 @@ export default function DashBoardPage() {
   } = useQuery({
     queryKey: ['weeks-dashboard', isAuth],
     queryFn: isAuth ? getWeeksDashboard : getWeeksDashboardNA,
+    enabled: isAuthReady,
     retry: false,
     refetchOnMount: false,
   });
@@ -34,7 +36,7 @@ export default function DashBoardPage() {
   } = useQuery({
     queryKey: ['baby-week'],
     queryFn: getBabyWeekData,
-    enabled: isAuth,
+    enabled: isAuthReady && isAuth,
     retry: false,
     refetchOnMount: false,
   });
@@ -49,7 +51,7 @@ export default function DashBoardPage() {
     !dashboardData ||
     (isAuth && !babyData)
   ) {
-    return <p>Помилка при завантаженні.</p>;
+    return null;
   }
 
   const babyForCard: BabyCardData = isAuth

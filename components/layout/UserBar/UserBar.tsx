@@ -6,10 +6,10 @@ import ConfirmationModal from '../../shared/ConfirmationModal/ConfirmationModal'
 import styles from './UserBar.module.css';
 import { logoutUser } from '@/features/auth/api';
 import { useRouter } from 'next/navigation';
-import { QueryClient } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
 
 const UserBar = ({ onClose }: { onClose?: () => void }) => {
-  const queryClient = new QueryClient();
+  const queryClient = useQueryClient();
   const [showModal, setShowModal] = useState(false);
   const router = useRouter();
   const userInfo = useAuthStore(s => s.userInfo);
