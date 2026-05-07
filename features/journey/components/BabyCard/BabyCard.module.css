@@ -17,6 +17,7 @@
   padding: 20px;
 
   display: flex;
+
   flex-direction: column;
   gap: 20px;
 
@@ -32,6 +33,10 @@
 .row {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+
+  align-items: center;
+
   gap: 20px;
 }
 
@@ -53,8 +58,6 @@
   object-fit: cover;
 }
 
-/* ===== IMAGE CAPTION ===== */
-
 .imageCaption {
   margin-top: 12px;
 
@@ -64,15 +67,11 @@
   color: var(--color-neutral-dark);
 }
 
-/* ===== TEXT BLOCK ===== */
-
 .textBlock {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-
-/* ===== TEXT ===== */
 
 .label {
   font-weight: 600;
