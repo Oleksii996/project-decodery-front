@@ -45,7 +45,14 @@ const RegistrationForm = () => {
       onSubmit={handleSubmit}
       validationSchema={registrationValidationSchema}
     >
-      {({ isSubmitting, validateForm, submitForm, setTouched }) => (
+      {({
+        isSubmitting,
+        validateForm,
+        submitForm,
+        setTouched,
+        isValid,
+        dirty,
+      }) => (
         <Form
           className={css['registerForm']}
           noValidate
@@ -126,7 +133,7 @@ const RegistrationForm = () => {
           <button
             type="submit"
             className={css['register-btn']}
-            disabled={isSubmitting}
+            disabled={!isValid || !dirty || isSubmitting}
           >
             {isSubmitting ? (
               <span className={css.loader}></span>
