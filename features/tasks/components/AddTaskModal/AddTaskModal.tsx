@@ -3,34 +3,23 @@
 import { useState } from 'react';
 import styles from './AddTaskModal.module.css';
 
-type Task = {
-  id: number;
-  title: string;
-  done: boolean;
-  date: string;
-};
-
 type Props = {
   onClose: () => void;
-  onSuccess: (task: Task) => void;
+  onSubmit: (body: { title: string; date: string }) => void;
+  isPending?: boolean;
 };
 
-export default function AddTaskModal({ onClose, onSuccess }: Props) {
+export default function AddTaskModal({ onClose, onSubmit, isPending }: Props) {
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
 
   const handleSubmit = () => {
     if (!title || !date) return;
 
-    const newTask: Task = {
-      id: Date.now(),
-      title,
-      done: false,
-      date,
-    };
-
-    onSuccess(newTask);
-    onClose();
+    onSubmit({
+      title: title.trim(),
+      date: date.trim(),
+    });
   };
 
   return (
@@ -50,6 +39,7 @@ export default function AddTaskModal({ onClose, onSuccess }: Props) {
           placeholder="Прийняти вітаміни"
           value={title}
           onChange={e => setTitle(e.target.value)}
+          disabled={isPending}
         />
 
         {/* DATE */}
@@ -60,13 +50,19 @@ export default function AddTaskModal({ onClose, onSuccess }: Props) {
             placeholder="дд.мм.рррр"
             value={date}
             onChange={e => setDate(e.target.value)}
+            disabled={isPending}
           />
         </div>
         {/* BUTTON */}
         <div className={styles.buttons}>
-        <button className={styles.saveBtn} onClick={handleSubmit}>
-          Зберегти
-        </button>
+          <button
+            className={styles.saveBtn}
+            onClick={handleSubmit}
+            disabled={isPending}
+          >
+            {' '}
+            {isPending ? 'Збереження...' : 'Зберегти'}
+          </button>
         </div>
       </div>
     </div>
