@@ -8,7 +8,6 @@ import styles from './JourneyDetails.module.css';
 import { JourneyWeek } from '../../types';
 import TasksReminderCard from '@/features/tasks/components/TasksReminderCard/TasksReminderCard';
 
-
 interface JourneyDeyailsProps {
   data: JourneyWeek;
 }
@@ -28,13 +27,9 @@ export default function JourneyDetails({ data }: JourneyDeyailsProps) {
         {tab === 'mom' && (
           <div className={styles.grid}>
             <MomCard data={data.mom} />
-            <TasksReminderCard
-                isAuth={true}
-                 className={styles.smallCard}
-              />
+            <TasksReminderCard isAuth={true} className={styles.smallCard} />
           </div>
         )}
-
       </div>
     </div>
   );
