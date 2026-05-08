@@ -55,16 +55,52 @@
 }
 
 .register-link {
+  position: relative;
   font-family: 'Lato', sans-serif;
   font-weight: 400;
   font-size: 14px;
-
-  /* line-height: 22px; */
   line-height: 1.6;
-  text-decoration: underline;
-  text-decoration-skip-ink: none;
   text-align: center;
   color: #000;
+  text-decoration: none;
+}
+
+.register-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+
+  width: 0;
+  height: 1px;
+  background-color: #000;
+
+  transition: width 250ms ease;
+}
+
+.register-link:hover::after,
+.register-link:focus::after {
+  width: 100%;
+}
+
+.register-link:active {
+  color: #ffcbd3;
+}
+
+.register-link:active::after {
+  width: 100%;
+  background-color: #ffcbd3;
+}
+
+.register-link:disabled,
+.register-link.disabled {
+  color: #bdbdbd;
+  pointer-events: none;
+}
+
+.register-link:disabled::after,
+.register-link.disabled::after {
+  display: none;
 }
 
 @media (min-width: 768px) {
