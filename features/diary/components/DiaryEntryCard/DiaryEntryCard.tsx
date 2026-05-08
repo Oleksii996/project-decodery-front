@@ -33,7 +33,14 @@ export default function DiaryEntryCard({
     >
       <div className={css.cardHeading}>
         <h4 className={css.cardTitle}>{diary.title}</h4>
-        <p className={css.cardDate}>{diary.date}</p>
+        <p className={css.cardDate}>
+          {(() => {
+            const d = new Date(diary.date);
+            return `${d.getDate()} ${d.toLocaleString('uk-UA', {
+              month: 'long',
+            })} ${d.getFullYear()}`;
+          })()}
+        </p>
       </div>
       <ul className={css.emotions}>
         {diary.emotions.map((emotion, index) => (

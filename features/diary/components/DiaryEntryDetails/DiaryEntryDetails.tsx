@@ -1,4 +1,6 @@
 'use client';
+import Loader from '@/components/common/Loader/Loader';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 
 import {
   keepPreviousData,
@@ -76,7 +78,7 @@ export default function DiaryEntryDetails({ diaryId }: DiaryEntryDetailsProps) {
   };
 
   if (!diaryId) return null;
-  if (isLoading) return null;
+  if (isLoading) return <Loader />;
   if (isError || !diary) return null;
 
   return (
@@ -87,21 +89,28 @@ export default function DiaryEntryDetails({ diaryId }: DiaryEntryDetailsProps) {
             <h4 className={css.title}>{diary.title}</h4>
 
             <button type="button" className={css.editBtn} onClick={handleEdit}>
-              <svg width={24} height={24}>
+              <svg className={css.icon} width={24} height={24}>
                 <use href="/leleka-sprite.svg#icon-edit_square"></use>
               </svg>
             </button>
           </div>
 
           <div className={css.dateBlock}>
-            <p className={css.date}>{diary.date}</p>
+            <p className={css.date}>
+              {(() => {
+                const d = new Date(diary.date);
+                return `${d.getDate()} ${d.toLocaleString('uk-UA', {
+                  month: 'long',
+                })} ${d.getFullYear()}`;
+              })()}
+            </p>
 
             <button
               type="button"
               className={css.deleteBtn}
               onClick={() => setShowConfirmModal(true)}
             >
-              <svg width={24} height={24}>
+              <svg className={css.icon} width={24} height={24}>
                 <use href="/leleka-sprite.svg#icon-delete"></use>
               </svg>
             </button>

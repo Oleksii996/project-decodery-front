@@ -68,6 +68,7 @@
   background: transparent;
   border: none;
   flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .logoutBtn svg {

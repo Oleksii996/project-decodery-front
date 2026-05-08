@@ -1,21 +1,28 @@
+.dairyPage {
+  padding: 0 0 32px;
+}
+.greeting {
+  margin-top: 16px;
+}
 .pageContainer {
   display: grid;
   grid-template-columns: 1fr;
-  padding: 32px 0;
+  margin-top: 32px;
 }
 @media screen and (min-width: 768px) {
-  .pageContainer {
-    padding-left: 12px;
+  .dairyPage {
     padding-right: 12px;
+    padding-left: 12px;
   }
 }
 @media screen and (min-width: 1440px) {
+  .dairyPage {
+    padding: 0 16px 32px 32px;
+  }
+
   .pageContainer {
     gap: 32px;
-    grid-template-columns: minmax(250px, 1fr) minmax(650px, 2fr);
-    padding-left: 0;
-    padding-right: 16px;
-
+    grid-template-columns: 389px 1fr;
   }
   .fullScreen {
     grid-template-columns: 1fr;

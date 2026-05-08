@@ -48,7 +48,7 @@ export default async function Home({ params }: HomePageProps) {
   });
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <DashBoardPage />;
+      <DashBoardPage />
     </HydrationBoundary>
   );
 }
