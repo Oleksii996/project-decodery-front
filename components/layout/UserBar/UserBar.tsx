@@ -7,6 +7,7 @@ import styles from './UserBar.module.css';
 import { logoutUser } from '@/features/auth/api';
 import { useRouter } from 'next/navigation';
 import { useQueryClient } from '@tanstack/react-query';
+import { useThemeStore } from '@/utils/localStorageTheme';
 
 const UserBar = ({ onClose }: { onClose?: () => void }) => {
   const queryClient = useQueryClient();
@@ -20,6 +21,12 @@ const UserBar = ({ onClose }: { onClose?: () => void }) => {
     await logoutUser();
     queryClient.clear();
     clearAuthUser();
+
+    localStorage.removeItem('app-theme');
+    localStorage.removeItem('child-gender');
+
+    document.body.classList.remove('theme-pink', 'theme-blue');
+    useThemeStore.setState({ theme: 'default' });
 
     router.push('/');
 

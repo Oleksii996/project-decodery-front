@@ -5,7 +5,7 @@ import css from './LoginForm.module.css';
 import { LoginFormValues } from '../../types';
 import { loginValidationSchema } from './loginValidationSchema';
 import { useRouter } from 'next/navigation';
-import { loginUser } from '../../api';
+import { getMe, loginUser } from '../../api';
 import toast from 'react-hot-toast';
 import { useAuthStore } from '@/store/authStore';
 
@@ -22,6 +22,7 @@ export default function LoginForm() {
   const handleSubmit = async (values: LoginFormValues) => {
     try {
       const data = await loginUser(values);
+
       setAuthStore(data.user);
 
       router.push('/');
