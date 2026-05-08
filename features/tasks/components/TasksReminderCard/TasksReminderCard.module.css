@@ -1,14 +1,12 @@
 .infoText {
   background-color: var(--color-primary-lightest);
-
   border-radius: 32px;
   border: 1px solid #00000026;
   padding: 24px;
-  overflow-y: auto;
+
   width: 100%;
-  max-width: 100%;
+  height: auto;
   box-sizing: border-box;
-  margin-top: 24px;
   flex-shrink: 0;
 }
 
@@ -30,6 +28,7 @@
   height: 20px;
   background: transparent;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .section {
@@ -105,17 +104,9 @@
   height: 20px;
 }
 
-@media (min-width: 767px) {
+@media (min-width: 1440px) {
   .infoText {
-    max-width: 100%;
-    width: 100%;
-  }
-}
-
-@media (min-width: 1400px) {
-  .infoText {
-    max-width: 350px;
-    width: 100%;
-    margin-top: 0;
+    height: 499px;
+    overflow-y: auto;
   }
 }

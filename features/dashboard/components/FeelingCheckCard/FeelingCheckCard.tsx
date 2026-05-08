@@ -21,34 +21,20 @@ export default function FeelingCheckCard({ isAuth }: Props) {
   };
 
   return (
-    <section className={styles.infoTexst}>
+    <section className={styles.infoText}>
       <div className={styles.card}>
-        <h3 className={styles.title}>
-          Як ви себе почуваєте?
-        </h3>
+        <h3 className={styles.title}>Як ви себе почуваєте?</h3>
 
-        <p className={styles.text}>
-          Рекомендація на сьогодні:
-        </p>
+        <p className={styles.text}>Рекомендація на сьогодні:</p>
 
-        <p className={styles.text2}>
-          Занотуйте незвичні відчуття у тілі.
-        </p>
+        <p className={styles.text2}>Занотуйте незвичні відчуття у тілі.</p>
 
-        <button
-          className={styles.button}
-          onClick={handleClick}
-        >
+        <button className={styles.button} onClick={handleClick}>
           Зробити запис у щоденник
         </button>
       </div>
 
-      {isOpen && (
-        <AddDiaryEntryModal
-          onClose={() => setIsOpen(false)}
-         
-        />
-      )}
+      {isOpen && <AddDiaryEntryModal onClose={() => setIsOpen(false)} />}
     </section>
   );
 }
