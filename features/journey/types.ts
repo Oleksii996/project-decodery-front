@@ -3,7 +3,7 @@ export interface BabyData {
   description: string;
   size: string;
   facts: string[];
- 
+  analogy: string;
 }
 
 export interface MomTip {

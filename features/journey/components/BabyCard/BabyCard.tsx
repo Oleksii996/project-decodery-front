@@ -29,10 +29,6 @@ export default function BabyCard({ data }: BabyCardProps) {
         <div className={styles.textBlock}>
           <p className={styles.description}>{data.description}</p>
 
-          <p className={styles.size}>
-            <span className={styles.label}>Розмір:</span> {data.size}
-          </p>
-
           <div className={styles.factBox}>
             <div className={styles.factHeader}>
               <img src="/icons/star.svg" alt="star" />
