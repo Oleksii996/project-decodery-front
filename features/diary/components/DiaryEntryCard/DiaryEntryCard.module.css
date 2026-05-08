@@ -11,7 +11,6 @@
   background-color: var(--color-primary-light);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
-  border: 1px solid #00000026;
 }
 .card:last-child {
   margin-bottom: 16px;
