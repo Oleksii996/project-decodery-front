@@ -1,70 +1,84 @@
 'use client';
 
 import { useState } from 'react';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
+
 import styles from './TasksReminderCard.module.css';
 import AddTaskModal from '../AddTaskModal/AddTaskModal';
 import TaskItem from './TaskItem';
 
-type Task = {
-  id: number;
-  title: string;
-  done: boolean;
-  date: string; 
-};
+import { createTask, getTasks, updateTaskStatus } from '@/features/tasks/api';
+import type { Task, TaskStatus } from '@/features/tasks/types';
 
-type Props = {
+interface TaskReminderProps {
   isAuth: boolean;
   className?: string;
+}
+
+const getNextStatus = (status: TaskStatus): TaskStatus => {
+  return status === 'done' ? 'pending' : 'done';
 };
 
-
-const parseDate = (str: string) => {
-  const [day, month, year] = str.split('.').map(Number);
-  return new Date(year, month - 1, day);
-};
-
-export default function TasksReminderCard({ isAuth }: Props) {
-  const [tasks, setTasks] = useState<Task[]>([]);
-
+export default function TasksReminderCard({ isAuth }: TaskReminderProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleToggle = (id: number) => {
-    setTasks(prev =>
-      prev.map(t =>
-        t.id === id ? { ...t, done: !t.done } : t
-      )
-    );
-  };
+  const router = useRouter();
+  const queryClient = useQueryClient();
+
+  const {
+    data: tasks = [],
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ['tasks'],
+    queryFn: getTasks,
+    enabled: isAuth,
+    retry: false,
+  });
+
+  const createTaskMutation = useMutation({
+    mutationFn: createTask,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['tasks'] });
+      setIsOpen(false);
+    },
+  });
+
+  const updateStatusMutation = useMutation({
+    mutationFn: ({ taskId, status }: { taskId: string; status: TaskStatus }) =>
+      updateTaskStatus(taskId, { status }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['tasks'] });
+    },
+  });
 
   const handleAddClick = () => {
     if (!isAuth) {
-      window.location.href = '/auth/register';
+      router.push('/auth/register');
       return;
     }
+
     setIsOpen(true);
   };
 
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);;
+  const handleCreateTask = (body: { title: string; date: string }) => {
+    createTaskMutation.mutate({
+      title: body.title,
+      date: body.date,
+      status: 'pending',
+    });
+  };
 
- 
-  const todayTasks = tasks.filter(t => {
-    const d = parseDate(t.date);
-    return (
-      d.toDateString() === today.toDateString() &&
-      !t.done
-    );
-  });
+  const handleToggle = (task: Task) => {
+    updateStatusMutation.mutate({
+      taskId: task._id,
+      status: getNextStatus(task.status),
+    });
+  };
 
- 
-  const weekTasks = tasks.filter(t => {
-    const d = parseDate(t.date);
-    const diff = (d.getTime() - today.getTime()) / (1000 * 60 * 60 * 24);
-
-    return diff > 0 && diff <= 7 && !t.done;
-  });
-
-  const doneTasks = tasks.filter(t => t.done);
+  const activeTasks = tasks.filter(task => task.status !== 'done');
+  const doneTasks = tasks.filter(task => task.status === 'done');
 
   return (
     <section className={styles.infoText}>
@@ -72,72 +86,49 @@ export default function TasksReminderCard({ isAuth }: Props) {
         <h3 className={styles.title}>Важливі завдання</h3>
 
         <button className={styles.addBtn} onClick={handleAddClick}>
-          <img src="/plus.svg" alt="Додати" />
+          <svg width={24} height={24}>
+            <use href="/leleka-sprite.svg#icon-add_circle" />
+          </svg>
         </button>
       </div>
 
-      {/* TODAY */}
       <div className={styles.section}>
-        <p className={styles.sectionTitle}>Сьогодні:</p>
+        <p className={styles.sectionTitle}>Актуальні:</p>
 
-        {todayTasks.length === 0 ? (
+        {!isAuth ? (
           <p className={styles.placeholder}>
-            Немає завдань на сьогодні
+            Зареєструйтесь або увійдіть, щоб додавати завдання
           </p>
+        ) : isLoading ? (
+          <p className={styles.placeholder}>Завантаження...</p>
+        ) : isError ? (
+          <p className={styles.placeholder}>Не вдалося завантажити завдання</p>
+        ) : activeTasks.length === 0 ? (
+          <p className={styles.placeholder}>Немає актуальних завдань</p>
         ) : (
-          todayTasks.map(task => (
-            <TaskItem key={task.id} task={task} onToggle={handleToggle} />
+          activeTasks.map(task => (
+            <TaskItem key={task._id} task={task} onToggle={handleToggle} />
           ))
         )}
       </div>
 
-      {/* WEEK */}
       <div className={styles.section}>
-        <p className={styles.sectionTitle}>Найближчий тиждень:</p>
-
-        {weekTasks.length === 0 ? (
-          <p className={styles.placeholder}>
-            Немає найближчих завдань
-          </p>
-        ) : (
-          weekTasks.map(task => (
-            <TaskItem key={task.id} task={task} onToggle={handleToggle} />
-          ))
-        )}
-      </div>
-
-      {/* DONE */}
-      <div className={styles.section}>
-        <p className={styles.sectionTitle}>
-          Виконані завдання за тиждень:
-        </p>
+        <p className={styles.sectionTitle}>Виконані:</p>
 
         {doneTasks.length === 0 ? (
-          <p className={styles.placeholder}>
-            Немає виконаних завдань
-          </p>
+          <p className={styles.placeholder}>Немає виконаних завдань</p>
         ) : (
           doneTasks.map(task => (
-            <TaskItem key={task.id} task={task} onToggle={handleToggle} />
+            <TaskItem key={task._id} task={task} onToggle={handleToggle} />
           ))
         )}
       </div>
 
-      {/* MODAL */}
       {isOpen && (
         <AddTaskModal
           onClose={() => setIsOpen(false)}
-onSuccess={(newTask) => {
-  setTasks(prev => [
-    ...prev,
-    {
-      id: newTask.id,
-      title: newTask.title,
-      done: newTask.done ?? false,
-      date: newTask.date || '',
-    }
-  ]);
-}}
+          onSubmit={handleCreateTask}
+          isPending={createTaskMutation.isPending}
         />
       )}
     </section>
