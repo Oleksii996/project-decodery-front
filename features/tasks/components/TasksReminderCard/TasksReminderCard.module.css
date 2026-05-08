@@ -11,7 +11,7 @@
   margin-top: 24px;
   flex-shrink: 0;
 }
-/* верх карточки */
+
 .top {
   display: flex;
   justify-content: space-between;
@@ -32,7 +32,6 @@
   cursor: pointer;
 }
 
-/* секції */
 .section {
   margin-bottom: 18px;
 }
@@ -43,7 +42,6 @@
   margin-bottom: 8px;
 }
 
-/* задача */
 .task {
   display: flex;
   align-items: flex-start;
@@ -97,13 +95,11 @@
   justify-content: center;
 }
 
-/* коли активний */
 .checkboxWrapper input:checked + .customCheckbox {
   background: var(--color-black);
   border-color: var(--color-black);
 }
 
-/* svg */
 .customCheckbox img {
   width: 20px;
   height: 20px;

@@ -6,8 +6,7 @@ import WeekSelector from '@/features/journey/components/WeekSelector/WeekSelecto
 import GreetingBlock from '@/components/shared/GreetingBlock/GreetingBlock';
 import JourneyDetails from '@/features/journey/components/JourneyDetails/JourneyDetails';
 import { getJourneyWeek } from '@/features/journey/api';
-import TasksReminderCard from '@/features/tasks/components/TasksReminderCard/TasksReminderCard';
-import FeelingCheckCard from '@/features/dashboard/components/FeelingCheckCard/FeelingCheckCard';
+
 import styles from './JourneyPageClient.module.css';
 
 type Props = {
@@ -30,13 +29,9 @@ export default function JourneyPageClient({ currentWeek }: Props) {
       <div className={styles.container}>
         <GreetingBlock />
 
-        <WeekSelector
-          currentWeek={currentWeek}
-          userWeek={data.userWeek}
-        />
+        <WeekSelector currentWeek={currentWeek} userWeek={data.userWeek} />
 
         <JourneyDetails data={data} />
-
       </div>
     </main>
   );
