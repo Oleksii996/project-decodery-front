@@ -26,6 +26,11 @@ export const metadata: Metadata = {
   title: 'Лелека',
   description:
     'Додаток для майбутніх матусь, зручний інтерфейс для створення задач, ведення щоденника  та отримання корисних порад на кожен день',
+
+  icons: {
+    icon: '/leleka-meta-logo.svg',
+  },
+
   openGraph: {
     type: 'website',
     url: '',
