@@ -25,9 +25,9 @@
   font-weight: 600;
 }
 
-.addBtn {
-  width: 40px;
-  height: 40px;
+.closeBtn {
+  width: 20px;
+  height: 20px;
   background: transparent;
   cursor: pointer;
 }

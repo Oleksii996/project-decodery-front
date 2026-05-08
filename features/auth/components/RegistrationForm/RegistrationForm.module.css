@@ -33,6 +33,7 @@
   margin-bottom: 4px;
   background: rgba(0, 0, 0, 0.05);
   transition: border 250ms;
+  outline: none;
 }
 
 .input:hover,
@@ -49,7 +50,7 @@
 }
 
 .register-btn {
-  /* border-bottom: 4px solid #ffcbd3; */
+  border-bottom: 4px solid #feeccc;
   border-radius: 100px;
   padding-block: 10px;
   padding-inline: 24px;
@@ -57,16 +58,25 @@
   height: 42px;
   background-color: #fef1db;
   -webkit-tap-highlight-color: transparent;
-  /* transition:
+
+  transition:
     background-color 300ms,
-    border-bottom-color 300ms; */
+    border-bottom-color 300ms;
 }
 
-/* .register-btn:hover,
-.register-btn:focus {
-  background-color: #fff4f6;
+.register-btn:disabled {
+  border-bottom: 4px solid rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.05);
+  opacity: 0.3;
+  color: #000;
+  cursor: not-allowed;
+}
+
+.register-btn:not(:disabled):hover,
+.register-btn:not(:disabled):focus {
+  background-color: #fefbf4;
   border-bottom-color: rgba(0, 0, 0, 0.15);
-} */
+}
 
 @media (min-width: 768px) {
   .registerForm {

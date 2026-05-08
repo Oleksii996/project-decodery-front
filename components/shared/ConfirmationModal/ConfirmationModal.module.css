@@ -5,17 +5,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  z-index: 9999;
 }
 
 .modal-content {
   background: #fff;
   border-radius: 40px;
-padding: 64px 20px;
-height: 413px;
-max-width: 335px;
-width: calc(100% - 40px); 
-  position: relative; 
-  margin: 0 auto;  
+  padding: 64px 20px;
+  height: 413px;
+  max-width: 335px;
+  width: calc(100% - 40px);
+  position: relative;
+  margin: 0 auto;
 }
 
 .modal-close {
@@ -28,7 +30,6 @@ width: calc(100% - 40px);
   cursor: pointer;
 }
 
-
 .modal-title {
   font-family: 'Comfortaa', sans-serif;
   font-weight: 700;
@@ -36,11 +37,10 @@ width: calc(100% - 40px);
   line-height: 1.2;
   letter-spacing: 0.01;
   display: block;
-  max-width: 295px;   /* або 374px, залежно від макета */
+  max-width: 295px; /* або 374px, залежно від макета */
   margin: 0 auto 48px;
   text-align: center;
 }
-
 
 .modal-buttons {
   display: flex;
@@ -52,7 +52,7 @@ width: calc(100% - 40px);
 
 .confirm-btn,
 .cancel-btn {
-  flex: 1; 
+  flex: 1;
   padding: 12px;
   border-radius: 8px;
   font-size: 14px;
@@ -94,17 +94,17 @@ width: calc(100% - 40px);
     height: 32px;
   }
 
-.modal-title {
-  font-size: 36px;
-  line-height: 1.2;
-  letter-spacing: 0.01;
-  max-width: 640px;  
-  margin: 0 auto 48px;
-  text-align: center;
-}
+  .modal-title {
+    font-size: 36px;
+    line-height: 1.2;
+    letter-spacing: 0.01;
+    max-width: 640px;
+    margin: 0 auto 48px;
+    text-align: center;
+  }
 
   .modal-buttons {
-    flex-direction: row; 
+    flex-direction: row;
     width: 640px;
     height: 42px;
     margin: 0 auto;
@@ -115,7 +115,6 @@ width: calc(100% - 40px);
     max-width: 268px;
     height: 42px;
   }
-
 }
 
 /* десктоп */
@@ -134,9 +133,9 @@ width: calc(100% - 40px);
   }
 
   .modal-title {
-  max-width: 640px;
-  height: 116px;
-  font-size: 48px;
+    max-width: 640px;
+    height: 116px;
+    font-size: 48px;
   }
 
   .modal-buttons {
