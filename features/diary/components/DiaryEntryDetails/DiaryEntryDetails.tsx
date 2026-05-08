@@ -1,6 +1,5 @@
 'use client';
 import Loader from '@/components/common/Loader/Loader';
-import { keepPreviousData, useQuery } from '@tanstack/react-query';
 
 import {
   keepPreviousData,
@@ -42,9 +41,9 @@ export default function DiaryEntryDetails({ diaryId }: DiaryEntryDetailsProps) {
   });
   const deleteMutation = useMutation({
     mutationFn: () => deleteDiary(diaryId as string),
-    onSuccess: async() => {
+    onSuccess: async () => {
       toast.success('Запис успішно видалений');
-      queryClient.removeQueries({queryKey: ['diary', diaryId]});
+      queryClient.removeQueries({ queryKey: ['diary', diaryId] });
       await queryClient.invalidateQueries({ queryKey: ['diaries'] });
       setShowConfirmModal(false);
       router.push('/diary');
