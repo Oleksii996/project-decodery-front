@@ -71,8 +71,8 @@ width: calc(100% - 40px);
 }
 
 .cancel-btn {
-  background-color: #ffdae0;
-  border-bottom: 4px solid #ffcbd3;
+  background-color: var(--color-primary);
+  border-bottom: 4px solid var(--color-scheme-accent);
   border-radius: 100px;
   padding: 10px 24px;
   height: 42px;

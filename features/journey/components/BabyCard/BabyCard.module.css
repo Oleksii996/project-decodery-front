@@ -12,15 +12,15 @@
   width: 100%;
   max-width: 335px;
 
-  background: #FEFBF4;
+  background: var(--color-primary-light);
   border-radius: 32px;
   padding: 20px;
 
   display: flex;
+
   flex-direction: column;
   gap: 20px;
 
-  /* 🔥 ГОЛОВНЕ — БАЗОВИЙ ШРИФТ */
   font-family: var(--font-family);
   font-weight: 400;
   font-size: 16px;
@@ -33,6 +33,10 @@
 .row {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+
+  align-items: center;
+
   gap: 20px;
 }
 
@@ -54,8 +58,6 @@
   object-fit: cover;
 }
 
-/* ===== IMAGE CAPTION ===== */
-
 .imageCaption {
   margin-top: 12px;
 
@@ -65,16 +67,11 @@
   color: var(--color-neutral-dark);
 }
 
-/* ===== TEXT BLOCK ===== */
-
 .textBlock {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-
-/* ===== TEXT ===== */
-
 
 .label {
   font-weight: 600;
@@ -113,10 +110,8 @@
   line-height: 1.5;
 }
 
-/* ===== FACT BOX (НЕ ЧІПАЄМО СТИЛЬ ЖИРНОГО ЗАГОЛОВКА) ===== */
-
 .factBox {
-  background: var(--color-primary-light);
+  background: var(--color-primary);
   border-radius: 20px;
   padding: 16px 20px;
   margin-top: 20px;
@@ -142,8 +137,6 @@
   line-height: 1.5;
 }
 
-/* ===== TABLET ===== */
-
 @media (min-width: 768px) {
   .card {
     max-width: 704px;
@@ -157,9 +150,7 @@
   }
 }
 
-/* ===== DESKTOP ===== */
-
-@media (min-width: 1024px) {
+@media (min-width: 1440px) {
   .card {
     max-width: 1064px;
     min-height: 467px;

@@ -10,3 +10,24 @@
 .title {
   display: none;
 }
+
+/* TABLET */
+@media (max-width: 1024px) {
+  .page {
+    width: 100%;
+    height: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 767px) {
+  .page {
+    width: 100%;
+    height: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 24px;
+  }
+}
