@@ -25,6 +25,19 @@ a {
   color: inherit;
 }
 
+button,
+a,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+label[for],
+summary,
+[role="button"],
+[onclick],
+[tabindex]:not([tabindex="-1"]) {
+  cursor: pointer;
+}
+
 ul,
 ol {
   list-style: none;
