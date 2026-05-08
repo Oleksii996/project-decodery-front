@@ -4,6 +4,8 @@
   gap: 24px;
   width: 100%;
   align-items: flex-start;
+
+  margin-bottom: 24px;
 }
 
 .card {
@@ -90,5 +92,10 @@
 
   .tipText {
     font-size: 13px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .wrapper {
   }
 }

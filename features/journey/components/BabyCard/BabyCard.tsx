@@ -33,21 +33,6 @@ export default function BabyCard({ data }: BabyCardProps) {
             <span className={styles.label}>Розмір:</span> {data.size}
           </p>
 
-          <div className={styles.facts}>
-            <div className={styles.factsHeader}>
-              <img src="/icons/star.svg" alt="icon" />
-              <p className={styles.subtitle}>Цікаві факти:</p>
-            </div>
-
-            <ul className={styles.list}>
-              {data.facts?.map((fact: string, i: number) => (
-                <li key={i} className={styles.listItem}>
-                  {fact}
-                </li>
-              ))}
-            </ul>
-          </div>
-
           <div className={styles.factBox}>
             <div className={styles.factHeader}>
               <img src="/icons/star.svg" alt="star" />
