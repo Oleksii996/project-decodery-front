@@ -50,13 +50,51 @@
 }
 
 .login-link {
+  position: relative;
   font-family: 'Lato', sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.6;
-  text-decoration: underline;
-  text-align: center;
   color: #000;
+  text-decoration: none;
+}
+
+.login-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+
+  width: 0;
+  height: 1px;
+  background-color: #000;
+
+  transition: width 250ms ease;
+}
+
+.login-link:hover::after,
+.login-link:focus::after {
+  width: 100%;
+}
+
+.login-link:active {
+  color: #ffcbd3;
+}
+
+.login-link:active::after {
+  width: 100%;
+  background-color: #ffcbd3;
+}
+
+.login-link:disabled,
+.login-link.disabled {
+  color: #bdbdbd;
+  pointer-events: none;
+}
+
+.login-link:disabled::after,
+.login-link.disabled::after {
+  display: none;
 }
 
 @media (min-width: 768px) {

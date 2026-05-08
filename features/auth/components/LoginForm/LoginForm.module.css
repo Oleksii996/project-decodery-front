@@ -33,6 +33,7 @@
   margin-bottom: 4px;
   background: rgba(0, 0, 0, 0.05);
   transition: border 250ms;
+  outline: none;
 }
 
 .login-input:hover,
@@ -49,7 +50,7 @@
 }
 
 .login-btn {
-  /* border-bottom: 4px solid #ffcbd3; */
+  border-bottom: 4px solid #feeccc;
   border-radius: 100px;
   padding-block: 10px;
   padding-inline: 24px;
@@ -57,16 +58,16 @@
   height: 42px;
   background-color: #fef1db;
   -webkit-tap-highlight-color: transparent;
-  /* transition:
+  transition:
     background-color 300ms,
-    border-bottom-color 300ms; */
+    border-bottom-color 300ms;
 }
 
-/* .login-btn:hover,
+.login-btn:hover,
 .login-btn:focus {
-  background-color: #fff4f6;
+  background-color: #fefbf4;
   border-bottom-color: rgba(0, 0, 0, 0.15);
-} */
+}
 
 .login-error {
   font-family: 'Lato', sans-serif;
