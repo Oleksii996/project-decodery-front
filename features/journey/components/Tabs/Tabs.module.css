@@ -5,13 +5,11 @@
   padding: 4px;
 
   width: 100%;
-  max-width: 335px;
+
   height: 50px;
 
   border-radius: 100px;
-
   background: var(--color-primary-lightest);
-
   margin: 16px auto;
 }
 
@@ -38,7 +36,6 @@
   transition: all 0.2s ease;
 }
 
-/*  АКТИВНА */
 .active {
   background: var(--color-primary);
   color: var(--color-black);
@@ -50,16 +47,13 @@
   opacity: 0.8;
 }
 
-/* TABLET */
 @media (min-width: 768px) {
   .container {
-    max-width: 704px;
-    height: 50px;
+    width: 100%;
   }
 }
 
-/* DESKTOP */
-@media (min-width: 1024px) {
+@media (min-width: 1440px) {
   .container {
     max-width: 572px;
     height: 54px;

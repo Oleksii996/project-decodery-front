@@ -3,6 +3,8 @@
   flex-direction: column;
   justify-content: center;
   align-self: center;
+
+  background-color: red;
 }
 
 .content {
@@ -32,7 +34,7 @@
   }
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1440px) {
   .grid {
     display: flex;
     gap: 24px;

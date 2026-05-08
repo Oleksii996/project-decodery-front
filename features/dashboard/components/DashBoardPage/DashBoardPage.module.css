@@ -1,5 +1,6 @@
 .dashboard {
   padding-top: 16px;
+  background-color: aqua;
 }
 @media screen and (min-width: 768px) {
   .dashboard {
