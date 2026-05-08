@@ -30,16 +30,12 @@
   line-height: 160%;
   letter-spacing: 0;
   text-align: left;
-  text-decoration: none;
-  outline: none;
   -webkit-tap-highlight-color: transparent;
 }
 
 .brand,
 .link {
   color: #000;
-  text-decoration: none;
-  outline: none;
   -webkit-tap-highlight-color: transparent;
 }
 

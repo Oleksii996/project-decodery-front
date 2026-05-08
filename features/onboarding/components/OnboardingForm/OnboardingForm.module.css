@@ -11,6 +11,7 @@
   width: 335px;
   align-items: center;
   justify-content: start;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .brandLogo {
@@ -109,6 +110,7 @@
   font-size: 14px;
   line-height: 160%;
   color: #2f2219;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .btnSubmit {
@@ -136,6 +138,7 @@
   font-size: 14px;
   line-height: 160%;
   color: #2f2219;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .btnFoto:hover,
