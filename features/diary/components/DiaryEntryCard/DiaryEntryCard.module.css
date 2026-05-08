@@ -3,15 +3,18 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  border: 1px solid var( --color-primary-light);
+  border: 1px solid var(--color-primary-light);
   border-radius: 16px;
   padding: 16px;
- height: fit-content;
-  background-color: var( --color-primary-light);
+  min-height: 91px;
+  /* height: fit-content; */
+  background-color: var(--color-primary-light);
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  border: 1px solid #00000026;
 }
 .active {
-  border: 2px solid #000;
+  border: 2px solid #00000026;
 }
 .cardHeading {
   display: flex;
@@ -19,13 +22,25 @@
   justify-content: space-between;
 }
 .cardTitle {
+  font-family: var(--font-family);
   font-weight: 600;
   font-size: 16px;
   line-height: 1.6;
+  letter-spacing: 0;
+
+  flex: 1;
+  min-width: 0;
+
+  overflow: hidden;
 }
 .cardDate {
+  font-family: var(--font-family);
+  font-weight: 400;
   font-size: 12px;
   line-height: 1.6;
+  letter-spacing: 0;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 .emotions {
   display: flex;
@@ -34,23 +49,25 @@
   row-gap: 4px;
 }
 .emotion {
-  border: 1px solid rgba(255, 255, 255, 0);
+  border: 1px solid #ffffff00;
   border-radius: 100px;
   padding: 2px 12px;
-  background-color: var( --color-primary-lightest);
+  background-color: var(--color-primary-lightest);
+  font-family: var(--font-family);
   font-weight: 400;
   font-size: 14px;
   line-height: 1.5;
+  letter-spacing: 0;
 }
 
-@media screen and (min-width: 1440px)  {
+@media screen and (min-width: 1440px) {
   .cardTitle {
-  font-size: 18px;
-}
-.cardDate {
-  font-size: 14px;
-}
-.emotion {
-  font-size: 16px;
-}
+    font-size: 18px;
+  }
+  .cardDate {
+    font-size: 14px;
+  }
+  .emotion {
+    font-size: 16px;
+  }
 }

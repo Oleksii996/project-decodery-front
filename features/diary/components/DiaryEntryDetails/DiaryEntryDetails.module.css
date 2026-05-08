@@ -2,7 +2,8 @@
   border-radius: 32px;
   background-color: var(--color-primary-lightest);
   padding: 24px;
-  height: 100%;
+  width: 100%;
+  border: 1px solid #00000026;
 }
 .head {
   display: flex;
@@ -13,32 +14,58 @@
   display: flex;
   align-items: center;
   gap: 8px;
+
+  flex: 1;
+  min-width: 0;
 }
 .title {
   font-family: var(--second-family);
+  font-weight: 700;
   font-size: 18px;
   line-height: 1.4;
-  letter-spacing: 0.01em;
+  letter-spacing: 1;
+
+  overflow-wrap: break-word;
+}
+.icon {
+  width: 24px;
+  height: 24px;
+  fill: #000;
 }
 .editBtn,
 .deleteBtn {
+  width: 40px;
+  height: 40px;
   border: none;
-  padding: 0;
+  padding: 8px;
   background-color: transparent;
+  cursor: pointer;
 }
 .dateBlock {
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-left: 8px;
+
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 .date {
+  font-family: var(--font-family);
+  font-weight: 400;
   font-size: 12px;
   line-height: 1.6;
+  letter-spacing: 1;
 }
 .description {
+  font-family: var(--font-family);
+  font-weight: 400;
   font-size: 14px;
   line-height: 1.5;
+  letter-spacing: 1;
   margin-bottom: 8px;
+
+  overflow-wrap: break-word;
 }
 .emotions {
   display: flex;
@@ -50,20 +77,23 @@
   border-radius: 100px;
   padding: 4px 10px;
   background-color: rgba(0, 0, 0, 0.05);
+  font-family: var(--font-family);
   font-weight: 600;
   font-size: 12px;
   line-height: 1.6;
+  letter-spacing: 0;
 }
 @media screen and (min-width: 768px) {
   .head {
     flex-direction: row;
     justify-content: space-between;
   }
-  .title {
-    font-size: 18px;
-  }
 }
 @media screen and (min-width: 1440px) {
+  .pageContainer {
+    height: 727px;
+    overflow-y: auto;
+  }
   .title {
     font-size: 20px;
   }

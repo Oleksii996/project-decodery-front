@@ -8,7 +8,7 @@
   align-items: center;
   min-height: 40px;
 
-  padding: 16px 0 0;
+  padding: 24px 12px 0;
 
   flex-wrap: nowrap;
   overflow-x: auto;
@@ -31,11 +31,16 @@
   letter-spacing: 0;
   text-align: left;
   text-decoration: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .brand,
 .link {
   color: #000;
+  text-decoration: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .item {
@@ -67,7 +72,6 @@
 
 @media (min-width: 1440px) {
   .breadcrumbsContainer {
-    padding-top: 24px;
-    padding-left: 32px;
+    padding: 24px 16px 0 32px;
   }
 }

@@ -1,11 +1,15 @@
 .container {
   background-color: var(--color-primary-lightest);
-  padding: 0 16px;
+  padding: 24px 16px;
+  border-radius: 32px;
+  width: 100%;
+  border: 1px solid #00000026;
 }
 .head {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: row;
   margin-bottom: 16px;
 }
 .title {
@@ -13,20 +17,37 @@
   font-weight: 700;
   font-size: 18px;
   line-height: 1.4;
-  letter-spacing: 0.01em;
+  letter-spacing: 1;
 }
 .addButton {
   border: none;
-  border-radius: 100px;
   height: 24px;
   padding: 0;
   display: flex;
   align-items: center;
   gap: 8px;
+  -webkit-tap-highlight-color: transparent;
   background-color: transparent;
+  cursor: pointer;
+
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.6;
+  letter-spacing: 0;
 }
 .icon {
+  width: 24px;
+  height: 24px;
   fill: #000;
+}
+.empty {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  text-align: center;
 }
 .list {
   display: flex;
@@ -34,15 +55,18 @@
   align-items: center;
   gap: 16px;
 }
-.empty {
-  font-size: 16px;
-  line-height: 1.5;
-}
+
 @media screen and (min-width: 1440px) {
+  .container {
+    height: 727px;
+    padding: 24px 16px 0;
+    overflow-y: auto;
+  }
   .title {
     font-size: 20px;
   }
   .addButton {
     height: 26px;
+    font-size: 16px;
   }
 }

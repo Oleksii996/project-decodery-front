@@ -1,5 +1,5 @@
 'use client';
-
+import Loader from '@/components/common/Loader/Loader';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import DiaryList from '../DiaryList/DiaryList';
 import { getAllDiaries } from '../../api';
@@ -32,13 +32,15 @@ export default function DiaryPage() {
 
   if (isDesktop === undefined) return null;
 
-  if (isLoading) return null;
+  if (isLoading) return <Loader />;
 
   if (isError) return null;
 
   return (
-    <section>
-      <GreetingBlock />
+    <section className={css.dairyPage}>
+      <div className={css.greeting}>
+        <GreetingBlock />
+      </div>
       <div
         className={`${css.pageContainer} ${diaries.length <= 0 ? css.fullScreen : ''}`}
       >

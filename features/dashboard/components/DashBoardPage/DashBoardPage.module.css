@@ -1,17 +1,17 @@
-.greeting {
-  width: 100%;
-  margin: 0 auto;
-  height: auto;
-  overflow: visible;
+.dashboard {
+  padding-top: 16px;
 }
-
+@media screen and (min-width: 768px) {
+  .dashboard {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
 @media screen and (min-width: 1440px) {
   .dashboard {
-    padding: 32px;
-    padding-top: 16px;
+    padding: 16px 16px 32px 32px;
   }
   .contentDB {
-    /* padding: 0 12px; */
     display: grid;
     grid-template-columns: 1fr 390px;
     gap: 32px;
@@ -21,12 +21,10 @@
     min-width: 642px;
     display: flex;
     flex-direction: column;
-    /* gap: 18px; */
   }
 
-.rightColumn {
- margin-top: 16px;
-  gap: 24px;
-  
-}
+  .rightColumn {
+    margin-top: 16px;
+    gap: 24px;
+  }
 }

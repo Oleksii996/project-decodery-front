@@ -1,5 +1,7 @@
 .greetingBlock {
   height: auto;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 .title {
   font-family: var(--second-family), sans-serif;
@@ -10,7 +12,12 @@
   letter-spacing: 1%;
   text-align: left;
 }
-
+@media screen and (min-width: 768px) {
+  .greetingBlock {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
 @media screen and (min-width: 1440px) {
   .greetingBlock {
     height: 45px;
