@@ -39,7 +39,7 @@
   flex-direction: column;
   gap: 0px;
   width: 100%;
-  flex-grow: 1; /* Дозволяє блоку займати весь вільний простір */
+  flex-grow: 1;
 }
 
 .userName {

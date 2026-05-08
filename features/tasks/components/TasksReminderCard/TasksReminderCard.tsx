@@ -9,14 +9,13 @@ type Task = {
   id: number;
   title: string;
   done: boolean;
-  date: string; 
+  date: string;
 };
 
 type Props = {
   isAuth: boolean;
   className?: string;
 };
-
 
 const parseDate = (str: string) => {
   const [day, month, year] = str.split('.').map(Number);
@@ -30,9 +29,7 @@ export default function TasksReminderCard({ isAuth }: Props) {
 
   const handleToggle = (id: number) => {
     setTasks(prev =>
-      prev.map(t =>
-        t.id === id ? { ...t, done: !t.done } : t
-      )
+      prev.map(t => (t.id === id ? { ...t, done: !t.done } : t))
     );
   };
 
@@ -45,18 +42,13 @@ export default function TasksReminderCard({ isAuth }: Props) {
   };
 
   const today = new Date();
-  today.setHours(0, 0, 0, 0);;
+  today.setHours(0, 0, 0, 0);
 
- 
   const todayTasks = tasks.filter(t => {
     const d = parseDate(t.date);
-    return (
-      d.toDateString() === today.toDateString() &&
-      !t.done
-    );
+    return d.toDateString() === today.toDateString() && !t.done;
   });
 
- 
   const weekTasks = tasks.filter(t => {
     const d = parseDate(t.date);
     const diff = (d.getTime() - today.getTime()) / (1000 * 60 * 60 * 24);
@@ -71,19 +63,23 @@ export default function TasksReminderCard({ isAuth }: Props) {
       <div className={styles.top}>
         <h3 className={styles.title}>Важливі завдання</h3>
 
-        <button className={styles.addBtn} onClick={handleAddClick}>
-          <img src="/plus.svg" alt="Додати" />
+        <button
+          type="button"
+          className={styles.closeBtn}
+          onClick={handleAddClick}
+          aria-label="Додати"
+        >
+          <svg className={styles.addIcon} width="20" height="20">
+            <use href="/leleka-sprite.svg#icon-add_circle" />
+          </svg>
         </button>
       </div>
 
-      {/* TODAY */}
       <div className={styles.section}>
         <p className={styles.sectionTitle}>Сьогодні:</p>
 
         {todayTasks.length === 0 ? (
-          <p className={styles.placeholder}>
-            Немає завдань на сьогодні
-          </p>
+          <p className={styles.placeholder}>Немає завдань на сьогодні</p>
         ) : (
           todayTasks.map(task => (
             <TaskItem key={task.id} task={task} onToggle={handleToggle} />
@@ -91,14 +87,11 @@ export default function TasksReminderCard({ isAuth }: Props) {
         )}
       </div>
 
-      {/* WEEK */}
       <div className={styles.section}>
         <p className={styles.sectionTitle}>Найближчий тиждень:</p>
 
         {weekTasks.length === 0 ? (
-          <p className={styles.placeholder}>
-            Немає найближчих завдань
-          </p>
+          <p className={styles.placeholder}>Немає найближчих завдань</p>
         ) : (
           weekTasks.map(task => (
             <TaskItem key={task.id} task={task} onToggle={handleToggle} />
@@ -106,16 +99,11 @@ export default function TasksReminderCard({ isAuth }: Props) {
         )}
       </div>
 
-      {/* DONE */}
       <div className={styles.section}>
-        <p className={styles.sectionTitle}>
-          Виконані завдання за тиждень:
-        </p>
+        <p className={styles.sectionTitle}>Виконані завдання за тиждень:</p>
 
         {doneTasks.length === 0 ? (
-          <p className={styles.placeholder}>
-            Немає виконаних завдань
-          </p>
+          <p className={styles.placeholder}>Немає виконаних завдань</p>
         ) : (
           doneTasks.map(task => (
             <TaskItem key={task.id} task={task} onToggle={handleToggle} />
@@ -123,21 +111,20 @@ export default function TasksReminderCard({ isAuth }: Props) {
         )}
       </div>
 
-      {/* MODAL */}
       {isOpen && (
         <AddTaskModal
           onClose={() => setIsOpen(false)}
-onSuccess={(newTask) => {
-  setTasks(prev => [
-    ...prev,
-    {
-      id: newTask.id,
-      title: newTask.title,
-      done: newTask.done ?? false,
-      date: newTask.date || '',
-    }
-  ]);
-}}
+          onSuccess={newTask => {
+            setTasks(prev => [
+              ...prev,
+              {
+                id: newTask.id,
+                title: newTask.title,
+                done: newTask.done ?? false,
+                date: newTask.date || '',
+              },
+            ]);
+          }}
         />
       )}
     </section>
