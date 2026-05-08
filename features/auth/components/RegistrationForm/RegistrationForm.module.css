@@ -51,7 +51,6 @@
 
 .register-btn {
   border-bottom: 4px solid #feeccc;
-
   border-radius: 100px;
   padding-block: 10px;
   padding-inline: 24px;
@@ -59,13 +58,22 @@
   height: 42px;
   background-color: #fef1db;
   -webkit-tap-highlight-color: transparent;
+
   transition:
     background-color 300ms,
     border-bottom-color 300ms;
 }
 
-.register-btn:hover,
-.register-btn:focus {
+.register-btn:disabled {
+  border-bottom: 4px solid rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.05);
+  opacity: 0.3;
+  color: #000;
+  cursor: not-allowed;
+}
+
+.register-btn:not(:disabled):hover,
+.register-btn:not(:disabled):focus {
   background-color: #fefbf4;
   border-bottom-color: rgba(0, 0, 0, 0.15);
 }

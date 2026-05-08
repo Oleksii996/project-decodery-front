@@ -41,7 +41,7 @@ export default function LoginForm() {
         onSubmit={handleSubmit}
         validationSchema={loginValidationSchema}
       >
-        {({ isSubmitting, validateForm, submitForm }) => (
+        {({ isSubmitting, validateForm, submitForm, isValid, dirty }) => (
           <Form
             className={css['login-form']}
             noValidate
@@ -104,7 +104,7 @@ export default function LoginForm() {
             <button
               type="submit"
               className={css['login-btn']}
-              disabled={isSubmitting}
+              disabled={!isValid || !dirty || isSubmitting}
             >
               {isSubmitting ? <span className={css.loader}></span> : 'Увійти'}
             </button>
