@@ -82,22 +82,24 @@ p {
 :root {
   --color-primary: #feeccc;
   --color-primary-light: #fef1db;
-  --color-primary-dark: #cbbca3;
   --color-primary-lightest: #fefbf4;
+  /* --color-primary-dark: #cbbca3; */
 }
 
 /* 🌸 girl */
 body.theme-pink {
   --color-primary: #ffcbd3;
-  --color-primary-light: #fff4f6;
-  --color-primary-dark: #cca2a8;
+  --color-primary-light: #ffdae0;
+  --color-primary-lightest: #fff4f6;
+  /* --color-primary-dark: #cca2a8; */
 }
 
 /* 🔵 boy */
 body.theme-blue {
   --color-primary: #adeffe;
-  --color-primary-light: #e5fafe;
-  --color-primary-dark: #98c1cb;
+  --color-primary-light: #c4f2fe;
+  --color-primary-lightest: #e5fafe;
+  /* --color-primary-dark: #98c1cb; */
 }
 
 body {
