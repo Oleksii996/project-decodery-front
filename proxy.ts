@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 const publicRoutes = ['/', '/auth/login', '/auth/register'];
-const privateRoutes = [ '/diary', '/journey', '/profile'];
+const privateRoutes = ['/diary', '/journey', '/profile'];
 
 export function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   const accessToken = req.cookies.get('accessToken')?.value;
+  const refreshToken = req.cookies.get('refreshToken')?.value;
 
   const isPublicRoute = publicRoutes.some(route =>
     route === '/' ? pathname === '/' : pathname.startsWith(route)
@@ -15,13 +16,12 @@ export function proxy(req: NextRequest) {
   const isPrivateRoute = privateRoutes.some(route =>
     route === '/' ? pathname === '/' : pathname.startsWith(route)
   );
- 
 
   if (accessToken && isPublicRoute && pathname !== '/') {
     return NextResponse.redirect(new URL('/', req.url));
   }
 
-  if (!accessToken && isPrivateRoute) {
+  if (!accessToken && !refreshToken && isPrivateRoute) {
     return NextResponse.redirect(new URL('/auth/login', req.url));
   }
 

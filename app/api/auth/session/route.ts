@@ -5,8 +5,8 @@ export const GET = async () => {
   const cookiesStore = await cookies();
 
   const accessToken = cookiesStore.get('accessToken');
-
+  const refreshToken = cookiesStore.get('refreshToken');
   return NextResponse.json({
-    authenticated: !!accessToken,
+    authenticated: Boolean(accessToken || refreshToken),
   });
 };
