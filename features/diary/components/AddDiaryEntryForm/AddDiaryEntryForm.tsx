@@ -75,13 +75,18 @@ export default function AddDiaryEntryForm({
       }
       return createDiary(values);
     },
-    onSuccess: () => {
+    onSuccess: updatedDiary => {
       toast.success(entry?._id ? 'Запис оновлено' : 'Запис створено');
+
       localStorage.removeItem('editEntry');
+
       queryClient.invalidateQueries({ queryKey: ['diaries'] });
+
       if (entry?._id) {
-        queryClient.invalidateQueries({ queryKey: ['editEntry', entry._id] });
+        queryClient.setQueryData(['diary', entry._id], updatedDiary);
+        queryClient.invalidateQueries({ queryKey: ['diary', entry._id] });
       }
+
       onSuccess();
     },
     onError: (error: unknown) => {
