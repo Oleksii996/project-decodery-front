@@ -3,9 +3,9 @@ import Loader from '@/components/common/Loader/Loader';
 
 import {
   keepPreviousData,
-  QueryClient,
   useMutation,
   useQuery,
+  useQueryClient,
 } from '@tanstack/react-query';
 import css from './DiaryEntryDetails.module.css';
 import { deleteDiary, getDiaryById } from '../../api';
@@ -26,7 +26,7 @@ export default function DiaryEntryDetails({ diaryId }: DiaryEntryDetailsProps) {
 
   const setDraft = useDiaryDraftStore(state => state.setDraft);
   const router = useRouter();
-  const queryClient = new QueryClient();
+  const queryClient = useQueryClient();
   const {
     data: diary,
     isLoading,

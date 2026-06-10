@@ -7,14 +7,8 @@ import { NextRequest, NextResponse } from 'next/server';
 export const POST = async (request: NextRequest) => {
   try {
     const cookiesStore = await cookies();
-    const accessToken = cookiesStore.get('accessToken');
+    // const accessToken = cookiesStore.get('accessToken');
     const refreshToken = cookiesStore.get('refreshToken');
-
-    if (accessToken) {
-      return NextResponse.json({
-        success: true,
-      });
-    }
 
     if (!refreshToken) {
       return NextResponse.json(
